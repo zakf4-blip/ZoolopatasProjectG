@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_card_cielo"
+    android:fillViewport="true"
+    tools:context=".confirmacion_registro">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- HEADER: Logo + nombre de veterinaria   -->
+        <!-- ══════════════════════════════════════ -->
+
+        <ImageView
+            android:id="@+id/imgLogoConf"
+            android:layout_width="71dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Logo Zoolopatas"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_logo2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.182"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- CHECK (imagen que subirás tú)          -->
+        <!-- ══════════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/tvNombreVetConf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Zoolopatas"
+            android:textColor="#007A6E"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintStart_toEndOf="@id/imgLogoConf"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="259dp"
+            android:layout_height="99dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreVetConf"
+            app:srcCompat="@drawable/img_picture" />
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- TÍTULO PRINCIPAL                        -->
+        <!-- ══════════════════════════════════════ -->
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- SUBTÍTULO                               -->
+        <!-- ══════════════════════════════════════ -->
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- CHIP CORREO DEL USUARIO                 -->
+        <!-- ══════════════════════════════════════ -->
+        <TextView
+            android:id="@+id/tvTituloExito"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:text="¡Cuenta creada con éxito!"
+            android:textColor="#2B2B2B"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/tvSubtituloConf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:text="Hemos enviado un enlace de verificación a tu correo:"
+            android:textColor="#777777"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTituloExito" />
+
+        <LinearLayout
+            android:id="@+id/chipCorreoUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_chip_correo"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtituloConf">
+
+            <TextView
+                android:id="@+id/tvCorreoUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#2B2B2B"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="📨 renzo.benitez@ejemplo.com"                />
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- TARJETA PASO IMPORTANTE (fondo cielo)   -->
+        <!-- ══════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/cardPasoImportante"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_card_cielo"
+            android:gravity="top"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipCorreoUsuario">
+
+            <!-- Icono carta -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="📨"
+                android:textSize="26sp" />
+
+            <!-- Textos -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paso importante"
+                    android:textColor="#007A6E"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:text="Revisa tu bandeja de entrada o carpeta de spam para activar todas las funciones de tu cartilla veterinaria digital."
+                    android:textColor="#555555"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- TARJETA HISTORIAL DE SALUD              -->
+        <!-- ══════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/cardHistorial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_chip_correo"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPasoImportante">
+
+            <!-- Imagen mascota (la subes tú) -->
+            <ImageView
+                android:id="@+id/imgMascotaHistorial"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="14dp"
+                android:contentDescription="Mascota"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_perritoveri" />
+
+            <!-- Textos -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Historial de salud listo"
+                    android:textColor="#2B2B2B"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:text="Comienza a registrar vacunas, citas y controles preventivos de inmediato."
+                    android:textColor="#777777"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- LINK: ¿No recibiste el correo?          -->
+        <!-- ══════════════════════════════════════ -->
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- BOTÓN PRINCIPAL: Ir al inicio de sesión -->
+        <!-- ══════════════════════════════════════ -->
+
+        <!-- ══════════════════════════════════════ -->
+        <!-- LINK: ¿Error tipográfico?               -->
+        <!-- ══════════════════════════════════════ -->
+        <!--DEBES DE CAMBIAR EL tvReenviar y programar la lógica ya que no reenvia como tal salia error-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReenviarEnlaceVerifi"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="🕐  ¿No recibiste el correo? Reenviar ahora"
+            android:textColor="#007A6E"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardHistorial" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCambiarCorreoReturn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:padding="8dp"
+            android:text="¿Error tipográfico? Cambiar correo electrónico"
+            android:textAllCaps="false"
+            android:textColor="#007A6E"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnReenviarEnlaceVerifi" />
+
+        <Button
+            android:id="@+id/btnIrInicioSesion"
+            android:layout_width="373dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/bg_btn_alternative"
+            android:enabled="false"
+            android:text="Ir al Inicio de sesión→"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCambiarCorreoReturn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

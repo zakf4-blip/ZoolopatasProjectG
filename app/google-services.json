@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060102705133",
+    "project_id": "zoloopatasproyectbd",
+    "storage_bucket": "zoloopatasproyectbd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060102705133:android:d68f320adae2291feb21e4",
+        "android_client_info": {
+          "package_name": "com.example.ProyectoZoloopatas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoqiuMdECmy3KSfNqIPEPqLQpNDp4TvMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

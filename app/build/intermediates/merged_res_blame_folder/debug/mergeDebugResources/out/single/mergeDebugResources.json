@@ -1,0 +1,502 @@
+[
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_pet_rocky.jpg.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_pet_rocky.jpg"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_informacion_mascota.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_informacion_mascota.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_premium_card.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_premium_card.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_add.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_premium.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_premium.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_dog.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_dog.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_arrow_forward.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_arrow_forward.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_iconoapp.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_iconoapp.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_person.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_edit_mint.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_edit_mint.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_add_circle_teal.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_add_circle_teal.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_hearticon.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_hearticon.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_dot_teal.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_dot_teal.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_medical_record.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_medical_record.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_edit_card.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_edit_card.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_pet_luna.jpg.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_pet_luna.jpg"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_search.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_search.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_gender_male.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_gender_male.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_circle_icon_cupo.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_circle_icon_cupo.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_paw.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_paw.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_compass_clinic.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_compass_clinic.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_card_cielo.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_card_cielo.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_id_badge.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_id_badge.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_cat_icon_completo.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_cat_icon_completo.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_edit_card_gris.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_edit_card_gris.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_dot_black.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_dot_black.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_chip_urgencias.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_chip_urgencias.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_camera.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_camera.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_pet_rocky_clinic.jpg.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_pet_rocky_clinic.jpg"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_nav_person.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_nav_person.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_info_row.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_info_row.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_cat.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_cat.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_badge_plan_gratuito.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_badge_plan_gratuito.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_card_cupo.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_card_cupo.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_alternative.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_alternative.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_home.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_badge_amber.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_badge_amber.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_gallery.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_gallery.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_logo.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_logo.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_chevron_down.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_chevron_down.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_progress_bar_segment_filled.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_progress_bar_segment_filled.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_shield_check.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_shield_check.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_picture.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_picture.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_circle_teal.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_circle_teal.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_card_error.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_card_error.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_dog_icon_completo.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_dog_icon_completo.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_main.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/xml_backup_rules.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_circle_orange.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_circle_orange.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_logo_redondo.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/logo_redondo.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_color_palette.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_color_palette.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_registro_cuenta.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_registro_cuenta.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_save_pet.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_save_pet.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_pill_banner.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_pill_banner.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_profile_circle.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_profile_circle.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_pantalla_mascotas.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_pantalla_mascotas.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_info_container.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_info_container.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_edit.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_edit.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_iniciosesion.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_iniciosesion.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_castrated.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_castrated.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_chip_gold.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_chip_gold.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_badge_clinico.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_badge_clinico.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_perritoveri.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_perritoveri.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_cat_icon_perfil.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_cat_icon_perfil.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_badge_gris.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_badge_gris.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_icon_teal_row.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_icon_teal_row.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_logo2.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_logo2.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_home.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_home.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_chip_light.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_chip_light.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_chip_sun.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_chip_sun.xml"
+    },
+    {
+        "merged": "com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_confirmacion_registro.xml.flat",
+        "source": "com.example.ProyectoZoloopatas.app-main-57:/layout/activity_confirmacion_registro.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_circle_gray.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_circle_gray.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_badge_plan_integral.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_badge_plan_integral.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_check.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_check.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_segmented_selected.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_segmented_selected.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_bell.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_bell.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_dot_brown.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_dot_brown.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_segmented_unselected.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_segmented_unselected.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_tag_pet.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_tag_pet.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_editar_info_mascota.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_editar_info_mascota.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_progress_bar_segment_empty.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_progress_bar_segment_empty.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_fab_teal.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_fab_teal.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_award_vital.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_award_vital.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_badge_vital.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_badge_vital.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_badge_check.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_badge_check.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_gender_female.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_gender_female.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_icon_amber.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_icon_amber.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_shield_small.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_shield_small.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_calendar_birth.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_calendar_birth.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_dot_white.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_dot_white.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_pet_race.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_pet_race.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_nav_bell.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_nav_bell.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_paw_species.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_paw_species.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_more_vert.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_more_vert.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_icon_teal.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_icon_teal.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_dashboard_card.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_dashboard_card.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_chip_correo.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_chip_correo.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_launcher_background.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_arrow_back.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_circle_photo_placeholder.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_circle_photo_placeholder.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_warning_circle.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_warning_circle.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_ic_chevron_left.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/ic_chevron_left.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_dashboard_logo.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_dashboard_logo.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_dog_icon_perfil.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_dog_icon_perfil.png"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_bg_btn_pill_white.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/bg_btn_pill_white.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/layout_activity_confirmacion_registro.xml.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/layout/activity_confirmacion_registro.xml"
+    },
+    {
+        "merged": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-debug-55:/drawable_img_flechaverde.png.flat",
+        "source": "/home/zaku/.gradle/daemon/9.6.0/com.example.ProyectoZoloopatas.app-main-57:/drawable/img_flechaverde.png"
+    }
+]

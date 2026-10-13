@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    android:fillViewport="true"
+    tools:context=".registro_cuenta">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
+
+        <!-- ══ Flecha retroceso ══ -->
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="373dp"
+            android:layout_height="58dp"
+            android:text="Registrarme  →"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="#007A6E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.843" />
+
+        <!-- ══ Logo ══ -->
+
+        <!-- ══ Nombre de la veterinaria ══ -->
+
+        <!-- ══ Título pequeño ══ -->
+
+        <!-- ══ Frase ══ -->
+
+        <!-- ══════════════════════════════════ -->
+        <!-- CAMPO: Nombre completo             -->
+        <!-- ══════════════════════════════════ -->
+
+        <FrameLayout
+            android:id="@+id/frameLogoCircular"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_badge_gris"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.054"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnVolverAtras">
+
+            <ImageView
+                android:id="@+id/imgLogoLogin"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:contentDescription="Logo Zoolopatas"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_logo" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvNombreVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Zoolopatas"
+            android:textColor="#007A6E"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTituloReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="19dp"
+            android:text="Crear cuenta"
+            android:textColor="#2B2B2B"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreVet" />
+
+        <!-- ══════════════════════════════════ -->
+        <!-- CAMPO: Correo electrónico          -->
+        <!-- ══════════════════════════════════ -->
+
+        <TextView
+            android:id="@+id/tvFrase"
+            android:layout_width="281dp"
+            android:layout_height="40dp"
+            android:text="Comienza a gestionar la salud y bienestar de tus compañeros de vida."
+            android:textColor="#777777"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.215"
+            app:layout_constraintStart_toEndOf="@+id/frameLogoCircular"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.156" />
+
+        <TextView
+            android:id="@+id/labelNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nombre completo"
+            android:textColor="#2B2B2B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFrase" />
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_chip_correo"
+            android:hint="Ej: Juan Pérez"
+            android:inputType="textPersonName"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="#2B2B2B"
+            android:textColorHint="#AAAAAA"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelNombre" />
+
+        <TextView
+            android:id="@+id/labelCorreo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Correo electrónico"
+            android:textColor="#2B2B2B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@id/etNombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Error correo -->
+
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_chip_correo"
+            android:hint="ejemplo@gmail.com"
+            android:inputType="textEmailAddress"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="#2B2B2B"
+            android:textColorHint="#AAAAAA"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelCorreo" />
+
+        <TextView
+            android:id="@+id/tvErrorCorreo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="⚠ Correo inválido. Usa un formato como ejemplo@gmail.com"
+            android:textColor="#C62828"
+            android:textSize="11sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/etCorreo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══════════════════════════════════ -->
+        <!-- CAMPO: Contraseña                  -->
+        <!-- ══════════════════════════════════ -->
+        <TextView
+            android:id="@+id/labelPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Contraseña"
+            android:textColor="#2B2B2B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tvErrorCorreo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_chip_correo"
+            android:hint="Mínimo 8 caracteres"
+            android:inputType="textPassword"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="#2B2B2B"
+            android:textColorHint="#AAAAAA"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelPassword" />
+
+        <!-- Error contraseña -->
+        <TextView
+            android:id="@+id/tvErrorPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="⚠ La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un símbolo especial."
+            android:textColor="#C62828"
+            android:textSize="11sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══════════════════════════════════ -->
+        <!-- CAMPO: Confirmar contraseña        -->
+        <!-- ══════════════════════════════════ -->
+        <TextView
+            android:id="@+id/labelConfirmPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Confirmar contraseña"
+            android:textColor="#2B2B2B"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tvErrorPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Error confirmar contraseña -->
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_chip_correo"
+            android:hint="Repite tu contraseña"
+            android:inputType="textPassword"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="#2B2B2B"
+            android:textColorHint="#AAAAAA"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnRegistrar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelConfirmPassword"
+            app:layout_constraintVertical_bias="0.048" />
+
+        <TextView
+            android:id="@+id/tvErrorConfirmPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="⚠ Las contraseñas no coinciden."
+            android:textColor="#C62828"
+            android:textSize="11sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/etConfirmPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ══ Botón Crear cuenta ══ -->
+
+        <!-- ══ Link: Ya tengo cuenta ══ -->
+
+        <TextView
+            android:id="@+id/tvYaTengoCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp"
+            android:text="¿Ya tienes cuenta? "
+            android:textColor="#878787"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnIniciarSesionOpt"
+            android:layout_width="165dp"
+            android:layout_height="43dp"
+            android:backgroundTint="@color/card_stats_god"
+            android:fallbackLineSpacing="false"
+            android:hapticFeedbackEnabled="false"
+            android:text="Inicio sesión"
+            android:textColor="#007A6E"
+            android:textColorLink="@color/card_stats_god"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.563"
+            app:layout_constraintStart_toEndOf="@+id/tvYaTengoCuenta"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.935" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="366dp"
+            android:layout_height="34dp"
+            android:text="🔒 Plataforma conforme a normativas de protección de datos personales y datos veterinarios"
+            android:textColor="#878787"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.644"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <ImageButton
+            android:id="@+id/btnVolverAtras"
+            android:layout_width="58dp"
+            android:layout_height="50dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_chevron_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="269dp"
+            android:layout_height="21dp"
+            android:text="🐾Paso a la tranquilidad"
+            android:textColor="#007A6E"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toEndOf="@+id/frameLogoCircular"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.125" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

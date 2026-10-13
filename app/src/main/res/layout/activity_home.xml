@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    tools:context=".HomeActivity">
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- CONTENIDO CON SCROLL                               -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="24dp">
+
+            <!-- ── 1. BARRA SUPERIOR (HEADER) ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Logo Zoolopatas + Título / Subtítulo -->
+                <LinearLayout
+                    android:id="@+id/layoutLogoHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <FrameLayout
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_dashboard_logo"
+                        android:padding="4dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/img_logo"
+                            android:contentDescription="Logo Zoolopatas" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Zoolopatas"
+                            android:textColor="@color/dashboard_teal_text"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Inicio"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Íconos derecha: Botón Buscar + Botón Avatar Perfil -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/btnSearch"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:padding="7dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_search"
+                        android:contentDescription="Buscar" />
+
+                    <ImageButton
+                        android:id="@+id/btnProfileAvatar"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_profile_circle"
+                        android:src="@drawable/ic_person"
+                        android:scaleType="centerInside"
+                        android:padding="8dp"
+                        android:contentDescription="Perfil" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── 2. SECCIÓN DE SALUDO ── -->
+            <TextView
+                android:id="@+id/titulo_Saludo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text="Hola --Valeria--"
+                android:textColor="#1F2428"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSubSaludo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Panel de salud animal Zoolopatas"
+                android:textColor="@color/gray_subtitle"
+                android:textSize="13sp" />
+
+            <!-- ── 3. BOTÓN PILL 'Cuidado & Bienestar' ── -->
+            <Button
+                android:id="@+id/btnCuidadoBienestar"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_pill_banner"
+                app:backgroundTint="@null"
+                android:text="Cuidado &amp; Bienestar"
+                android:textColor="#1F2428"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
+
+            <!-- ── 4. GRILLA 2x2 DE TARJETAS (BOTONES) ── -->
+            <!-- FILA 1: 'Mis Mascotas' y 'Historial Clínico' -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <!-- Tarjeta / Botón 1: Mis Mascotas -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="175dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dashboard_card">
+
+                    <!-- Diseño visual interno -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_teal">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_paw"
+                                    android:contentDescription="Mis Mascotas" />
+                            </FrameLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:src="@drawable/ic_dot_teal"
+                                android:contentDescription="Indicador" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mis Mascotas"
+                            android:textColor="#1F2428"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="2 registradas"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Botón interactivo que cubre toda la tarjeta -->
+                    <Button
+                        android:id="@+id/btnMisMascotas"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        app:backgroundTint="@null"
+                        android:contentDescription="Mis Mascotas" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="12dp"
+                    android:layout_height="match_parent" />
+
+                <!-- Tarjeta / Botón 2: Historial Clínico -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="175dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dashboard_card">
+
+                    <!-- Diseño visual interno -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_teal">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="Historial Clínico"
+                                    android:src="@drawable/ic_medical_record" />
+                            </FrameLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Al día"
+                                android:textColor="@color/dashboard_teal_text"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Historial Clínico"
+                            android:textColor="#1F2428"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Fichas y vacunas"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Botón interactivo que cubre toda la tarjeta -->
+                    <Button
+                        android:id="@+id/btnHistorialClinico"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        app:backgroundTint="@null"
+                        android:contentDescription="Historial Clínico" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- FILA 2: 'Recordatorios' y 'Centros Clínicos' -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <!-- Tarjeta / Botón 3: Recordatorios -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="175dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dashboard_card">
+
+                    <!-- Diseño visual interno -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_amber">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_bell"
+                                    android:contentDescription="Recordatorios" />
+                            </FrameLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_badge_amber"
+                                android:paddingStart="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="3dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1 hoy"
+                                    android:textColor="@color/dashboard_amber_badge_text"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recordatorios"
+                            android:textColor="#1F2428"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Tratamiento activo"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Botón interactivo que cubre toda la tarjeta -->
+                    <Button
+                        android:id="@+id/btnRecordatorios"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        app:backgroundTint="@null"
+                        android:contentDescription="Recordatorios" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="12dp"
+                    android:layout_height="match_parent" />
+
+                <!-- Tarjeta / Botón 4: Centros Clínicos -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="175dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dashboard_card">
+
+                    <!-- Diseño visual interno -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_icon_teal">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_compass_clinic"
+                                    android:contentDescription="Centros Clínicos" />
+                            </FrameLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="• 24h"
+                                android:textColor="@color/dashboard_teal_text"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Centros Clínicos"
+                            android:textColor="#1F2428"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="3 abiertas cerca"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Botón interactivo que cubre toda la tarjeta -->
+                    <Button
+                        android:id="@+id/btnCentrosClinicos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        app:backgroundTint="@null"
+                        android:contentDescription="Centros Clínicos" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- ── 5. TARJETA ACTUALIZA A PREMIUM ── -->
+            <LinearLayout
+                android:id="@+id/cardPremium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_premium_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <!-- Badge superior: Ícono dorado + 'VETCARE VITAL+' -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_badge_vital">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_award_vital"
+                            android:contentDescription="Vetcare Vital+" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:letterSpacing="0.04"
+                        android:text="VETCARE VITAL+"
+                        android:textColor="@color/dashboard_premium_gold"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Actualiza a Premium"
+                    android:textColor="#1F2428"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Descripción -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Registra mascotas ilimitadas y descarga historias clínicas completas en PDF con sello veterinario oficial."
+                    android:textColor="#5E5E5E"
+                    android:textSize="13sp" />
+
+                <!-- Botón Mejorar plan -->
+                <Button
+                    android:id="@+id/btnMejorarPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_btn_premium"
+                    app:backgroundTint="@null"
+                    android:text="Mejorar plan  →"
+                    android:textColor="@color/dashboard_btn_text"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:stateListAnimator="@null" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BARRA DE NAVEGACIÓN INFERIOR (BOTONES)             -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón Pestaña 1: Inicio (Activa) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavInicio"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Inicio"
+            android:textColor="@color/dashboard_teal_text"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_home"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_teal_text"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <!-- Botón Pestaña 2: Notificaciones -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavNotificaciones"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Notificaciones"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_bell"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <!-- Botón Pestaña 3: Perfil -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavPerfil"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Perfil"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_person"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

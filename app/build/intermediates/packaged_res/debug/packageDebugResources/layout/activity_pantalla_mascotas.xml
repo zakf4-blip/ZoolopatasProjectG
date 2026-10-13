@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    tools:context=".PantallaMascotas">
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- CONTENIDO CON SCROLL                               -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <ScrollView
+        android:id="@+id/scrollViewMascotas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="80dp">
+
+            <!-- ── 1. BARRA SUPERIOR (HEADER) ── -->
+
+            <!-- ── 2. TÍTULO Y BADGE PLAN GRATUITO ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Logo Zoolopatas + Título / Subtítulo -->
+                <LinearLayout
+                    android:id="@+id/layoutLogoHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_dashboard_logo"
+                        android:padding="4dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Logo Zoolopatas"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/img_logo" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Zoolopatas"
+                            android:textColor="@color/dashboard_teal_text"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Inicio"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Íconos derecha: Buscar + Avatar Perfil -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/btnSearch"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Buscar"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_search" />
+
+                    <ImageButton
+                        android:id="@+id/btnProfileAvatar"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_profile_circle"
+                        android:contentDescription="Perfil"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_person" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp">
+
+                <TextView
+                    android:id="@+id/tvTituloMisMascotas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mis Mascotas"
+                    android:textColor="#1F2428"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Badge Plan Gratuito -->
+                <LinearLayout
+                    android:id="@+id/badgePlanGratuito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_plan_gratuito"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_badge_check"
+                        android:contentDescription="Plan Gratuito" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="Plan Gratuito"
+                        android:textColor="@color/dashboard_teal_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── 3. TARJETA CAPACIDAD DE PACIENTES ── -->
+            <LinearLayout
+                android:id="@+id/cardCapacidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_dashboard_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Fila de encabezado de capacidad -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_paw"
+                            android:contentDescription="Patita" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Capacidad de pacientes"
+                            android:textColor="#1F2428"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 de 3 registradas"
+                        android:textColor="#2D3748"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Barra de progreso segmentada (2 de 3 llenas) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <!-- Segmento 1: Lleno -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_progress_bar_segment_filled" />
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Segmento 2: Lleno -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_progress_bar_segment_filled" />
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Segmento 3: Vacío -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_progress_bar_segment_empty" />
+                </LinearLayout>
+
+                <!-- Subtítulo explicativo -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingMultiplier="1.15"
+                    android:text="Te queda 1 espacio libre para vincular historial clínico o telemetría."
+                    android:textColor="@color/gray_subtitle"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- ── 4. TARJETA DE MASCOTA 1: ROCKY ── -->
+            <FrameLayout
+                android:id="@+id/cardMascotaRocky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_dashboard_card"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <!-- Avatar circular de Rocky -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        app:cardCornerRadius="33dp"
+                        app:cardElevation="0dp"
+                        app:cardPreventCornerOverlap="false">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_pet_rocky"
+                            android:contentDescription="Rocky" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Datos de la mascota -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- Fila con Nombre + Tag Especie -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rocky"
+                                android:textColor="#1F2428"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/bg_tag_pet"
+                                android:paddingStart="8dp"
+                                android:paddingTop="2dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="2dp"
+                                android:text="Canino"
+                                android:textColor="@color/dashboard_teal_text"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Raza -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Golden Retriever"
+                            android:textColor="#374151"
+                            android:textSize="14sp" />
+
+                        <!-- Edad y Sexo -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="3 años • Macho castrado"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Espacio reservado para el botón de opciones -->
+                    <View
+                        android:layout_width="36dp"
+                        android:layout_height="36dp" />
+                </LinearLayout>
+
+                <!-- Botón interactivo de la tarjeta Rocky -->
+                <Button
+                    android:id="@+id/btnMascotaRocky"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    app:backgroundTint="@null"
+                    android:contentDescription="Rocky" />
+
+                <!-- Botón de opciones (tres puntos) -->
+                <ImageButton
+                    android:id="@+id/btnOpcionesRocky"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="14dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_more_vert"
+                    android:contentDescription="Opciones Rocky" />
+            </FrameLayout>
+
+            <!-- ── 5. TARJETA DE MASCOTA 2: LUNA ── -->
+            <FrameLayout
+                android:id="@+id/cardMascotaLuna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_dashboard_card"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <!-- Avatar circular de Luna -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        app:cardCornerRadius="33dp"
+                        app:cardElevation="0dp"
+                        app:cardPreventCornerOverlap="false">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_pet_luna"
+                            android:contentDescription="Luna" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Datos de la mascota -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- Fila con Nombre + Tag Especie -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Luna"
+                                android:textColor="#1F2428"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/bg_tag_pet"
+                                android:paddingStart="8dp"
+                                android:paddingTop="2dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="2dp"
+                                android:text="Felino"
+                                android:textColor="@color/dashboard_teal_text"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Raza -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Siamés"
+                            android:textColor="#374151"
+                            android:textSize="14sp" />
+
+                        <!-- Edad y Sexo -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="1 año • Hembra"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Espacio reservado para el botón de opciones -->
+                    <View
+                        android:layout_width="36dp"
+                        android:layout_height="36dp" />
+                </LinearLayout>
+
+                <!-- Botón interactivo de la tarjeta Luna -->
+                <Button
+                    android:id="@+id/btnMascotaLuna"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    app:backgroundTint="@null"
+                    android:contentDescription="Luna" />
+
+                <!-- Botón de opciones (tres puntos) -->
+                <ImageButton
+                    android:id="@+id/btnOpcionesLuna"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="14dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_more_vert"
+                    android:contentDescription="Opciones Luna" />
+            </FrameLayout>
+
+            <!-- ── 6. TARJETA: CUPO DISPONIBLE EN PLAN GRATUITO ── -->
+            <FrameLayout
+                android:id="@+id/cardCupoDisponible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_cupo"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingStart="20dp"
+                    android:paddingTop="22dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="22dp">
+
+                    <!-- Espacio reservado para el botón circular con símbolo más (+) -->
+                    <View
+                        android:layout_width="48dp"
+                        android:layout_height="48dp" />
+
+                    <!-- Título -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:text="1 cupo disponible en plan gratuito"
+                        android:textColor="#1F2428"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <!-- Descripción -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:lineSpacingMultiplier="1.2"
+                        android:text="Registra a tu siguiente compañero para mantener sus cartillas clínicas, recordatorios y alertas al día."
+                        android:textColor="@color/gray_subtitle"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- Botón interactivo que cubre toda la tarjeta -->
+                <Button
+                    android:id="@+id/btnCardCupoDisponible"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    app:backgroundTint="@null"
+                    android:contentDescription="Cupo disponible en plan gratuito" />
+
+                <!-- Botón circular con símbolo más (+) -->
+                <ImageButton
+                    android:id="@+id/btnAgregarCupo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_circle_icon_cupo"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_add_circle_teal"
+                    android:contentDescription="Agregar cupo de plan gratuito" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BOTÓN DE ACCIÓN FLOTANTE (FAB)                     -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <ImageButton
+        android:id="@+id/fabAgregarMascota"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_fab_teal"
+        android:elevation="6dp"
+        android:padding="15dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_add"
+        android:contentDescription="Agregar mascota"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BARRA DE NAVEGACIÓN INFERIOR (BOTONES)             -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón Pestaña 1: Inicio (Activa) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavInicio"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Inicio"
+            android:textColor="@color/dashboard_teal_text"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_home"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_teal_text"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <!-- Botón Pestaña 2: Notificaciones -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavNotificaciones"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Notificaciones"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_bell"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <!-- Botón Pestaña 3: Perfil -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavPerfil"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Perfil"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_person"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

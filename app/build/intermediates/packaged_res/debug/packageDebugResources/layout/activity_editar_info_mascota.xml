@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    tools:context=".editar_infoMascota">
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- CONTENIDO CON SCROLL                               -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <ScrollView
+        android:id="@+id/scrollViewEditarMascota"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="36dp">
+
+            <!-- ── 1. BARRA SUPERIOR (HEADER) ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Botón Atrás + Logo Zoolopatas + 'Detalle Paciente' -->
+                <LinearLayout
+                    android:id="@+id/layoutHeaderDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/btnBackTop"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_chevron_left"
+                        android:contentDescription="Volver" />
+
+                    <FrameLayout
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_dashboard_logo"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/img_logo"
+                            android:contentDescription="Logo Zoolopatas" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Detalle Paciente"
+                        android:textColor="#1F2428"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Botón Avatar Perfil Derecha -->
+                <ImageButton
+                    android:id="@+id/btnProfileAvatar"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_profile_circle"
+                    android:contentDescription="Perfil"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_person"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── 2. SECCIÓN TÍTULO: EDITA TU MASCOTA + BOTÓN CONFIRMAR ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnConfirmarTop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvTituloEditaMascota"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edita tu mascota"
+                        android:textColor="#1F2428"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#E53E3E"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:text="Campos obligatorios para el expediente"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Botón circular verde con check -->
+                <ImageButton
+                    android:id="@+id/btnConfirmarTop"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_btn_circle_teal"
+                    android:contentDescription="Confirmar cambios"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_check"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── 3. TARJETA: FOTO DE LA MASCOTA ── -->
+            <LinearLayout
+                android:id="@+id/cardFotoPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_edit_card"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <!-- Contenedor circular "Sin foto" con botón badge cámara -->
+                <FrameLayout
+                    android:layout_width="106dp"
+                    android:layout_height="106dp">
+
+                    <!-- Círculo principal -->
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:background="@drawable/bg_circle_photo_placeholder"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:src="@drawable/ic_paw"
+                            app:tint="#007A6E"
+                            android:contentDescription="Sin foto" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Sin foto"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Botón circular naranja con cámara -->
+                    <ImageButton
+                        android:id="@+id/btnCameraBadge"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom|end"
+                        android:background="@drawable/bg_btn_circle_orange"
+                        android:contentDescription="Tomar foto de la mascota"
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_camera"
+                        app:tint="#FFFFFF" />
+                </FrameLayout>
+
+                <!-- Botones de acción: Tomar foto / Elegir galería -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <!-- Botón: Tomar foto -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTomarFoto"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_pill_white"
+                        app:backgroundTint="@null"
+                        android:text="Tomar foto"
+                        android:textColor="#2D3748"
+                        android:textSize="13sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_camera"
+                        app:iconTint="#007A6E"
+                        app:iconGravity="textStart"
+                        app:iconSize="18dp"
+                        app:iconPadding="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Botón: Elegir galería -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnElegirGaleria"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_pill_white"
+                        app:backgroundTint="@null"
+                        android:text="Elegir galería"
+                        android:textColor="#2D3748"
+                        android:textSize="13sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_gallery"
+                        app:iconTint="#E59819"
+                        app:iconGravity="textStart"
+                        app:iconSize="18dp"
+                        app:iconPadding="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── 4. TARJETA: NOMBRE DE LA MASCOTA ── -->
+            <LinearLayout
+                android:id="@+id/cardNombreMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <!-- Encabezado: Título + Contador -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nombre de la Mascota"
+                            android:textColor="#374151"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:text="*"
+                            android:textColor="#E53E3E"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvContadorNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/64"
+                        android:textColor="#9CA3AF"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Input Nombre + Ícono Badge Médico -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etNombreMascota"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="Ej. Rocky"
+                        android:textColor="#1F2428"
+                        android:textColorHint="#9CA3AF"
+                        android:textSize="15sp"
+                        android:inputType="textPersonName"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_id_badge"
+                        app:tint="#007A6E"
+                        android:contentDescription="Badge" />
+                </LinearLayout>
+
+                <!-- Línea de acento verde azulado -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="6dp"
+                    android:background="#007A6E" />
+            </LinearLayout>
+
+            <!-- ── 5. TARJETA: SEXO ── -->
+            <LinearLayout
+                android:id="@+id/cardSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sexo"
+                        android:textColor="#374151"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="*"
+                        android:textColor="#E53E3E"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Botones segmentados: Macho / Hembra -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <!-- Botón Macho (Seleccionado) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSexoMacho"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_segmented_selected"
+                        app:backgroundTint="@null"
+                        android:text="Macho"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_gender_male"
+                        app:iconTint="#FFFFFF"
+                        app:iconGravity="textStart"
+                        app:iconSize="18dp"
+                        app:iconPadding="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Botón Hembra (No seleccionado) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSexoHembra"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_segmented_unselected"
+                        app:backgroundTint="@null"
+                        android:text="Hembra"
+                        android:textColor="#4A5568"
+                        android:textSize="14sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_gender_female"
+                        app:iconTint="#718096"
+                        app:iconGravity="textStart"
+                        app:iconSize="18dp"
+                        app:iconPadding="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── 6. TARJETA: TIPO DE MASCOTA ── -->
+            <LinearLayout
+                android:id="@+id/cardTipoMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de mascota"
+                        android:textColor="#374151"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="*"
+                        android:textColor="#E53E3E"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Botones grandes: Perro / Gato -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <!-- Botón Perro (No seleccionado) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTipoPerro"
+                        android:layout_width="0dp"
+                        android:layout_height="76dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_segmented_unselected"
+                        app:backgroundTint="@null"
+                        android:text="Perro"
+                        android:textColor="#2D3748"
+                        android:textSize="13sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/img_dog_icon_perfil"
+                        app:iconTint="#2D3748"
+                        app:iconGravity="textTop"
+                        app:iconSize="26dp"
+                        app:iconPadding="4dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Botón Gato (Seleccionado) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTipoGato"
+                        android:layout_width="0dp"
+                        android:layout_height="76dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_segmented_selected"
+                        app:backgroundTint="@null"
+                        android:text="Gato"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/img_cat_icon_perfil"
+                        app:iconTint="#FFFFFF"
+                        app:iconGravity="textTop"
+                        app:iconSize="26dp"
+                        app:iconPadding="4dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── 7. TARJETA: ¿ESTÁ CASTRADO? ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardCastrado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/switchCastrado"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¿Está castrado?"
+                        android:textColor="#1F2428"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_badge_check"
+                            android:contentDescription="Confirmación" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Sí, procedimiento completado"
+                            android:textColor="#007A6E"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Switch Interactivo -->
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchCastrado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    app:thumbTint="@color/white"
+                    app:trackTint="#005C53"
+                    app:trackDecorationTint="#005C53"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── 8. TARJETA: RAZA ── -->
+            <FrameLayout
+                android:id="@+id/cardRaza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Raza"
+                            android:textColor="#374151"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:text="*"
+                            android:textColor="#E53E3E"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Fila con Raza Seleccionada + Chevron -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvRazaSeleccionada"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Golden Retriever"
+                            android:textColor="#1F2428"
+                            android:textSize="15sp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp" />
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="#007A6E"
+                            android:contentDescription="Seleccionar raza" />
+                    </LinearLayout>
+
+                    <!-- Línea de acento verde azulado -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="6dp"
+                        android:background="#007A6E" />
+                </LinearLayout>
+
+                <!-- Botón invisible para seleccionar raza -->
+                <Button
+                    android:id="@+id/btnRazaSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    app:backgroundTint="@null"
+                    android:contentDescription="Seleccionar raza" />
+            </FrameLayout>
+
+            <!-- ── 9. TARJETA: FECHA DE NACIMIENTO ── -->
+            <FrameLayout
+                android:id="@+id/cardFechaNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <!-- Encabezado con Advertencia -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fecha de nacimiento"
+                                android:textColor="#374151"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:text="*"
+                                android:textColor="#E53E3E"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Mensaje de advertencia "No puede ser futura" -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/ic_warning_circle"
+                                app:tint="#D97706"
+                                android:contentDescription="Advertencia" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="No puede ser futura"
+                                android:textColor="#D97706"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Input Fecha + Ícono Calendario -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvFechaNacimiento"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="18/09/2026"
+                            android:textColor="#1F2428"
+                            android:textSize="15sp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp" />
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_calendar_birth"
+                            app:tint="#007A6E"
+                            android:contentDescription="Calendario" />
+                    </LinearLayout>
+
+                    <!-- Línea de acento verde azulado -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="6dp"
+                        android:background="#007A6E" />
+                </LinearLayout>
+
+                <!-- Botón invisible para seleccionar fecha de nacimiento -->
+                <Button
+                    android:id="@+id/btnFechaNacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    app:backgroundTint="@null"
+                    android:contentDescription="Seleccionar fecha de nacimiento" />
+            </FrameLayout>
+
+            <!-- ── 10. TARJETA: COLORES DE TU MASCOTA ── -->
+            <LinearLayout
+                android:id="@+id/cardColoresMascota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_edit_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Colores de tu mascota"
+                    android:textColor="#374151"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- Fila 1 de botones de colores: Dorado, Blanco, Negro -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <!-- Botón Dorado (Seleccionado) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnColorDorado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:minHeight="0dp"
+                        android:background="@drawable/bg_chip_gold"
+                        app:backgroundTint="@null"
+                        android:text="Dorado ✓"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Botón Blanco (Seleccionado) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnColorBlanco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:minHeight="0dp"
+                        android:background="@drawable/bg_chip_light"
+                        app:backgroundTint="@null"
+                        android:text="Blanco ✓"
+                        android:textColor="#2D3748"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_dot_white"
+                        app:iconTint="@null"
+                        app:iconGravity="textStart"
+                        app:iconSize="12dp"
+                        app:iconPadding="4dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="match_parent" />
+
+                    <!-- Botón Negro -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnColorNegro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:minHeight="0dp"
+                        android:background="@drawable/bg_chip_light"
+                        app:backgroundTint="@null"
+                        android:text="Negro"
+                        android:textColor="#2D3748"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_dot_black"
+                        app:iconTint="@null"
+                        app:iconGravity="textStart"
+                        app:iconSize="12dp"
+                        app:iconPadding="4dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp" />
+                </LinearLayout>
+
+                <!-- Fila 2 de botones de colores: Café -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <!-- Botón Café -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnColorCafe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:minHeight="0dp"
+                        android:background="@drawable/bg_chip_light"
+                        app:backgroundTint="@null"
+                        android:text="Café"
+                        android:textColor="#2D3748"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_dot_brown"
+                        app:iconTint="@null"
+                        app:iconGravity="textStart"
+                        app:iconSize="12dp"
+                        app:iconPadding="4dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── 11. BOTÓN PRINCIPAL: GUARDAR MASCOTA ── -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGuardarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_btn_save_pet"
+                app:backgroundTint="@null"
+                android:text="Guardar Mascota"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_paw"
+                app:iconTint="#FFFFFF"
+                app:iconGravity="textStart"
+                app:iconSize="22dp"
+                app:iconPadding="8dp"
+                android:stateListAnimator="@null"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
