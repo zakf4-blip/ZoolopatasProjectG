@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="ciudades_distritos">
+        <item>Lima (Miraflores / San Isidro)</item>
+        <item>Lima (Surco / La Molina)</item>
+        <item>Lima (San Borja / Surquillo)</item>
+        <item>Lima (Barranco / Chorrillos)</item>
+        <item>Lima (Jesús María / Lince)</item>
+        <item>Callao</item>
+        <item>Otra ciudad</item>
+    </string-array>
+    <string-array name="codigos_pais">
+        <item>+51 PE</item>
+        <item>+54 AR</item>
+        <item>+56 CL</item>
+        <item>+57 CO</item>
+        <item>+52 MX</item>
+        <item>+34 ES</item>
+        <item>+1 US</item>
+    </string-array>
     <color name="black">#FF000000</color>
     <color name="card_stats_bg">#FFF9EC</color>
     <color name="card_stats_god">#CCFCDD</color>

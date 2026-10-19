@@ -148,6 +148,14 @@ public class registro_cuenta extends AppCompatActivity {
                                     .build();
                             user.updateProfile(profileUpdates);
 
+                            // Guardar también en Firestore usuarios/{uid}
+                            java.util.Map<String, Object> datosUsuario = new java.util.HashMap<>();
+                            datosUsuario.put("nombre", nombre);
+                            datosUsuario.put("correo", email);
+                            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                                    .collection("usuarios").document(user.getUid())
+                                    .set(datosUsuario, com.google.firebase.firestore.SetOptions.merge());
+
                             // Enviar correo de verificación (Criterio de aceptación HU01)
                             user.sendEmailVerification().addOnCompleteListener(emailTask -> {
                                 if (emailTask.isSuccessful()) {

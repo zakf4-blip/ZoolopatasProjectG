@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -43,6 +44,24 @@ public class confirmacion_registro extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        mAuth.signOut();
+                        Intent intent = new Intent(confirmacion_registro.this,
+                                iniciosesion.class
+                        );
+                        // Evita regresar a la pantalla anterior
+                        intent.setFlags(
+                                Intent.FLAG_ACTIVITY_NEW_TASK |
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        );
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+        );
+
         user = mAuth.getCurrentUser();
 
         tvCorreoUsuario = findViewById(R.id.tvCorreoUsuario);
@@ -87,8 +106,12 @@ public class confirmacion_registro extends AppCompatActivity {
         // Listener: Ir al inicio de sesión (solo si el correo está verificado)
         btnIrInicioSesion.setOnClickListener(v -> {
             if (verificado) {
+                String correo = (user != null && user.getEmail() != null)
+                        ? user.getEmail()
+                        : getIntent().getStringExtra("USER_EMAIL");
                 mAuth.signOut();
                 Intent intent = new Intent(confirmacion_registro.this, iniciosesion.class);
+                intent.putExtra("USER_EMAIL", correo);
                 startActivity(intent);
                 finish();
             } else {
@@ -165,14 +188,5 @@ public class confirmacion_registro extends AppCompatActivity {
             }
             // Si falla el reload (sin internet), dejamos el estado como estaba
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Comportamiento requerido: no salir de la app, hacer signOut y llevar al login o vista anterior controlada
-        mAuth.signOut();
-        Intent intent = new Intent(confirmacion_registro.this, iniciosesion.class);
-        startActivity(intent);
-        finish();
     }
 }

@@ -101,18 +101,6 @@
                 android:layout_marginTop="16dp">
 
                 <!-- Botón Circular Atrás -->
-                <ImageButton
-                    android:id="@+id/btnBackCircle"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_btn_circle_gray"
-                    android:contentDescription="Regresar"
-                    android:padding="10dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
 
                 <!-- Nombre de la Mascota Centrado -->
                 <TextView

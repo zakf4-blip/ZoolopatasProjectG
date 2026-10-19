@@ -210,6 +210,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvCapacidadPacientes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2 de 3 registradas"
@@ -221,15 +222,16 @@
                         app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- Barra de progreso segmentada (2 de 3 llenas) -->
+                <!-- Barra de progreso segmentada -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
-                    <!-- Segmento 1: Lleno -->
+                    <!-- Segmento 1 -->
                     <View
+                        android:id="@+id/progressSegment1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -239,8 +241,9 @@
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
-                    <!-- Segmento 2: Lleno -->
+                    <!-- Segmento 2 -->
                     <View
+                        android:id="@+id/progressSegment2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -250,8 +253,9 @@
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
-                    <!-- Segmento 3: Vacío -->
+                    <!-- Segmento 3 -->
                     <View
+                        android:id="@+id/progressSegment3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -260,6 +264,7 @@
 
                 <!-- Subtítulo explicativo -->
                 <TextView
+                    android:id="@+id/tvCapacidadSubtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -269,239 +274,12 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <!-- ── 4. TARJETA DE MASCOTA 1: ROCKY ── -->
-            <FrameLayout
-                android:id="@+id/cardMascotaRocky"
+            <!-- ── 4. LISTA DINÁMICA DE MASCOTAS DESDE FIREBASE ── -->
+            <LinearLayout
+                android:id="@+id/layoutListaMascotas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_dashboard_card"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
-
-                    <!-- Avatar circular de Rocky -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
-                        app:cardCornerRadius="33dp"
-                        app:cardElevation="0dp"
-                        app:cardPreventCornerOverlap="false">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_pet_rocky"
-                            android:contentDescription="Rocky" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- Datos de la mascota -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <!-- Fila con Nombre + Tag Especie -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Rocky"
-                                android:textColor="#1F2428"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:background="@drawable/bg_tag_pet"
-                                android:paddingStart="8dp"
-                                android:paddingTop="2dp"
-                                android:paddingEnd="8dp"
-                                android:paddingBottom="2dp"
-                                android:text="Canino"
-                                android:textColor="@color/dashboard_teal_text"
-                                android:textSize="11sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <!-- Raza -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Golden Retriever"
-                            android:textColor="#374151"
-                            android:textSize="14sp" />
-
-                        <!-- Edad y Sexo -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="3 años • Macho castrado"
-                            android:textColor="@color/gray_subtitle"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <!-- Espacio reservado para el botón de opciones -->
-                    <View
-                        android:layout_width="36dp"
-                        android:layout_height="36dp" />
-                </LinearLayout>
-
-                <!-- Botón interactivo de la tarjeta Rocky -->
-                <Button
-                    android:id="@+id/btnMascotaRocky"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    app:backgroundTint="@null"
-                    android:contentDescription="Rocky" />
-
-                <!-- Botón de opciones (tres puntos) -->
-                <ImageButton
-                    android:id="@+id/btnOpcionesRocky"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="14dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="6dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_more_vert"
-                    android:contentDescription="Opciones Rocky" />
-            </FrameLayout>
-
-            <!-- ── 5. TARJETA DE MASCOTA 2: LUNA ── -->
-            <FrameLayout
-                android:id="@+id/cardMascotaLuna"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_dashboard_card"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
-
-                    <!-- Avatar circular de Luna -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
-                        app:cardCornerRadius="33dp"
-                        app:cardElevation="0dp"
-                        app:cardPreventCornerOverlap="false">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_pet_luna"
-                            android:contentDescription="Luna" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- Datos de la mascota -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <!-- Fila con Nombre + Tag Especie -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Luna"
-                                android:textColor="#1F2428"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:background="@drawable/bg_tag_pet"
-                                android:paddingStart="8dp"
-                                android:paddingTop="2dp"
-                                android:paddingEnd="8dp"
-                                android:paddingBottom="2dp"
-                                android:text="Felino"
-                                android:textColor="@color/dashboard_teal_text"
-                                android:textSize="11sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <!-- Raza -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Siamés"
-                            android:textColor="#374151"
-                            android:textSize="14sp" />
-
-                        <!-- Edad y Sexo -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="1 año • Hembra"
-                            android:textColor="@color/gray_subtitle"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <!-- Espacio reservado para el botón de opciones -->
-                    <View
-                        android:layout_width="36dp"
-                        android:layout_height="36dp" />
-                </LinearLayout>
-
-                <!-- Botón interactivo de la tarjeta Luna -->
-                <Button
-                    android:id="@+id/btnMascotaLuna"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    app:backgroundTint="@null"
-                    android:contentDescription="Luna" />
-
-                <!-- Botón de opciones (tres puntos) -->
-                <ImageButton
-                    android:id="@+id/btnOpcionesLuna"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="14dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="6dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_more_vert"
-                    android:contentDescription="Opciones Luna" />
-            </FrameLayout>
+                android:orientation="vertical" />
 
             <!-- ── 6. TARJETA: CUPO DISPONIBLE EN PLAN GRATUITO ── -->
             <FrameLayout

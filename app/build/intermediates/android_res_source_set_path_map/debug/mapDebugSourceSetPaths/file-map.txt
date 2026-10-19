@@ -1,9 +1,9 @@
-com.example.ProyectoZoloopatas.app-pngs-0 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/generated/res/pngs/debug
-com.example.ProyectoZoloopatas.app-res-1 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/generated/res/processDebugGoogleServices
-com.example.ProyectoZoloopatas.app-updated_navigation_xml-2 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/generated/updated_navigation_xml/debug
-com.example.ProyectoZoloopatas.app-packageDebugResources-3 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.example.ProyectoZoloopatas.app-packageDebugResources-4 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.example.ProyectoZoloopatas.app-debug-5 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.example.ProyectoZoloopatas.app-debug-6 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/src/debug/res
-com.example.ProyectoZoloopatas.app-main-7 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/src/main/res
+com.example.ProyectoZoloopatas.app-pngs-0 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/generated/res/pngs/debug
+com.example.ProyectoZoloopatas.app-res-1 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/generated/res/processDebugGoogleServices
+com.example.ProyectoZoloopatas.app-updated_navigation_xml-2 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/generated/updated_navigation_xml/debug
+com.example.ProyectoZoloopatas.app-packageDebugResources-3 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.ProyectoZoloopatas.app-packageDebugResources-4 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.ProyectoZoloopatas.app-debug-5 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.ProyectoZoloopatas.app-debug-6 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/debug/res
+com.example.ProyectoZoloopatas.app-main-7 /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/res
 gradleHome-0 /home/zaku/.gradle

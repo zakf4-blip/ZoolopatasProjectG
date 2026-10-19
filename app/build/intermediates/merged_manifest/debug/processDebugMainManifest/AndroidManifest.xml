@@ -8,6 +8,11 @@
         android:minSdkVersion="36"
         android:targetSdkVersion="37" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -36,8 +41,34 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.ProyectoZoloopatas" >
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.ProyectoZoloopatas.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.example.ProyectoZoloopatas.PerfilUsuario"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.EditarPerfil"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.CuidadosBienestar"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.ProyectoZoloopatas.InformacionMascota"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.editar_infoMascota"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity

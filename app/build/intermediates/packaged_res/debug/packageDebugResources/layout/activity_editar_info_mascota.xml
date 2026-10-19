@@ -169,34 +169,52 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <!-- Contenedor circular "Sin foto" con botón badge cámara -->
+                <!-- Contenedor circular con foto o placeholder y botón badge cámara -->
                 <FrameLayout
                     android:layout_width="106dp"
                     android:layout_height="106dp">
 
-                    <!-- Círculo principal -->
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:background="@drawable/bg_circle_photo_placeholder"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        app:cardCornerRadius="48dp"
+                        app:cardElevation="0dp"
+                        app:cardPreventCornerOverlap="false">
 
+                        <!-- Círculo placeholder si no hay foto -->
+                        <LinearLayout
+                            android:id="@+id/layoutSinFoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_circle_photo_placeholder"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="34dp"
+                                android:layout_height="34dp"
+                                android:src="@drawable/ic_paw"
+                                app:tint="#007A6E"
+                                android:contentDescription="Sin foto" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Sin foto"
+                                android:textColor="@color/gray_subtitle"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <!-- Imagen real de la mascota -->
                         <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:src="@drawable/ic_paw"
-                            app:tint="#007A6E"
-                            android:contentDescription="Sin foto" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Sin foto"
-                            android:textColor="@color/gray_subtitle"
-                            android:textSize="11sp" />
-                    </LinearLayout>
+                            android:id="@+id/ivFotoMascotaPreview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"
+                            android:contentDescription="Foto de la mascota" />
+                    </androidx.cardview.widget.CardView>
 
                     <!-- Botón circular naranja con cámara -->
                     <ImageButton
@@ -938,6 +956,24 @@
                 app:iconGravity="textStart"
                 app:iconSize="22dp"
                 app:iconPadding="8dp"
+                android:stateListAnimator="@null"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+
+            <!-- ── 12. BOTÓN SECUNDARIO: ELIMINAR MASCOTA (VISIBLE AL EDITAR) ── -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminarMascota"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:background="@drawable/bg_btn_cancelar"
+                app:backgroundTint="@null"
+                android:text="Eliminar Mascota"
+                android:textColor="#DC2626"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
                 android:stateListAnimator="@null"
                 android:insetTop="0dp"
                 android:insetBottom="0dp" />

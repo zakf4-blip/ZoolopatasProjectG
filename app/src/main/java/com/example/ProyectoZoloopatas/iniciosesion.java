@@ -1,8 +1,10 @@
 package com.example.ProyectoZoloopatas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -87,5 +89,21 @@ public class iniciosesion extends AppCompatActivity {
                         }
                     });
         });
+        precargarCorreoOfConfirmacion();
+    }
+
+    private void precargarCorreoOfConfirmacion() {
+        String correoPrefill = getIntent().getStringExtra("USER_EMAIL");
+        if (correoPrefill == null || correoPrefill.isEmpty()) return;
+
+        etCorreoLogin.setText(correoPrefill);
+        etPasswordLogin.requestFocus();
+
+        etPasswordLogin.postDelayed(() -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.showSoftInput(etPasswordLogin, InputMethodManager.SHOW_IMPLICIT);
+            }
+        }, 200);
     }
 }
