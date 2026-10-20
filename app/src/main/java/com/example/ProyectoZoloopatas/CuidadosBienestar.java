@@ -45,10 +45,10 @@ public class CuidadosBienestar extends AppCompatActivity {
             Toast.makeText(this, "Protocolos de cuidado: próximamente", Toast.LENGTH_SHORT).show();
         });
 
-        // Botón: Explorar recetas y snacks -> catálogo de bocaditos con recetas
+        // Botón: Explorar recetas y snacks
         findViewById(R.id.btnExplorarRecetas).setOnClickListener(v -> {
-            // startActivity(new Intent(this, CatalogoRecetas.class));
-            Toast.makeText(this, "Recetas y snacks: próximamente", Toast.LENGTH_SHORT).show();
+            // ✅ Abre el catálogo de recetas
+            startActivity(new Intent(CuidadosBienestar.this, catalogo_recetas.class));
         });
 
         // ── Perfil (avatar y barra inferior) ──

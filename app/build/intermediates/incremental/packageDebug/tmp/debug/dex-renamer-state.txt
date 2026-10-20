@@ -1,4 +1,4 @@
-#Mon Oct 19 14:27:50 GMT-05:00 2026
+#Mon Oct 19 21:10:56 GMT-05:00 2026
 base.0=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.2=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex

@@ -167,7 +167,7 @@ public class MascotasLocalManager {
             for (int i = 0; i < locales.size(); i++) {
                 Mascota local = locales.get(i);
                 if ((remota.getId() != null && remota.getId().equals(local.getId())) ||
-                    (remota.getNombre() != null && remota.getNombre().equalsIgnoreCase(local.getNombre()))) {
+                        (remota.getNombre() != null && remota.getNombre().equalsIgnoreCase(local.getNombre()))) {
                     locales.set(i, remota);
                     existe = true;
                     break;

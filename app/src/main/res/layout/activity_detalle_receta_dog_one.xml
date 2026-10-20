@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- activity_detalle_receta.xml                                     -->
+<!-- Pantalla de detalle de una receta individual.                   -->
+<!-- Basado en la captura de "Bocaditos de Pollo y Zanahoria"        -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    tools:context=".detalle_receta_dog_one">
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- TOOLBAR SUPERIOR                                   -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/toolbarReceta"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón Atrás -->
+        <ImageButton
+            android:id="@+id/btnBackDetalle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Volver"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#2B2B2B" />
+
+        <!-- Título dinámico: "Receta para perro" / "Receta para gato" -->
+        <!-- ESTE FRAGMENTO AUN FALTA DESARROLLAR-->
+        <TextView
+            android:id="@+id/tvToolbarTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Receta para perro"
+            android:textColor="#1F2428"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Botón compartir -->
+        <ImageButton
+            android:id="@+id/btnCompartir"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Compartir receta"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            app:tint="#2B2B2B" />
+
+        <!-- Botón fijar/favorito -->
+        <ImageButton
+            android:id="@+id/btnFavorito"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Guardar receta"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            app:tint="#2B2B2B" />
+    </LinearLayout>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- CONTENIDO SCROLLABLE DE LA RECETA                  -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <ScrollView
+        android:id="@+id/scrollViewDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/toolbarReceta"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <!-- ── Imagen principal del platillo ── -->
+            <ImageView
+                android:id="@+id/imgRecetaPrincipal"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_eat_dog"
+                android:contentDescription="Foto del platillo" />
+
+            <!-- ── Contenido textual ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="20dp">
+
+                <!-- Título principal -->
+                <TextView
+                    android:id="@+id/tvRecetaTituloPrincipal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Receta para perro"
+                    android:textColor="#1F2428"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <!-- Subtítulo -->
+                <TextView
+                    android:id="@+id/tvRecetaSubtitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Bocaditos de Pollo y Zanahoria para Perros"
+                    android:textColor="#5E5E5E"
+                    android:textSize="16sp" />
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E5E7EB" />
+
+                <!-- ── 🐾 Título ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🐾 Título:"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTituloValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Bocaditos de Pollo y Zanahoria para Perros"
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.2" />
+
+                <!-- ── 🧑 Pensada para ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="🧑 Pensada para:"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPensadaPara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Perro adulto sano de aproximadamente 10 a 20 kg, sin enfermedades conocidas."
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E5E7EB" />
+
+                <!-- ── 🥗 Ingredientes ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🥗 Ingredientes:"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvIngredientes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="- 1 pechuga de pollo cocida y desmenuzada\n- 1 zanahoria grande, cocida y triturada\n- 1 huevo"
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.4" />
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E5E7EB" />
+
+                <!-- ── 🔄 Variantes SEGURAS ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔄 Variantes SEGURAS (sustituciones por ingrediente):"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvVariantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="1. Pechuga de pollo -> Variante segura 1: Pavo cocido y desmenuzado.\nPreparación: Cocinar el pavo de la misma manera que el pollo.\n\n2. Zanahoria -> Variante segura 2: Calabaza cocida y triturada.\nPreparación: Cocinar la calabaza hasta que esté blanda y triturar.\n\n3. Huevo -> Variante segura 3: Puré de batata (boniato) cocido.\nPreparación: Cocinar la batata hasta que esté blanda y hacer puré."
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.4" />
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E5E7EB" />
+
+                <!-- ── 👨‍🍳 Preparación ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👨‍🍳 Preparación:"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPreparacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="1. Cocinar la pechuga de pollo en agua sin sal hasta que esté bien cocida. Desmenuzar finamente.\n\n2. Cocinar la zanahoria al vapor o hervida hasta que esté suave. Triturar hasta obtener un puré.\n\n3. En un bowl, mezclar el pollo desmenuzado, el puré de zanahoria y el huevo hasta obtener una masa homogénea.\n\n4. Formar pequeñas bolitas o bocaditos con las manos.\n\n5. Colocar en una bandeja con papel para hornear.\n\n6. Hornear a 180°C durante 15-20 minutos hasta que estén firmes y dorados.\n\n7. Dejar enfriar completamente antes de servir."
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.4" />
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E5E7EB" />
+
+                <!-- ── ⚠️ Advertencias ── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_warning_box"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚠️ Advertencias importantes"
+                        android:textColor="#92400E"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAdvertencias"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="• No agregar sal, cebolla, ajo ni condimentos.\n• Asegurarse de que el pollo esté completamente cocido.\n• Consultar con tu veterinario si tu mascota tiene alergias alimentarias.\n• Conservar en refrigeración máximo 3 días."
+                        android:textColor="#78350F"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.4" />
+                </LinearLayout>
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E5E7EB" />
+
+                <!-- ── 📦 Almacenamiento ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📦 Almacenamiento:"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAlmacenamiento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Guardar en un recipiente hermético en el refrigerador por hasta 3 días. También se pueden congelar hasta por 2 semanas."
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <!-- ── 🍽️ Porción recomendada ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="🍽️ Porción recomendada:"
+                    android:textColor="#1F2428"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPorcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="2-3 bocaditos por día como snack complementario. No reemplaza la alimentación principal."
+                    android:textColor="#374151"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.3" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BARRA DE NAVEGACIÓN INFERIOR                       -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavInicio"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Inicio"
+            android:textColor="@color/dashboard_teal_text"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_home"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_teal_text"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavNotificaciones"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Notificaciones"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_bell"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavPerfil"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Perfil"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_person"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.ProyectoZoloopatas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,8 +53,9 @@ public class PerfilUsuario extends AppCompatActivity {
 
         findViewById(R.id.rowSeguridad).setOnClickListener(v -> confirmarCambioContrasena());
 
-        findViewById(R.id.rowCorreo).setOnClickListener(v ->
-                Toast.makeText(this, "El correo está vinculado a tu cuenta y no puede cambiarse aquí", Toast.LENGTH_SHORT).show());
+        // Cambio de correo (tanto el contenedor principal como el subtítulo)
+        findViewById(R.id.rowCorreo).setOnClickListener(v -> confirmarCambioCorreo());
+        if (rowCorreoSub != null) rowCorreoSub.setOnClickListener(v -> confirmarCambioCorreo());
 
         findViewById(R.id.rowNotificaciones).setOnClickListener(v ->
                 Toast.makeText(this, "Notificaciones y alertas: próximamente", Toast.LENGTH_SHORT).show());
@@ -90,13 +92,94 @@ public class PerfilUsuario extends AppCompatActivity {
     private void cargarDatosUsuario() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) return;
-        String nombre = user.getDisplayName();
-        if (nombre != null && !nombre.trim().isEmpty()) tvNombreUsuario.setText(nombre);
-        String correo = user.getEmail();
-        if (correo != null) {
-            tvCorreoUsuario.setText(correo);
-            rowCorreoSub.setText(correo);
-        }
+
+        // Recargamos el usuario para sincronizar los cambios recientes desde Firebase
+        user.reload().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                FirebaseUser refreshedUser = mAuth.getCurrentUser();
+                if (refreshedUser == null) return;
+
+                String nombre = refreshedUser.getDisplayName();
+                if (nombre != null && !nombre.trim().isEmpty()) {
+                    tvNombreUsuario.setText(nombre);
+                }
+
+                String correo = refreshedUser.getEmail();
+                if (correo != null) {
+                    tvCorreoUsuario.setText(correo);
+                    rowCorreoSub.setText(correo);
+                }
+            }
+        });
+    }
+
+    private void confirmarCambioCorreo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cambiar correo electrónico");
+        builder.setMessage("Ingresa tu nuevo correo y tu contraseña actual por seguridad:");
+
+        android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
+        layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int padding = 50;
+        layout.setPadding(padding, 20, padding, 20);
+
+        final android.widget.EditText inputNuevoCorreo = new android.widget.EditText(this);
+        inputNuevoCorreo.setHint("Nuevo correo electrónico");
+        inputNuevoCorreo.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        layout.addView(inputNuevoCorreo);
+
+        final android.widget.EditText inputPassword = new android.widget.EditText(this);
+        inputPassword.setHint("Contraseña actual");
+        inputPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        layout.addView(inputPassword);
+
+        builder.setView(layout);
+
+        builder.setPositiveButton("Actualizar", (dialog, which) -> {
+            String nuevoCorreo = inputNuevoCorreo.getText().toString().trim();
+            String password = inputPassword.getText().toString().trim();
+
+            if (nuevoCorreo.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            actualizarCorreoEnFirebase(nuevoCorreo, password);
+        });
+
+        builder.setNegativeButton("Cancelar", null);
+        builder.show();
+    }
+
+    private void actualizarCorreoEnFirebase(String nuevoCorreo, String password) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null || user.getEmail() == null) return;
+
+        // 1. Reautenticar al usuario con su contraseña actual
+        com.google.firebase.auth.AuthCredential credential =
+                com.google.firebase.auth.EmailAuthProvider.getCredential(user.getEmail(), password);
+
+        user.reauthenticate(credential).addOnCompleteListener(authTask -> {
+            if (authTask.isSuccessful()) {
+                // 2. Solicitar actualización segura de correo (envía verificación al nuevo correo)
+                user.verifyBeforeUpdateEmail(nuevoCorreo).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "Correo de verificación enviado al nuevo buzón. Confírmalo para completar el cambio.", Toast.LENGTH_LONG).show();
+
+                        // Opcional: Actualizar también en Firestore si almacenas el correo allí
+                        String uid = user.getUid();
+                        FirebaseFirestore.getInstance().collection("usuarios").document(uid)
+                                .update("correo", nuevoCorreo);
+
+                        cargarDatosUsuario();
+                    } else {
+                        Toast.makeText(this, "Error al actualizar: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            } else {
+                Toast.makeText(this, "Contraseña incorrecta. No se pudo verificar la identidad.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void confirmarCambioContrasena() {
@@ -120,32 +203,65 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void confirmarEliminarCuenta() {
-        new AlertDialog.Builder(this)
-                .setTitle("Eliminar cuenta")
-                .setMessage("Esta acción eliminará tu cuenta y tus datos de forma permanente. ¿Deseas continuar?")
-                .setPositiveButton("Eliminar", (d, w) -> eliminarCuenta())
-                .setNegativeButton("Cancelar", null)
-                .show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Eliminar cuenta");
+        builder.setMessage("Esta acción eliminará tu cuenta y tus datos de forma permanente. Por seguridad, ingresa tu contraseña para continuar:");
+
+        android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
+        layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int padding = 50;
+        layout.setPadding(padding, 20, padding, 20);
+
+        final android.widget.EditText inputPassword = new android.widget.EditText(this);
+        inputPassword.setHint("Contraseña actual");
+        inputPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        layout.addView(inputPassword);
+
+        // ✅ ¡ESTA ES LA LÍNEA QUE FALTABA!
+        builder.setView(layout);
+
+        builder.setPositiveButton("Eliminar", (dialog, which) -> {
+            String password = inputPassword.getText().toString().trim();
+            if (password.isEmpty()) {
+                Toast.makeText(this, "La contraseña es obligatoria", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            eliminarCuentaConReautenticacion(password);
+        });
+
+        builder.setNegativeButton("Cancelar", null);
+        builder.show();
     }
 
-    private void eliminarCuenta() {
+    private void eliminarCuentaConReautenticacion(String password) {
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
+        if (user == null || user.getEmail() == null) {
             irAInicioSesion();
             return;
         }
+
+        String email = user.getEmail();
         String uid = user.getUid();
-        user.delete().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                // Limpia también los datos del perfil guardados en Firestore
-                FirebaseFirestore.getInstance().collection("usuarios").document(uid).delete();
-                Toast.makeText(this, "Cuenta eliminada", Toast.LENGTH_SHORT).show();
-                irAInicioSesion();
+
+        // 1. Reautenticar al usuario con sus credenciales actuales
+        com.google.firebase.auth.AuthCredential credential =
+                com.google.firebase.auth.EmailAuthProvider.getCredential(email, password);
+
+        user.reauthenticate(credential).addOnCompleteListener(authTask -> {
+            if (authTask.isSuccessful()) {
+                // 2. Si la reautenticación es exitosa, procedemos a borrar de Firebase Auth
+                user.delete().addOnCompleteListener(deleteTask -> {
+                    if (deleteTask.isSuccessful()) {
+                        // 3. Eliminar los datos del usuario en Firestore
+                        FirebaseFirestore.getInstance().collection("usuarios").document(uid).delete();
+                        Toast.makeText(this, "Cuenta eliminada correctamente", Toast.LENGTH_SHORT).show();
+                        irAInicioSesion();
+                    } else {
+                        Toast.makeText(this, "Error al eliminar la cuenta de Firebase Auth", Toast.LENGTH_LONG).show();
+                    }
+                });
             } else {
-                // Firebase exige un inicio de sesión reciente para esta operación
-                Toast.makeText(this,
-                        "Por seguridad, cierra sesión, vuelve a ingresar e inténtalo de nuevo",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Contraseña incorrecta. No se pudo verificar la identidad.", Toast.LENGTH_LONG).show();
             }
         });
     }

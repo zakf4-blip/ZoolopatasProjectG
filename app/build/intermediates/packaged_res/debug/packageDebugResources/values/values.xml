@@ -18,6 +18,15 @@
         <item>+34 ES</item>
         <item>+1 US</item>
     </string-array>
+    <string-array name="tipo_mascota_array">
+        <item>Perro</item>
+        <item>Gato</item>
+    </string-array>
+    <string-array name="tipo_registro_vacuna_array">
+        <item>Vacunas</item>
+        <item>Desparasitación</item>
+        <item>Revisión General</item>
+    </string-array>
     <color name="black">#FF000000</color>
     <color name="card_stats_bg">#FFF9EC</color>
     <color name="card_stats_god">#CCFCDD</color>

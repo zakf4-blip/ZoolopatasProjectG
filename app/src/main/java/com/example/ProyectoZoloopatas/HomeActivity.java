@@ -57,6 +57,17 @@ public class HomeActivity extends AppCompatActivity {
             findViewById(R.id.cardMisMascotas).setOnClickListener(abrirMascotas);
         }
 
+        // ── Pantalla principal -> Historial de mis Mascotas (activity_historial_clinico.xml) ──
+        android.view.View.OnClickListener abrirHistorialMascotas = v ->
+                startActivity(new Intent(this, historial_clinico_mascotas.class));
+
+        if (findViewById(R.id.btnHistorialClinico) != null) {
+            findViewById(R.id.btnHistorialClinico).setOnClickListener(abrirHistorialMascotas);
+        }
+        if (findViewById(R.id.cardHistorialMascota) != null) {
+            findViewById(R.id.cardHistorialMascota).setOnClickListener(abrirHistorialMascotas);
+        }
+
         findViewById(R.id.btnNavNotificaciones).setOnClickListener(v ->
                 Toast.makeText(this, "Notificaciones: próximamente", Toast.LENGTH_SHORT).show());
     }

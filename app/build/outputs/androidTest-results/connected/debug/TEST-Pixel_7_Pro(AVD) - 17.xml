@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<testsuites tests="1" failures="0" errors="0" skipped="0" time="0.000" timestamp="2026-10-12T05:02:58" hostname="localhost">
-  <testsuite name="com.example.ProyectoZoloopatas.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="0.001" timestamp="2026-10-12T05:02:58" hostname="localhost">
+<testsuites tests="1" failures="0" errors="0" skipped="0" time="0.000" timestamp="2026-10-19T23:04:53" hostname="localhost">
+  <testsuite name="com.example.ProyectoZoloopatas.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="0.001" timestamp="2026-10-19T23:04:53" hostname="localhost">
     <properties>
       <property name="device" value="emulator-5554" />
     </properties>

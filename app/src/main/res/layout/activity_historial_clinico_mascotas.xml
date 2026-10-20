@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    tools:context=".historial_clinico_mascotas">
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!-- SCROLL PRINCIPAL                                      -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <ScrollView
+        android:id="@+id/scrollHistorial"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="100dp">
+
+            <!-- ──────────────────────────────────────────── -->
+            <!-- 1. BARRA SUPERIOR: flecha + título + avatar  -->
+            <!-- ──────────────────────────────────────────── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Flecha retroceso -->
+                <ImageButton
+                    android:id="@+id/btnVolver"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Volver"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Logo + "Historial Clínico" -->
+                <LinearLayout
+                    android:id="@+id/layoutTituloHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnVolver"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_dashboard_logo"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Logo"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/img_logo" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="Historial Clínico"
+                        android:textColor="@color/dashboard_teal_text"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Avatar perfil (derecha) -->
+                <ImageButton
+                    android:id="@+id/btnPerfil"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_profile_circle"
+                    android:contentDescription="Perfil"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_person"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ──────────────────────────────────────────── -->
+            <!-- 2. LABEL MÓDULO VETERINARIO                  -->
+            <!-- ──────────────────────────────────────────── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:letterSpacing="0.1"
+                android:text="MÓDULO VETERINARIO"
+                android:textColor="@color/gray_subtitle"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <!-- 3. SELECTOR DE MASCOTAS (dinámico) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/layoutMascotasHistorial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical" />
+                </HorizontalScrollView>
+
+                <ImageButton
+                    android:id="@+id/btnAgregarCupo"
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/bg_circle_icon_cupo"
+                    android:contentDescription="Agregar mascota"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_add_circle_teal" />
+            </LinearLayout>
+
+
+            <!-- ──────────────────────────────────────────── -->
+            <!-- 4. TABS: Revisión | Vacunas | Desparasitación-->
+            <!-- ──────────────────────────────────────────── -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Tab REVISIÓN -->
+                    <LinearLayout
+                        android:id="@+id/tabRevision"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_btn_segmented_selected"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <TextView
+                            android:id="@+id/tvTabRevision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Revisión"
+                            android:textColor="@color/dashboard_teal_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvBadgeRevision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/bg_icon_teal"
+                            android:paddingStart="6dp"
+                            android:paddingTop="1dp"
+                            android:paddingEnd="6dp"
+                            android:paddingBottom="1dp"
+                            android:text="1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Tab VACUNAS -->
+                    <LinearLayout
+                        android:id="@+id/tabVacunas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_btn_segmented_unselected"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <TextView
+                            android:id="@+id/tvTabVacunas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vacunas"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvBadgeVacunas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/bg_edit_card_gris"
+                            android:paddingStart="6dp"
+                            android:paddingTop="1dp"
+                            android:paddingEnd="6dp"
+                            android:paddingBottom="1dp"
+                            android:text="0"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Tab DESPARASITACIÓN -->
+                    <LinearLayout
+                        android:id="@+id/tabDesparasitacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_btn_segmented_unselected"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <TextView
+                            android:id="@+id/tvTabDesparasitacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Desparasitación"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvBadgeDesparasitacion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/bg_edit_card_gris"
+                            android:paddingStart="6dp"
+                            android:paddingTop="1dp"
+                            android:paddingEnd="6dp"
+                            android:paddingBottom="1dp"
+                            android:text="0"
+                            android:textColor="@color/gray_subtitle"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ──────────────────────────────────────────── -->
+            <!-- 5. TARJETA REGISTRO: REVISIÓN GENERAL        -->
+            <!-- ──────────────────────────────────────────── -->
+            <LinearLayout
+                android:id="@+id/cardRevisionGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_cielo"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Fila superior: badge tipo + fecha + iconos acción -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Badge REVISIÓN GENERAL -->
+                    <LinearLayout
+                        android:id="@+id/badgeTipoRevision"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_icon_teal_row"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:contentDescription="Revisión"
+                            android:src="@drawable/ic_shield_small" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="REVISIÓN GENERAL"
+                            android:textColor="@color/dashboard_teal_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Fecha -->
+                    <TextView
+                        android:id="@+id/tvFechaRevision"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="• 14/03/2024"
+                        android:textColor="@color/gray_subtitle"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/badgeTipoRevision"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Botones: editar + eliminar -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <!-- Editar -->
+
+                        <!-- Eliminar -->
+                        <ImageButton
+                            android:id="@+id/btnEliminarRevision"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Eliminar"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_warning_circle" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Título del registro -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Control semestral y peso"
+                    android:textColor="#1F2428"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Descripción -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:text="Paciente activo, peso 28.5 kg, frecuencia cardíaca normal. Sin signos de otitis ni dolor articular."
+                    android:textColor="#374151"
+                    android:textSize="13sp" />
+            </LinearLayout>
+            <!-- Lista dinámica de vacunas de la mascota seleccionada -->
+            <LinearLayout
+                android:id="@+id/layoutRegistrosVacunas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <!-- Mensaje cuando no hay registros -->
+            <TextView
+                android:id="@+id/tvEstadoVacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.3"
+                android:textColor="@color/gray_subtitle"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!-- FAB: Botón circular (+) para agregar registro        -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <ImageButton
+        android:id="@+id/fabAgregarRegistro"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_fab_teal"
+        android:contentDescription="Agregar registro"
+        android:elevation="6dp"
+        android:padding="15dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

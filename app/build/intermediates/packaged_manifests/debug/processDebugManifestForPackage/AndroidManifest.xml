@@ -102,6 +102,26 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.ProyectoZoloopatas.catalogo_recetas"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.detalle_receta_dog_one"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.historial_clinico_mascotas"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.registrar_vacuna"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.item_tarjeta_vacunas"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"
             android:excludeFromRecents="true"
             android:exported="true"

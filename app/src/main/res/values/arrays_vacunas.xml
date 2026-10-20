@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- arrays_vacunas.xml                         -->
+<!-- Array de strings para el Spinner de tipo de registro   -->
+<!-- Colocar en res/values/                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<resources>
+    <string-array name="tipo_registro_vacuna_array">
+        <item>Vacunas</item>
+        <item>Desparasitación</item>
+        <item>Revisión General</item>
+    </string-array>
+</resources>

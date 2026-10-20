@@ -1,9 +1,9 @@
-Ù
+á
 H
-ExampleInstrumentedTestcom.example.ProyectoZoloopatasuseAppContext"•
+ExampleInstrumentedTestcom.example.ProyectoZoloopatasuseAppContext"∏
 
-logcatandroidè
-å/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/outputs/androidTest-results/connected/debug/Pixel_7_Pro(AVD) - 17/logcat-com.example.ProyectoZoloopatas.ExampleInstrumentedTest-useAppContext.txt*È
+logcatandroid¢
+ü/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/outputs/androidTest-results/connected/debug/Pixel_7_Pro(AVD) - 17/logcat-com.example.ProyectoZoloopatas.ExampleInstrumentedTest-useAppContext.txt*¸
 
-device-infoandroidŒ
-À/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v3/ProyectoZoloopatas/app/build/outputs/androidTest-results/connected/debug/Pixel_7_Pro(AVD) - 17/device-info.pb
+device-infoandroid·
+ﬁ/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/outputs/androidTest-results/connected/debug/Pixel_7_Pro(AVD) - 17/device-info.pb

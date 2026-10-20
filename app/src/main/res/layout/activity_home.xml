@@ -246,6 +246,7 @@
 
                 <!-- Tarjeta / Botón 2: Historial Clínico -->
                 <FrameLayout
+                    android:id="@+id/cardHistorialMascota"
                     android:layout_width="0dp"
                     android:layout_height="175dp"
                     android:layout_weight="1"

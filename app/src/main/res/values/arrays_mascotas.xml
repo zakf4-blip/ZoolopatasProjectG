@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Opciones para el Spinner de tipo de mascota -->
+    <string-array name="tipo_mascota_array">
+        <item>Perro</item>
+        <item>Gato</item>
+    </string-array>
+</resources>
