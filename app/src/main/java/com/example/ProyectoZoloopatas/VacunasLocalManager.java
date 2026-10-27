@@ -98,4 +98,36 @@ public class VacunasLocalManager {
             refVacuna(uid, petId, vacunaId).delete();
         } catch (Exception ignored) {}
     }
+
+    public static void cargarVacunasDeFirestore(Context context, String uid, String petId, Runnable onComplete) {
+        if (context == null || uid == null || petId == null || "usuario_default".equals(uid)) {
+            if (onComplete != null) onComplete.run();
+            return;
+        }
+
+        FirebaseFirestore.getInstance()
+                .collection(COL_USUARIOS).document(uid)
+                .collection(COL_MASCOTAS).document(petId)
+                .collection(COL_VACUNAS).get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Vacuna> remotas = new ArrayList<>();
+                    for (com.google.firebase.firestore.QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        Vacuna v = Vacuna.fromFirestoreDoc(doc);
+                        if (v != null) {
+                            v.setMascotaId(petId);
+                            v.setUsuarioId(uid);
+                            remotas.add(v);
+                        }
+                    }
+                    guardar(context, key(uid, petId), remotas);
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                });
+    }
 }

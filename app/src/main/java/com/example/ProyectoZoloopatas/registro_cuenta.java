@@ -1,5 +1,6 @@
 package com.example.ProyectoZoloopatas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FieldValue;
 
 public class registro_cuenta extends AppCompatActivity {
 
@@ -132,6 +134,7 @@ public class registro_cuenta extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("LogConditional")
     private void registrarUsuarioEnFirebase(String email, String password, String nombre) {
         btnRegistrar.setEnabled(false); // Evitar doble clic
 
@@ -147,14 +150,52 @@ public class registro_cuenta extends AppCompatActivity {
                                     .setDisplayName(nombre)
                                     .build();
                             user.updateProfile(profileUpdates);
-
-                            // Guardar también en Firestore usuarios/{uid}
-                            java.util.Map<String, Object> datosUsuario = new java.util.HashMap<>();
-                            datosUsuario.put("nombre", nombre);
-                            datosUsuario.put("correo", email);
+                            // Datos básicos
+                            java.util.Map<String, Object> UsuarioMap = new java.util.HashMap<>();
+                            UsuarioMap.put("nombreUsuario", nombre);
+                            UsuarioMap.put("nombre", nombre);
+                            UsuarioMap.put("distrito", "");
+                            UsuarioMap.put("correo", email);
+                            UsuarioMap.put("Correo", email);
+                            UsuarioMap.put("estadoCuenta", "active");
+                            UsuarioMap.put("fechaCreacionCuenta", FieldValue.serverTimestamp());
+                            UsuarioMap.put("fechaActualizacionCuenta", FieldValue.serverTimestamp());
+                            // Objeto telefono (Map anidado vacío por ahora)
+                            java.util.Map<String, Object> telefonoMap = new java.util.HashMap<>();
+                            telefonoMap.put("codigoPais", "");
+                            telefonoMap.put("numero", "");
+                            UsuarioMap.put("telefono", telefonoMap);
+                            // Objeto preferenciasNotificacion
+                            java.util.Map<String, Object> preferenciasNotificacion = new java.util.HashMap<>();
+                            preferenciasNotificacion.put("notificacionesPush", true);
+                            preferenciasNotificacion.put("vacunas", true);
+                            preferenciasNotificacion.put("recordatorios", true);
+                            UsuarioMap.put("preferenciasNotificacion", preferenciasNotificacion);
+                            // Objeto suscripcion (Plan gratuito por defecto según BDNoSQLZoolopatas.json)
+                            java.util.Map<String, Object> suscripcionMap = new java.util.HashMap<>();
+                            suscripcionMap.put("nivel", "free");
+                            suscripcionMap.put("plan", "Plan Gratuito");
+                            suscripcionMap.put("esPremium", false);
+                            suscripcionMap.put("periodoFacturacion", null);
+                            suscripcionMap.put("estado", "none");
+                            suscripcionMap.put("fechaInicio", null);
+                            suscripcionMap.put("fechaExpiracion", null);
+                            UsuarioMap.put("suscripcion", suscripcionMap);
+                            // Objeto estadisticas (Contadores iniciales)
+                            java.util.Map<String, Object> estadisticasMap = new java.util.HashMap<>();
+                            estadisticasMap.put("cantidadMascotas", 0);
+                            estadisticasMap.put("recordatoriosPendientes", 0);
+                            UsuarioMap.put("estadisticas", estadisticasMap);
+                            // Guardar en Firestore
                             com.google.firebase.firestore.FirebaseFirestore.getInstance()
                                     .collection("usuarios").document(user.getUid())
-                                    .set(datosUsuario, com.google.firebase.firestore.SetOptions.merge());
+                                    .set(UsuarioMap)
+                                    .addOnSuccessListener(aVoid -> {
+                                        android.util.Log.d("FIRESTORE", "¡Usuario creado en Firestore con ID: "+user.getUid());
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        android.util.Log.e("FIRESTORE", "Error al guardar usuario: " + e.getMessage());
+                                    });
 
                             // Enviar correo de verificación (Criterio de aceptación HU01)
                             user.sendEmailVerification().addOnCompleteListener(emailTask -> {

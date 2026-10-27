@@ -2,6 +2,8 @@ package com.example.ProyectoZoloopatas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         tituloSaludo = findViewById(R.id.titulo_Saludo);
 
         actualizarSaludo();
+        actualizarContadorMascotas();
 
         // ── Pantalla principal -> Cuidados y Bienestar ──
         findViewById(R.id.btnCuidadoBienestar).setOnClickListener(v ->
@@ -68,6 +71,17 @@ public class HomeActivity extends AppCompatActivity {
             findViewById(R.id.cardHistorialMascota).setOnClickListener(abrirHistorialMascotas);
         }
 
+        // ── Pantalla principal -> Suscripción Premium (activity_suscripcion_premium.xml) ──
+        android.view.View.OnClickListener abrirSuscripcion = v ->
+                startActivity(new Intent(this, SuscripcionPremium.class));
+
+        if (findViewById(R.id.btnMejorarPlan) != null) {
+            findViewById(R.id.btnMejorarPlan).setOnClickListener(abrirSuscripcion);
+        }
+        if (findViewById(R.id.cardPremium) != null) {
+            findViewById(R.id.cardPremium).setOnClickListener(abrirSuscripcion);
+        }
+
         findViewById(R.id.btnNavNotificaciones).setOnClickListener(v ->
                 Toast.makeText(this, "Notificaciones: próximamente", Toast.LENGTH_SHORT).show());
     }
@@ -76,6 +90,72 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         actualizarSaludo();
+        actualizarContadorMascotas();
+        actualizarEstadoPlanUI();
+        PremiumManager.sincronizarConFirestore(this, this::actualizarEstadoPlanUI);
+    }
+
+    private void actualizarContadorMascotas() {
+        TextView tvCantidad = findViewById(R.id.tvCantidadMascotasHome);
+        if (tvCantidad != null) {
+            String uid = (mAuth != null && mAuth.getCurrentUser() != null) ? mAuth.getCurrentUser().getUid() : "usuario_default";
+            int count = MascotasLocalManager.getMascotas(this, uid).size();
+            tvCantidad.setText(count == 1 ? "1 registrada" : count + " registradas");
+
+            if (uid != null && !"usuario_default".equals(uid)) {
+                FirebaseFirestore.getInstance().collection("usuarios").document(uid)
+                        .collection("mascotas").get()
+                        .addOnSuccessListener(querySnapshots -> {
+                            if (querySnapshots != null) {
+                                int remoteCount = querySnapshots.size();
+                                tvCantidad.setText(remoteCount == 1 ? "1 registrada" : remoteCount + " registradas");
+                            }
+                        });
+            }
+        }
+    }
+
+    private void actualizarEstadoPlanUI() {
+        boolean esPremium = PremiumManager.isPremium(this);
+        View layoutBadge = findViewById(R.id.layoutAnuncioBadgeHome);
+        View tvTitulo = findViewById(R.id.tvAnuncioTituloHome);
+        View tvDesc = findViewById(R.id.tvAnuncioDescHome);
+        android.widget.Button btn = findViewById(R.id.btnMejorarPlan);
+
+        if (esPremium) {
+            // Ocultar los anuncios de activar plan de la pantalla
+            if (layoutBadge != null) layoutBadge.setVisibility(View.GONE);
+            if (tvTitulo != null) tvTitulo.setVisibility(View.GONE);
+            if (tvDesc != null) tvDesc.setVisibility(View.GONE);
+
+            // Solo queda el botón indicando que el plan está activado con los días restantes y al presionarlo lleva a SuscripcionPremium
+            if (btn != null) {
+                btn.setText(PremiumManager.getTextoBotonPremium(this));
+                btn.setEnabled(true);
+                btn.setOnClickListener(v -> startActivity(new Intent(this, SuscripcionPremium.class)));
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) btn.getLayoutParams();
+                if (params != null) {
+                    params.topMargin = 0;
+                    btn.setLayoutParams(params);
+                }
+            }
+        } else {
+            // Mostrar los anuncios de activar plan
+            if (layoutBadge != null) layoutBadge.setVisibility(View.VISIBLE);
+            if (tvTitulo != null) tvTitulo.setVisibility(View.VISIBLE);
+            if (tvDesc != null) tvDesc.setVisibility(View.VISIBLE);
+
+            if (btn != null) {
+                btn.setText("Mejorar plan  →");
+                btn.setEnabled(true);
+                btn.setOnClickListener(v -> startActivity(new Intent(this, SuscripcionPremium.class)));
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) btn.getLayoutParams();
+                if (params != null) {
+                    params.topMargin = (int) (16 * getResources().getDisplayMetrics().density);
+                    btn.setLayoutParams(params);
+                }
+            }
+        }
     }
 
     private void actualizarSaludo() {
@@ -112,7 +192,10 @@ public class HomeActivity extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot != null && documentSnapshot.exists()) {
-                            String nombreFirestore = documentSnapshot.getString("nombre");
+                            String nombreFirestore = documentSnapshot.getString("nombreUsuario");
+                            if (nombreFirestore == null || nombreFirestore.trim().isEmpty()) {
+                                nombreFirestore = documentSnapshot.getString("nombre");
+                            }
                             if (nombreFirestore != null && !nombreFirestore.trim().isEmpty()) {
                                 tituloSaludo.setText("Hola " + nombreFirestore.trim());
                                 return;

@@ -3,24 +3,24 @@
 3    package="com.example.ProyectoZoloopatas.test" >
 4
 5    <uses-sdk
-5-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:5:5-74
+5-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:5:5-74
 6        android:minSdkVersion="36"
-6-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:5:15-41
+6-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:5:15-41
 7        android:targetSdkVersion="37" />
-7-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:5:42-71
+7-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:5:42-71
 8
 9    <instrumentation
-9-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:7:5-11:80
+9-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:7:5-11:80
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:7:22-76
+10-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:7:22-76
 11        android:functionalTest="false"
-11-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:10:22-52
+11-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:10:22-52
 12        android:handleProfiling="false"
-12-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:9:22-53
+12-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:9:22-53
 13        android:label="Tests for com.example.ProyectoZoloopatas"
-13-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:11:22-78
+13-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:11:22-78
 14        android:targetPackage="com.example.ProyectoZoloopatas" />
-14-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest7189764837498363145.xml:8:22-76
+14-->/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest17078895997455573592.xml:8:22-76
 15
 16    <uses-permission android:name="android.permission.REORDER_TASKS" />
 16-->[androidx.test:core:1.7.0] /home/zaku/.gradle/caches/9.6.0/transforms/3f63c46db1710f012958701cce9c3e5d/transformed/core-1.7.0/AndroidManifest.xml:24:5-72

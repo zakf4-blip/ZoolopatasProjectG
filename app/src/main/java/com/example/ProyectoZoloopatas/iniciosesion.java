@@ -70,8 +70,27 @@ public class iniciosesion extends AppCompatActivity {
                             if (user != null) {
                                 // Comprobar si el correo está verificado
                                 if (user.isEmailVerified()) {
-                                    // Acceso normal a la app (por ejemplo, HomeActivity o MainActivity principal)
+                                    // Asegurar existencia del documento del usuario en Firestore
+                                    com.google.firebase.firestore.FirebaseFirestore db = com.google.firebase.firestore.FirebaseFirestore.getInstance();
+                                    db.collection("usuarios").document(user.getUid()).get().addOnSuccessListener(doc -> {
+                                        if (doc == null || !doc.exists()) {
+                                            java.util.Map<String, Object> initMap = new java.util.HashMap<>();
+                                            initMap.put("nombreUsuario", user.getDisplayName() != null ? user.getDisplayName() : "");
+                                            initMap.put("correo", user.getEmail() != null ? user.getEmail() : "");
+                                            initMap.put("distrito", "");
+                                            initMap.put("estadoCuenta", "active");
+                                            initMap.put("fechaCreacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
+                                            initMap.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
+                                            db.collection("usuarios").document(user.getUid()).set(initMap, com.google.firebase.firestore.SetOptions.merge());
+                                        }
+                                    });
+
+                                    // Sincronizar de inmediato el plan de este usuario
+                                    PremiumManager.sincronizarConFirestore(iniciosesion.this, null);
+
+                                    // Acceso normal a la app con pila limpia
                                     Intent intent = new Intent(iniciosesion.this, HomeActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
                                 } else {

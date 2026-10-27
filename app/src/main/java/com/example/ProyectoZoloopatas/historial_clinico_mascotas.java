@@ -108,8 +108,9 @@ public class historial_clinico_mascotas extends AppCompatActivity {
         });
 
         findViewById(R.id.btnAgregarCupo).setOnClickListener(v -> {
-            if (listaMascotas.size() >= 3) {
-                Toast.makeText(this, "Has alcanzado el límite de 3 mascotas en tu Plan Gratuito.",
+            int limite = PremiumManager.getLimiteMascotas(this);
+            if (listaMascotas.size() >= limite) {
+                Toast.makeText(this, "Has alcanzado el límite de " + limite + " mascotas en tu " + PremiumManager.getPlan(this) + ".",
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -121,6 +122,26 @@ public class historial_clinico_mascotas extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         cargarMascotas();
+
+        String uid = obtenerUidActual();
+        if (uid != null && !"usuario_default".equals(uid)) {
+            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("usuarios").document(uid).collection("mascotas").get()
+                    .addOnSuccessListener(subSnapshots -> {
+                        List<Mascota> remotas = new ArrayList<>();
+                        for (com.google.firebase.firestore.QueryDocumentSnapshot doc : subSnapshots) {
+                            try {
+                                Mascota m = Mascota.fromFirestoreDoc(doc);
+                                if (m != null) {
+                                    m.setUsuarioId(uid);
+                                    remotas.add(m);
+                                }
+                            } catch (Exception ignored) {}
+                        }
+                        MascotasLocalManager.setMascotasFromFirestore(this, uid, remotas);
+                        cargarMascotas();
+                    });
+        }
     }
 
     private String obtenerUidActual() {
@@ -149,6 +170,10 @@ public class historial_clinico_mascotas extends AppCompatActivity {
         mostrarMascotas();
         actualizarTabs();
         mostrarRegistros();
+
+        if (mascotaSeleccionadaId != null) {
+            VacunasLocalManager.cargarVacunasDeFirestore(this, obtenerUidActual(), mascotaSeleccionadaId, this::mostrarRegistros);
+        }
     }
 
     private void mostrarMascotas() {
@@ -191,6 +216,9 @@ public class historial_clinico_mascotas extends AppCompatActivity {
                 mascotaSeleccionadaId = m.getId();
                 mostrarMascotas();
                 mostrarRegistros(); // historial individual de la mascota tocada
+                if (mascotaSeleccionadaId != null) {
+                    VacunasLocalManager.cargarVacunasDeFirestore(this, obtenerUidActual(), mascotaSeleccionadaId, this::mostrarRegistros);
+                }
             });
 
             layoutMascotasHistorial.addView(item);

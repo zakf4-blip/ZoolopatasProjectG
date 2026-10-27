@@ -18,6 +18,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -67,19 +68,65 @@ public class PantallaMascotas extends AppCompatActivity {
         progressSegment3 = findViewById(R.id.progressSegment3);
 
         setupNavigation();
+        actualizarBadgePlan();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        actualizarBadgePlan();
+        PremiumManager.sincronizarConFirestore(this, this::actualizarBadgePlan);
         cargarMascotasDeFirebase();
+    }
+
+    private void actualizarBadgePlan() {
+        View badgeLayout = findViewById(R.id.badgePlanGratuito);
+        ImageView ivBadge = findViewById(R.id.ivBadgePlan);
+        TextView tvBadge = findViewById(R.id.tvBadgePlan);
+        TextView tvTituloCupo = findViewById(R.id.tvTituloCupoDisponible);
+
+        boolean esPremium = PremiumManager.isPremium(this);
+        String plan = PremiumManager.getPlan(this);
+
+        if (badgeLayout != null && tvBadge != null) {
+            if (esPremium) {
+                badgeLayout.setBackgroundResource(R.drawable.bg_badge_plan_premium);
+                if (ivBadge != null) {
+                    ivBadge.setImageResource(R.drawable.ic_award_vital);
+                }
+                int dias = PremiumManager.getDiasRestantes(this);
+                tvBadge.setText("Plan Premium (" + dias + (dias == 1 ? " día)" : " días)"));
+                tvBadge.setTextColor(ContextCompat.getColor(this, R.color.dashboard_premium_gold));
+            } else {
+                badgeLayout.setBackgroundResource(R.drawable.bg_badge_plan_gratuito);
+                if (ivBadge != null) {
+                    ivBadge.setImageResource(R.drawable.ic_badge_check);
+                }
+                tvBadge.setText("Plan Gratuito");
+                tvBadge.setTextColor(ContextCompat.getColor(this, R.color.dashboard_teal_text));
+            }
+
+            badgeLayout.setOnClickListener(v ->
+                    startActivity(new Intent(this, SuscripcionPremium.class)));
+        }
+
+        if (tvTituloCupo != null) {
+            int limite = PremiumManager.getLimiteMascotas(this);
+            int disponibles = Math.max(0, limite - listaActualMascotas.size());
+            if (esPremium) {
+                tvTituloCupo.setText(disponibles + (disponibles == 1 ? " cupo disponible en Plan Premium" : " cupos disponibles en Plan Premium"));
+            } else {
+                tvTituloCupo.setText(disponibles + (disponibles == 1 ? " cupo disponible en plan gratuito" : " cupos disponibles en plan gratuito"));
+            }
+        }
     }
 
     private void setupNavigation() {
         // Redirigir al registro de nueva mascota mediante btnAgregarCupo, cardCupo y FAB
         View.OnClickListener irAAgregar = v -> {
-            if (listaActualMascotas.size() >= 3) {
-                Toast.makeText(PantallaMascotas.this, "Has alcanzado el límite de 3 mascotas en tu Plan Gratuito.", Toast.LENGTH_SHORT).show();
+            int limite = PremiumManager.getLimiteMascotas(PantallaMascotas.this);
+            if (listaActualMascotas.size() >= limite) {
+                Toast.makeText(PantallaMascotas.this, "Has alcanzado el límite de " + limite + " mascotas en tu " + PremiumManager.getPlan(PantallaMascotas.this) + ".", Toast.LENGTH_SHORT).show();
                 return;
             }
             try {
@@ -132,73 +179,74 @@ public class PantallaMascotas extends AppCompatActivity {
     private void cargarMascotasDeFirebase() {
         String uid = obtenerUidActual();
 
-        // 1. Cargar y mostrar inmediatamente desde el almacenamiento local persistente
+        // 1. Cargar y mostrar inmediatamente desde el almacenamiento local persistente del usuario
         List<Mascota> locales = MascotasLocalManager.getMascotas(this, uid);
         mostrarMascotas(locales);
 
-        // 2. Intentar sincronizar en segundo plano con Firebase Firestore
-        db.collection("mascotas")
-                .whereEqualTo("usuarioId", uid)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
+        // 2. Intentar sincronizar en segundo plano con Firebase Firestore para este usuario
+        if (uid == null || "usuario_default".equals(uid)) return;
+
+        final String finalUid = uid;
+        db.collection("usuarios").document(finalUid).collection("mascotas").get()
+                .addOnSuccessListener(subSnapshots -> {
                     List<Mascota> remotas = new ArrayList<>();
-                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot doc : subSnapshots) {
                         try {
-                            Mascota m = new Mascota();
-                            m.setId(doc.getId());
-                            m.setNombre(doc.getString("nombre"));
-                            m.setTipo(doc.getString("tipo"));
-                            m.setSexo(doc.getString("sexo"));
-                            Boolean castrado = doc.getBoolean("castrado");
-                            m.setCastrado(castrado != null && castrado);
-                            m.setRaza(doc.getString("raza"));
-                            m.setFechaNacimiento(doc.getString("fechaNacimiento"));
-                            Object colObj = doc.get("colores");
-                            if (colObj instanceof List) {
-                                m.setColores((List<String>) colObj);
+                            Mascota m = Mascota.fromFirestoreDoc(doc);
+                            if (m != null) {
+                                m.setUsuarioId(finalUid);
+                                remotas.add(m);
                             }
-                            m.setFotoUri(doc.getString("fotoUri"));
-                            remotas.add(m);
                         } catch (Exception ignored) {}
                     }
 
-                    // Consultar también la subcolección del usuario
-                    db.collection("usuarios").document(uid).collection("mascotas").get()
-                            .addOnSuccessListener(subSnapshots -> {
-                                for (QueryDocumentSnapshot doc : subSnapshots) {
+                    // Buscar también en colección raíz donde usuarioId == finalUid (por si se crearon ahí)
+                    db.collection("mascotas").whereEqualTo("usuarioId", finalUid).get()
+                            .addOnSuccessListener(rootSnapshots -> {
+                                for (QueryDocumentSnapshot doc : rootSnapshots) {
                                     try {
-                                        Mascota m = new Mascota();
-                                        m.setId(doc.getId());
-                                        m.setNombre(doc.getString("nombre"));
-                                        m.setTipo(doc.getString("tipo"));
-                                        m.setSexo(doc.getString("sexo"));
-                                        Boolean castrado = doc.getBoolean("castrado");
-                                        m.setCastrado(castrado != null && castrado);
-                                        m.setRaza(doc.getString("raza"));
-                                        m.setFechaNacimiento(doc.getString("fechaNacimiento"));
-                                        Object colObj = doc.get("colores");
-                                        if (colObj instanceof List) {
-                                            m.setColores((List<String>) colObj);
+                                        String docId = doc.getId();
+                                        boolean existe = false;
+                                        for (Mascota r : remotas) {
+                                            if (docId.equals(r.getId())) {
+                                                existe = true;
+                                                break;
+                                            }
                                         }
-                                        m.setFotoUri(doc.getString("fotoUri"));
-                                        remotas.add(m);
+                                        if (!existe) {
+                                            Mascota m = Mascota.fromFirestoreDoc(doc);
+                                            if (m != null) {
+                                                m.setUsuarioId(finalUid);
+                                                remotas.add(m);
+                                            }
+                                        }
                                     } catch (Exception ignored) {}
                                 }
-                                if (!remotas.isEmpty()) {
-                                    MascotasLocalManager.mergeFromFirestore(PantallaMascotas.this, uid, remotas);
-                                    mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, uid));
-                                }
+
+                                MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
+                                mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
                             })
                             .addOnFailureListener(e -> {
-                                if (!remotas.isEmpty()) {
-                                    MascotasLocalManager.mergeFromFirestore(PantallaMascotas.this, uid, remotas);
-                                    mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, uid));
-                                }
+                                MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
+                                mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
                             });
                 })
                 .addOnFailureListener(e -> {
-                    // Si falla Firestore (por ejemplo falta de permisos en consola o sin red),
-                    // el usuario continúa viendo y gestionando sus mascotas locales sin problemas.
+                    db.collection("mascotas").whereEqualTo("usuarioId", finalUid).get()
+                            .addOnSuccessListener(rootSnapshots -> {
+                                List<Mascota> remotas = new ArrayList<>();
+                                for (QueryDocumentSnapshot doc : rootSnapshots) {
+                                    try {
+                                        Mascota m = Mascota.fromFirestoreDoc(doc);
+                                        if (m != null) {
+                                            m.setUsuarioId(finalUid);
+                                            remotas.add(m);
+                                        }
+                                    } catch (Exception ignored) {}
+                                }
+                                MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
+                                mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
+                            });
                 });
     }
 
@@ -337,8 +385,22 @@ public class PantallaMascotas extends AppCompatActivity {
                     // 3. Eliminar de Firebase Firestore en segundo plano si está disponible
                     if (petId != null && !petId.startsWith("demo_")) {
                         try {
-                            db.collection("mascotas").document(petId).delete();
+                            // Limpiar subcolección de vacunas
+                            db.collection("usuarios").document(uid)
+                                    .collection("mascotas").document(petId)
+                                    .collection("vacunas").get()
+                                    .addOnSuccessListener(vacSnapshots -> {
+                                        for (com.google.firebase.firestore.DocumentSnapshot vDoc : vacSnapshots) {
+                                            vDoc.getReference().delete();
+                                        }
+                                    });
+
                             db.collection("usuarios").document(uid).collection("mascotas").document(petId).delete();
+                            db.collection("mascotas").document(petId).delete();
+
+                            // Decrementar contador en estadísticas
+                            db.collection("usuarios").document(uid)
+                                    .update("estadisticas.cantidadMascotas", com.google.firebase.firestore.FieldValue.increment(-1));
                         } catch (Exception ignored) {}
                     }
                 })
@@ -346,8 +408,11 @@ public class PantallaMascotas extends AppCompatActivity {
     }
 
     private void actualizarCapacidad(int count) {
+        int limite = PremiumManager.getLimiteMascotas(this);
+        boolean esPremium = PremiumManager.isPremium(this);
+
         if (tvCapacidadPacientes != null) {
-            tvCapacidadPacientes.setText(count + " de 3 registradas");
+            tvCapacidadPacientes.setText(count + " de " + limite + " registradas");
         }
 
         if (progressSegment1 != null) {
@@ -364,21 +429,28 @@ public class PantallaMascotas extends AppCompatActivity {
         }
 
         if (tvCapacidadSubtitulo != null) {
-            if (count == 0) {
-                tvCapacidadSubtitulo.setText("Tienes 3 espacios libres para registrar a tus compañeros.");
-            } else if (count == 1) {
-                tvCapacidadSubtitulo.setText("Te quedan 2 espacios libres para vincular historial clínico o telemetría.");
-            } else if (count == 2) {
-                tvCapacidadSubtitulo.setText("Te queda 1 espacio libre para vincular historial clínico o telemetría.");
+            if (esPremium) {
+                int restantes = Math.max(0, limite - count);
+                tvCapacidadSubtitulo.setText("Plan Premium activo: te quedan " + restantes + " espacios libres para registrar.");
             } else {
-                tvCapacidadSubtitulo.setText("Has alcanzado la capacidad de 3 mascotas en tu Plan Gratuito.");
+                if (count == 0) {
+                    tvCapacidadSubtitulo.setText("Tienes 3 espacios libres para registrar a tus compañeros.");
+                } else if (count == 1) {
+                    tvCapacidadSubtitulo.setText("Te quedan 2 espacios libres para vincular historial clínico o telemetría.");
+                } else if (count == 2) {
+                    tvCapacidadSubtitulo.setText("Te queda 1 espacio libre para vincular historial clínico o telemetría.");
+                } else {
+                    tvCapacidadSubtitulo.setText("Has alcanzado la capacidad de 3 mascotas en tu Plan Gratuito.");
+                }
             }
         }
 
         View cardCupo = findViewById(R.id.cardCupoDisponible);
         if (cardCupo != null) {
-            cardCupo.setVisibility(count >= 3 ? View.GONE : View.VISIBLE);
+            cardCupo.setVisibility(count >= limite ? View.GONE : View.VISIBLE);
         }
+
+        actualizarBadgePlan();
     }
 
     private String calcularDetalle(Mascota m) {

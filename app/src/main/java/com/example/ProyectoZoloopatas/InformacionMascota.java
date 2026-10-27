@@ -157,6 +157,33 @@ public class InformacionMascota extends AppCompatActivity {
         petId = mascotaActual.getId();
         petNombre = mascotaActual.getNombre();
 
+        // 1. Mostrar inmediatamente los datos locales
+        actualizarVistasConMascota();
+
+        // 2. Consultar en segundo plano a Firestore para refrescar con datos de la nube
+        if (uid != null && !"usuario_default".equals(uid) && petId != null && !petId.startsWith("demo_")) {
+            final String finalPetId = petId;
+            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("usuarios").document(uid)
+                    .collection("mascotas").document(finalPetId)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc != null && doc.exists()) {
+                            Mascota mRemota = Mascota.fromFirestoreDoc(doc);
+                            if (mRemota != null) {
+                                mRemota.setUsuarioId(uid);
+                                mascotaActual = mRemota;
+                                MascotasLocalManager.saveOrUpdateMascota(InformacionMascota.this, uid, mRemota);
+                                actualizarVistasConMascota();
+                            }
+                        }
+                    });
+        }
+    }
+
+    private void actualizarVistasConMascota() {
+        if (mascotaActual == null) return;
+
         // ── 1. Nombre ──
         if (tvNombreMascotaDetalle != null) {
             tvNombreMascotaDetalle.setText(mascotaActual.getNombre());

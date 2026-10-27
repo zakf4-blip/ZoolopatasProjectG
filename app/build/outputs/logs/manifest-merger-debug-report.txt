@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:20:9-28:20
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:23:9-31:20
 	android:grantUriPermissions
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:24:13-47
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:27:13-47
 	android:authorities
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:22:13-64
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:25:13-64
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:23:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:21:13-62
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:24:13-62
 manifest
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-102:12
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-102:12
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-113:12
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-113:12
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-113:12
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:1-113:12
 MERGED from [com.google.android.material:material:1.14.0] /home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.2] /home/zaku/.gradle/caches/9.6.0/transforms/91bcb0b672a0e8eb4420ab35257402ad/transformed/constraintlayout-2.2.2/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.8.0] /home/zaku/.gradle/caches/9.6.0/transforms/a94aa88f604a5a24ae7043a1a12f188b/transformed/appcompat-resources-1.8.0/AndroidManifest.xml:2:1-7:12
@@ -106,28 +106,70 @@ MERGED from [io.grpc:grpc-android:1.84.0] /home/zaku/.gradle/caches/9.6.0/transf
 MERGED from [com.google.firebase:protolite-well-known-types:19.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/2d1ef498701bd6d1da7c6d9c75a4eb40/transformed/protolite-well-known-types-19.0.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.play:core-common:2.0.3] /home/zaku/.gradle/caches/9.6.0/transforms/212b2cc9e61987ee263c0519f06be2e5/transformed/core-common-2.0.3/AndroidManifest.xml:2:1-21:12
 	package
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:3:5-51
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:2:11-69
 uses-feature#android.hardware.camera
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:5:5-7:36
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:5:5-7:36
 	android:required
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:7:9-33
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:7:9-33
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:6:9-47
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:6:9-47
 uses-permission#android.permission.CAMERA
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:9:5-65
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:9:5-65
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:9:22-62
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:9:22-62
+uses-permission#android.permission.INTERNET
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:10:5-67
+MERGED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:11:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:8:5-67
+MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:8:5-67
+MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:10:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:11:5-79
+MERGED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:10:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:8:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:8:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:7:5-79
+MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:24:5-79
+MERGED from [io.grpc:grpc-android:1.84.0] /home/zaku/.gradle/caches/9.6.0/transforms/29147cefad3f3874619ae7b9b559befe/transformed/grpc-android-1.84.0/AndroidManifest.xml:7:5-79
+MERGED from [io.grpc:grpc-android:1.84.0] /home/zaku/.gradle/caches/9.6.0/transforms/29147cefad3f3874619ae7b9b559befe/transformed/grpc-android-1.84.0/AndroidManifest.xml:7:5-79
+	android:name
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:11:22-76
 application
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:11:5-100:19
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:11:5-100:19
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:13:5-111:19
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:13:5-111:19
 MERGED from [com.google.android.material:material:1.14.0] /home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.14.0] /home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.2] /home/zaku/.gradle/caches/9.6.0/transforms/91bcb0b672a0e8eb4420ab35257402ad/transformed/constraintlayout-2.2.2/AndroidManifest.xml:7:5-20
@@ -193,173 +235,191 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/zaku/.gradle/caches/9
 MERGED from [com.google.android.play:core-common:2.0.3] /home/zaku/.gradle/caches/9.6.0/transforms/212b2cc9e61987ee263c0519f06be2e5/transformed/core-common-2.0.3/AndroidManifest.xml:11:5-19:19
 MERGED from [com.google.android.play:core-common:2.0.3] /home/zaku/.gradle/caches/9.6.0/transforms/212b2cc9e61987ee263c0519f06be2e5/transformed/core-common-2.0.3/AndroidManifest.xml:11:5-19:19
 	android:extractNativeLibs
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.18.0] /home/zaku/.gradle/caches/9.6.0/transforms/b3d80900149418b5cdb36001bc61ac79/transformed/core-1.18.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:18:9-35
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:20:9-35
 	android:label
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:16:9-41
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:18:9-41
 	android:fullBackupContent
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:14:9-54
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:16:9-54
 	android:roundIcon
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:17:9-54
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:19:9-54
 	android:icon
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:15:9-43
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:17:9-43
 	android:allowBackup
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:12:9-35
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:19:9-56
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:22:9-56
 	android:dataExtractionRules
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:13:9-65
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:15:9-65
+	android:usesCleartextTraffic
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:21:9-44
+activity#com.example.ProyectoZoloopatas.NiubizPaymentActivity
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:33:9-36:58
+	android:windowSoftInputMode
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:36:13-55
+	android:exported
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:34:13-50
+activity#com.example.ProyectoZoloopatas.SuscripcionPremium
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:37:9-40:58
+	android:windowSoftInputMode
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:40:13-55
+	android:exported
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:39:13-37
+	android:name
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:38:13-47
 activity#com.example.ProyectoZoloopatas.PerfilUsuario
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:30:9-33:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:41:9-44:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:33:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:44:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:32:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:43:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:31:13-42
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:42:13-42
 activity#com.example.ProyectoZoloopatas.EditarPerfil
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:34:9-37:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:45:9-48:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:37:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:48:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:36:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:35:13-41
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:46:13-41
 activity#com.example.ProyectoZoloopatas.CuidadosBienestar
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:38:9-41:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:49:9-52:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:41:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:52:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:40:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:51:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:39:13-46
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:50:13-46
 activity#com.example.ProyectoZoloopatas.InformacionMascota
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:42:9-45:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:53:9-56:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:45:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:56:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:44:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:55:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:43:13-47
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:54:13-47
 activity#com.example.ProyectoZoloopatas.editar_infoMascota
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:46:9-49:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:57:9-60:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:49:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:60:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:48:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:59:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:47:13-47
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:58:13-47
 activity#com.example.ProyectoZoloopatas.registro_cuenta
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:50:9-53:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:61:9-64:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:53:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:64:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:52:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:63:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:51:13-44
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:62:13-44
 activity#com.example.ProyectoZoloopatas.confirmacion_registro
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:54:9-57:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:65:9-68:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:57:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:68:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:56:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:67:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:55:13-50
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:66:13-50
 activity#com.example.ProyectoZoloopatas.iniciosesion
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:58:9-61:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:69:9-72:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:61:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:72:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:60:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:71:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:59:13-41
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:70:13-41
 activity#com.example.ProyectoZoloopatas.HomeActivity
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:62:9-65:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:73:9-76:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:65:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:76:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:64:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:75:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:63:13-41
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:74:13-41
 activity#com.example.ProyectoZoloopatas.PantallaMascotas
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:66:9-69:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:77:9-80:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:69:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:80:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:68:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:79:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:67:13-45
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:78:13-45
 activity#com.example.ProyectoZoloopatas.MainActivity
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:70:9-79:20
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:81:9-90:20
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:73:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:84:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:72:13-36
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:83:13-36
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:71:13-41
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:82:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:74:13-78:29
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:85:13-89:29
 action#android.intent.action.MAIN
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:75:17-69
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:86:17-69
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:75:25-66
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:86:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:77:17-77
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:88:17-77
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:77:27-74
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:88:27-74
 activity#com.example.ProyectoZoloopatas.catalogo_recetas
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:80:9-83:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:91:9-94:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:83:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:94:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:82:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:93:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:81:13-45
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:92:13-45
 activity#com.example.ProyectoZoloopatas.detalle_receta_dog_one
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:84:9-87:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:95:9-98:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:87:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:98:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:86:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:97:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:85:13-51
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:96:13-51
 activity#com.example.ProyectoZoloopatas.historial_clinico_mascotas
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:88:9-91:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:99:9-102:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:91:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:102:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:90:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:101:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:89:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:100:13-55
 activity#com.example.ProyectoZoloopatas.registrar_vacuna
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:92:9-95:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:103:9-106:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:95:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:106:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:94:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:105:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:93:13-45
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:104:13-45
 activity#com.example.ProyectoZoloopatas.item_tarjeta_vacunas
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:96:9-99:58
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:107:9-110:58
 	android:windowSoftInputMode
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:99:13-55
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:110:13-55
 	android:exported
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:98:13-37
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:109:13-37
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:97:13-49
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:108:13-49
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:25:13-27:54
+ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:28:13-30:54
 	android:resource
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:27:17-51
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:30:17-51
 	android:name
-		ADDED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:26:17-67
+		ADDED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml:29:17-67
 uses-sdk
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
-INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 MERGED from [com.google.android.material:material:1.14.0] /home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.14.0] /home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.2] /home/zaku/.gradle/caches/9.6.0/transforms/91bcb0b672a0e8eb4420ab35257402ad/transformed/constraintlayout-2.2.2/AndroidManifest.xml:5:5-44
@@ -541,47 +601,9 @@ MERGED from [com.google.firebase:protolite-well-known-types:19.0.0] /home/zaku/.
 MERGED from [com.google.android.play:core-common:2.0.3] /home/zaku/.gradle/caches/9.6.0/transforms/212b2cc9e61987ee263c0519f06be2e5/transformed/core-common-2.0.3/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.play:core-common:2.0.3] /home/zaku/.gradle/caches/9.6.0/transforms/212b2cc9e61987ee263c0519f06be2e5/transformed/core-common-2.0.3/AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:11:5-67
-MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:11:5-67
-MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:7:5-67
-MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:7:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:8:5-67
-MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:8:5-67
-MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:23:5-67
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:22:22-64
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:10:5-79
-MERGED from [com.google.firebase:firebase-firestore:27.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/61535dcb39a5a0846877260e52d35c6c/transformed/firebase-firestore-27.0.0/AndroidManifest.xml:10:5-79
-MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:8:5-79
-MERGED from [com.google.android.recaptcha:recaptcha:18.6.1] /home/zaku/.gradle/caches/9.6.0/transforms/9dea0d41c6007780510319fd374b81d8/transformed/recaptcha-18.6.1/AndroidManifest.xml:8:5-79
-MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-measurement-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/7bb9ad6b26f02143248b3743047094a8/transformed/play-services-measurement-api-24.0.0/AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:7:5-79
-MERGED from [com.google.firebase:firebase-installations:20.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/cbbc121490f039061b5e49df69306a7e/transformed/firebase-installations-20.0.0/AndroidManifest.xml:7:5-79
-MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/faa21f802e04b24565d4edea50218ee9/transformed/play-services-measurement-24.0.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-impl:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/67d5ae06ec1d0112c7f126d5f5ae18d4/transformed/play-services-measurement-impl-24.0.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:24.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/099d9b27e02062879d7ac316ab85f58f/transformed/play-services-measurement-sdk-api-24.0.0/AndroidManifest.xml:24:5-79
-MERGED from [io.grpc:grpc-android:1.84.0] /home/zaku/.gradle/caches/9.6.0/transforms/29147cefad3f3874619ae7b9b559befe/transformed/grpc-android-1.84.0/AndroidManifest.xml:7:5-79
-MERGED from [io.grpc:grpc-android:1.84.0] /home/zaku/.gradle/caches/9.6.0/transforms/29147cefad3f3874619ae7b9b559befe/transformed/grpc-android-1.84.0/AndroidManifest.xml:7:5-79
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:23:22-76
+		INJECTED from /home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/AndroidManifest.xml
 activity#com.google.firebase.auth.internal.GenericIdpActivity
 ADDED from [com.google.firebase:firebase-auth:25.0.0] /home/zaku/.gradle/caches/9.6.0/transforms/a5f1a511328ba6ce88b7cfa7a47d6ebe/transformed/firebase-auth-25.0.0/AndroidManifest.xml:26:9-43:20
 	android:excludeFromRecents

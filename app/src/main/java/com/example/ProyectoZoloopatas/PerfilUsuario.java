@@ -3,6 +3,8 @@ package com.example.ProyectoZoloopatas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,22 @@ public class PerfilUsuario extends AppCompatActivity {
         tvCorreoUsuario = findViewById(R.id.tvCorreoUsuario);
         rowCorreoSub = findViewById(R.id.rowCorreoSub);
 
+        // Inicializar inmediatamente con los datos del usuario autenticado para evitar cualquier parpadeo de datos por defecto
+        FirebaseUser usuarioActual = mAuth.getCurrentUser();
+        if (usuarioActual != null) {
+            String nom = usuarioActual.getDisplayName();
+            if (nom != null && !nom.trim().isEmpty()) {
+                tvNombreUsuario.setText(nom.trim());
+            } else {
+                tvNombreUsuario.setText("Usuario");
+            }
+            String mail = usuarioActual.getEmail();
+            if (mail != null && !mail.trim().isEmpty()) {
+                tvCorreoUsuario.setText(mail.trim());
+                if (rowCorreoSub != null) rowCorreoSub.setText(mail.trim());
+            }
+        }
+
         // ── Acciones de la lista ──
         findViewById(R.id.rowEditarPerfil).setOnClickListener(v ->
                 startActivity(new Intent(this, EditarPerfil.class)));
@@ -64,8 +82,16 @@ public class PerfilUsuario extends AppCompatActivity {
 
         findViewById(R.id.btnCerrarSesion).setOnClickListener(v -> cerrarSesion());
 
-        findViewById(R.id.btnMejorarPlanPerfil).setOnClickListener(v ->
-                Toast.makeText(this, "Pantalla de suscripción: próximamente", Toast.LENGTH_SHORT).show());
+        // ── Ir a Suscripción Premium (activity_suscripcion_premium.xml) ──
+        android.view.View.OnClickListener abrirSuscripcion = v ->
+                startActivity(new Intent(this, SuscripcionPremium.class));
+
+        if (findViewById(R.id.btnMejorarPlanPerfil) != null) {
+            findViewById(R.id.btnMejorarPlanPerfil).setOnClickListener(abrirSuscripcion);
+        }
+        if (findViewById(R.id.cardPremiumPerfil) != null) {
+            findViewById(R.id.cardPremiumPerfil).setOnClickListener(abrirSuscripcion);
+        }
 
         findViewById(R.id.btnCamaraPerfil).setOnClickListener(v ->
                 startActivity(new Intent(this, EditarPerfil.class)));
@@ -90,6 +116,84 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void cargarDatosUsuario() {
+        TextView tvPlanUsuario = findViewById(R.id.tvPlanUsuario);
+        View layoutAnuncioHeader = findViewById(R.id.layoutAnuncioHeaderPerfil);
+        View tvPrecioAnuncio = findViewById(R.id.tvPrecioAnuncioPerfil);
+        View layoutFilaBoton = findViewById(R.id.layoutFilaBotonPerfil);
+        android.widget.Button btnMejorarPlanPerfil = findViewById(R.id.btnMejorarPlanPerfil);
+
+        Runnable aplicarEstadoPlan = () -> {
+            boolean esPremium = PremiumManager.isPremium(this);
+            if (esPremium) {
+                if (tvPlanUsuario != null) {
+                    int dias = PremiumManager.getDiasRestantes(this);
+                    tvPlanUsuario.setText("PLAN PREMIUM (" + dias + (dias == 1 ? " DÍA RESTANTE)" : " DÍAS RESTANTES)"));
+                }
+                // Ocultar anuncios de activar plan de la pantalla
+                if (layoutAnuncioHeader != null) layoutAnuncioHeader.setVisibility(View.GONE);
+                if (tvPrecioAnuncio != null) tvPrecioAnuncio.setVisibility(View.GONE);
+
+                // Solo queda el botón indicando que el plan está activado con los días restantes y al presionarlo lleva a SuscripcionPremium
+                if (btnMejorarPlanPerfil != null) {
+                    btnMejorarPlanPerfil.setText(PremiumManager.getTextoBotonPremium(this));
+                    btnMejorarPlanPerfil.setEnabled(true);
+                    btnMejorarPlanPerfil.setOnClickListener(v -> startActivity(new Intent(this, SuscripcionPremium.class)));
+                    ViewGroup.LayoutParams lp = btnMejorarPlanPerfil.getLayoutParams();
+                    if (lp != null) {
+                        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                        btnMejorarPlanPerfil.setLayoutParams(lp);
+                    }
+                }
+                if (layoutFilaBoton != null) {
+                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) layoutFilaBoton.getLayoutParams();
+                    if (mlp != null) {
+                        mlp.topMargin = 0;
+                        layoutFilaBoton.setLayoutParams(mlp);
+                    }
+                }
+            } else {
+                int petCount = MascotasLocalManager.getMascotas(this, PremiumManager.getUidActual()).size();
+                if (tvPlanUsuario != null) {
+                    tvPlanUsuario.setText("PLAN GRATUITO (" + petCount + "/3 MASCOTAS)");
+                }
+                // Sincronizar conteo real desde Firestore
+                FirebaseFirestore.getInstance().collection("usuarios").document(PremiumManager.getUidActual())
+                        .collection("mascotas").get()
+                        .addOnSuccessListener(snap -> {
+                            if (snap != null && tvPlanUsuario != null && !PremiumManager.isPremium(this)) {
+                                tvPlanUsuario.setText("PLAN GRATUITO (" + snap.size() + "/3 MASCOTAS)");
+                            }
+                        });
+
+                // Mostrar anuncios de activación
+                if (layoutAnuncioHeader != null) layoutAnuncioHeader.setVisibility(View.VISIBLE);
+                if (tvPrecioAnuncio != null) tvPrecioAnuncio.setVisibility(View.VISIBLE);
+
+                if (btnMejorarPlanPerfil != null) {
+                    btnMejorarPlanPerfil.setText("Mejorar plan  →");
+                    btnMejorarPlanPerfil.setEnabled(true);
+                    btnMejorarPlanPerfil.setOnClickListener(v -> startActivity(new Intent(this, SuscripcionPremium.class)));
+                    ViewGroup.LayoutParams lp = btnMejorarPlanPerfil.getLayoutParams();
+                    if (lp != null) {
+                        lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                        btnMejorarPlanPerfil.setLayoutParams(lp);
+                    }
+                }
+                if (layoutFilaBoton != null) {
+                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) layoutFilaBoton.getLayoutParams();
+                    if (mlp != null) {
+                        mlp.topMargin = (int) (22 * getResources().getDisplayMetrics().density);
+                        layoutFilaBoton.setLayoutParams(mlp);
+                    }
+                }
+            }
+        };
+
+        aplicarEstadoPlan.run();
+        PremiumManager.sincronizarConFirestore(this, aplicarEstadoPlan);
+
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) return;
 
@@ -111,6 +215,20 @@ public class PerfilUsuario extends AppCompatActivity {
                 }
             }
         });
+
+        // Consultar nombre directamente desde Firestore
+        FirebaseFirestore.getInstance().collection("usuarios").document(user.getUid()).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc != null && doc.exists()) {
+                        String nom = doc.getString("nombreUsuario");
+                        if (nom == null || nom.trim().isEmpty()) {
+                            nom = doc.getString("nombre");
+                        }
+                        if (nom != null && !nom.trim().isEmpty()) {
+                            tvNombreUsuario.setText(nom);
+                        }
+                    }
+                });
     }
 
     private void confirmarCambioCorreo() {
@@ -166,10 +284,14 @@ public class PerfilUsuario extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Correo de verificación enviado al nuevo buzón. Confírmalo para completar el cambio.", Toast.LENGTH_LONG).show();
 
-                        // Opcional: Actualizar también en Firestore si almacenas el correo allí
+                        // Actualizar también en Firestore según BDNoSQLZoolopatas.json
                         String uid = user.getUid();
+                        java.util.Map<String, Object> updateMap = new java.util.HashMap<>();
+                        updateMap.put("correo", nuevoCorreo);
+                        updateMap.put("Correo", nuevoCorreo);
+                        updateMap.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
                         FirebaseFirestore.getInstance().collection("usuarios").document(uid)
-                                .update("correo", nuevoCorreo);
+                                .set(updateMap, com.google.firebase.firestore.SetOptions.merge());
 
                         cargarDatosUsuario();
                     } else {
@@ -198,6 +320,7 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void cerrarSesion() {
+        PremiumManager.limpiarSesionUsuario(this);
         mAuth.signOut();
         irAInicioSesion();
     }
@@ -249,17 +372,49 @@ public class PerfilUsuario extends AppCompatActivity {
 
         user.reauthenticate(credential).addOnCompleteListener(authTask -> {
             if (authTask.isSuccessful()) {
-                // 2. Si la reautenticación es exitosa, procedemos a borrar de Firebase Auth
-                user.delete().addOnCompleteListener(deleteTask -> {
-                    if (deleteTask.isSuccessful()) {
-                        // 3. Eliminar los datos del usuario en Firestore
-                        FirebaseFirestore.getInstance().collection("usuarios").document(uid).delete();
-                        Toast.makeText(this, "Cuenta eliminada correctamente", Toast.LENGTH_SHORT).show();
-                        irAInicioSesion();
-                    } else {
-                        Toast.makeText(this, "Error al eliminar la cuenta de Firebase Auth", Toast.LENGTH_LONG).show();
-                    }
-                });
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                // 2. Limpiar subcolecciones de Firestore antes de eliminar el usuario
+                db.collection("usuarios").document(uid).collection("mascotas").get()
+                        .addOnSuccessListener(mascotasSnapshots -> {
+                            for (com.google.firebase.firestore.DocumentSnapshot petDoc : mascotasSnapshots) {
+                                petDoc.getReference().collection("vacunas").get()
+                                        .addOnSuccessListener(vacSnapshots -> {
+                                            for (com.google.firebase.firestore.DocumentSnapshot vDoc : vacSnapshots) {
+                                                vDoc.getReference().delete();
+                                            }
+                                        });
+                                petDoc.getReference().delete();
+                            }
+
+                            // Limpiar recordatorios
+                            db.collection("usuarios").document(uid).collection("recordatorios").get()
+                                    .addOnSuccessListener(recSnapshots -> {
+                                        for (com.google.firebase.firestore.DocumentSnapshot rDoc : recSnapshots) {
+                                            rDoc.getReference().delete();
+                                        }
+                                    });
+
+                            // Eliminar documento del usuario en Firestore
+                            db.collection("usuarios").document(uid).delete().addOnCompleteListener(firestoreTask -> {
+                                // 3. Proceder a borrar de Firebase Auth
+                                user.delete().addOnCompleteListener(deleteTask -> {
+                                    PremiumManager.limpiarSesionUsuario(PerfilUsuario.this);
+                                    if (deleteTask.isSuccessful()) {
+                                        Toast.makeText(PerfilUsuario.this, "Cuenta eliminada permanentemente.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(PerfilUsuario.this, "Datos de usuario eliminados.", Toast.LENGTH_SHORT).show();
+                                    }
+                                    irAInicioSesion();
+                                });
+                            });
+                        })
+                        .addOnFailureListener(e -> {
+                            db.collection("usuarios").document(uid).delete();
+                            user.delete();
+                            PremiumManager.limpiarSesionUsuario(PerfilUsuario.this);
+                            irAInicioSesion();
+                        });
             } else {
                 Toast.makeText(this, "Contraseña incorrecta. No se pudo verificar la identidad.", Toast.LENGTH_LONG).show();
             }

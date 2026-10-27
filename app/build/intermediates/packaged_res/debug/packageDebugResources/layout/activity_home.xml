@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:text="Hola"
-                tools:text="Hola Valeria"
+                tools:text="Hola"
                 android:textColor="#1F2428"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -222,10 +222,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvCantidadMascotasHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
-                            android:text="2 registradas"
+                            android:text="0 registradas"
                             android:textColor="@color/gray_subtitle"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -517,6 +518,7 @@
 
                 <!-- Badge superior: Ícono dorado + 'VETCARE VITAL+' -->
                 <LinearLayout
+                    android:id="@+id/layoutAnuncioBadgeHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -548,6 +550,7 @@
 
                 <!-- Título -->
                 <TextView
+                    android:id="@+id/tvAnuncioTituloHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -558,6 +561,7 @@
 
                 <!-- Descripción -->
                 <TextView
+                    android:id="@+id/tvAnuncioDescHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -570,13 +574,20 @@
                 <Button
                     android:id="@+id/btnMejorarPlan"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="52dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_btn_premium"
                     app:backgroundTint="@null"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:lineSpacingExtra="3dp"
                     android:text="Mejorar plan  →"
                     android:textColor="@color/dashboard_btn_text"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
                     android:stateListAnimator="@null" />

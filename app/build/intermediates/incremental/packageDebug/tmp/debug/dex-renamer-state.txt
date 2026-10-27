@@ -1,11 +1,11 @@
-#Mon Oct 19 21:10:56 GMT-05:00 2026
-base.0=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
-base.3=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/global_synthetics_dex/debug/generateDebugGlobalSynthetics/classes.dex
-base.4=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.5=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
-base.6=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v4/ProyectoZoloopatas/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes4.dex
+#Mon Oct 26 23:48:23 GMT-05:00 2026
+base.0=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.3=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/global_synthetics_dex/debug/generateDebugGlobalSynthetics/classes.dex
+base.4=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.5=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
+base.6=/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debug/mergeExtDexDebug/classes4.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=7/classes.dex

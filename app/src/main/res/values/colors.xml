@@ -36,4 +36,19 @@
     <color name="dashboard_btn_amber">#FBAE17</color>
     <color name="dashboard_btn_text">#2A1D05</color>
     <color name="dashboard_nav_unselected">#8E8E93</color>
+
+    <!-- ── Pantalla Suscripción Premium ── -->
+    <color name="sub_screen_bg">#2C3433</color>
+    <color name="sub_card_bg">#3A4342</color>
+    <color name="sub_toggle_bg">#272F2E</color>
+    <color name="sub_price_teal">#00D2B4</color>
+    <color name="sub_price_month">#00A896</color>
+    <color name="sub_text_secondary">#B2C2C1</color>
+    <color name="sub_amber_savings">#F5A623</color>
+    <color name="sub_amber_text">#2A1D05</color>
+    <color name="sub_exclusive_badge_bg">#143834</color>
+    <color name="sub_exclusive_badge_text">#2DD4BF</color>
+    <color name="sub_feature_icon_bg">#193E3A</color>
+    <color name="sub_discount_badge_bg">#8C4E03</color>
+    <color name="sub_discount_badge_text">#FFD699</color>
 </resources>

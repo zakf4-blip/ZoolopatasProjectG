@@ -1,5 +1,6 @@
 package com.example.ProyectoZoloopatas;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 
 import org.json.JSONObject;
@@ -14,6 +15,8 @@ public class Vacuna implements Serializable {
     private String usuarioId;
     private String tipoRegistro;
     private String tipoVacuna;
+    private String marca = "";
+    private String numeroLote = "";
     private String fechaAplicacion;   // dd/MM/yyyy
     private String fechaVencimiento;  // dd/MM/yyyy
     private String comentarios;
@@ -86,6 +89,22 @@ public class Vacuna implements Serializable {
         this.comentarios = comentarios;
     }
 
+    public String getMarca() {
+        return marca != null ? marca : "";
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getNumeroLote() {
+        return numeroLote != null ? numeroLote : "";
+    }
+
+    public void setNumeroLote(String numeroLote) {
+        this.numeroLote = numeroLote;
+    }
+
     public long getCreadoEn() {
         return creadoEn;
     }
@@ -127,14 +146,63 @@ public class Vacuna implements Serializable {
 
     public Map<String, Object> toFirestoreMap() {
         Map<String, Object> m = new HashMap<>();
-        m.put("mascotaId", mascotaId);
-        m.put("usuarioId", usuarioId);
+        m.put("id", id != null ? id : "");
+        m.put("mascotaId", mascotaId != null ? mascotaId : "");
+        m.put("usuarioId", usuarioId != null ? usuarioId : "");
         m.put("tipoRegistro", getTipoRegistro());
         m.put("tipoVacuna", getTipoVacuna());
+        m.put("motivo", getTipoVacuna()); // Campo oficial según BDNoSQLZoolopatas.json
+        m.put("marca", getMarca());
+        m.put("numeroLote", getNumeroLote());
         m.put("fechaAplicacion", getFechaAplicacion());
         m.put("fechaVencimiento", getFechaVencimiento());
         m.put("comentarios", getComentarios());
+        m.put("notas", getComentarios()); // Campo oficial según BDNoSQLZoolopatas.json
         m.put("fechaRegistro", FieldValue.serverTimestamp());
         return m;
+    }
+
+    public static Vacuna fromFirestoreDoc(DocumentSnapshot doc) {
+        if (doc == null || !doc.exists()) return null;
+        Vacuna v = new Vacuna();
+        v.setId(doc.getId());
+        v.setMascotaId(doc.getString("mascotaId"));
+        v.setUsuarioId(doc.getString("usuarioId"));
+
+        String tipo = doc.getString("motivo");
+        if (tipo == null || tipo.trim().isEmpty()) {
+            tipo = doc.getString("tipoVacuna");
+        }
+        v.setTipoVacuna(tipo != null ? tipo : "Vacunación");
+
+        v.setTipoRegistro(doc.getString("tipoRegistro"));
+        v.setMarca(doc.getString("marca"));
+        v.setNumeroLote(doc.getString("numeroLote"));
+
+        String notas = doc.getString("notas");
+        if (notas == null) {
+            notas = doc.getString("comentarios");
+        }
+        v.setComentarios(notas != null ? notas : "");
+
+        Object fa = doc.get("fechaAplicacion");
+        if (fa instanceof com.google.firebase.Timestamp) {
+            java.util.Date date = ((com.google.firebase.Timestamp) fa).toDate();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+            v.setFechaAplicacion(sdf.format(date));
+        } else if (fa instanceof String) {
+            v.setFechaAplicacion((String) fa);
+        }
+
+        Object fv = doc.get("fechaVencimiento");
+        if (fv instanceof com.google.firebase.Timestamp) {
+            java.util.Date date = ((com.google.firebase.Timestamp) fv).toDate();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+            v.setFechaVencimiento(sdf.format(date));
+        } else if (fv instanceof String) {
+            v.setFechaVencimiento((String) fv);
+        }
+
+        return v;
     }
 }

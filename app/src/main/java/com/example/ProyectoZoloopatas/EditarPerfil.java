@@ -159,10 +159,29 @@ public class EditarPerfil extends AppCompatActivity {
 
         db.collection("usuarios").document(user.getUid()).get().addOnSuccessListener(doc -> {
             if (doc == null || !doc.exists()) return;
-            String telefono = doc.getString("telefono");
-            if (telefono != null) etTelefonoUsuario.setText(telefono);
-            seleccionar(spCodigoPais, doc.getString("codigoPais"));
-            seleccionar(spCiudadDistrito, doc.getString("ciudad"));
+
+            String nom = doc.getString("nombreUsuario");
+            if (nom == null || nom.trim().isEmpty()) nom = doc.getString("nombre");
+            if (nom != null && !nom.trim().isEmpty()) {
+                etNombreUsuario.setText(nom);
+                tvNombreFoto.setText(nom);
+            }
+
+            Object telObj = doc.get("telefono");
+            if (telObj instanceof Map) {
+                Map<?, ?> telMap = (Map<?, ?>) telObj;
+                Object num = telMap.get("numero");
+                Object cod = telMap.get("codigoPais");
+                if (num != null) etTelefonoUsuario.setText(String.valueOf(num));
+                if (cod != null) seleccionar(spCodigoPais, String.valueOf(cod));
+            } else if (telObj instanceof String) {
+                etTelefonoUsuario.setText((String) telObj);
+                seleccionar(spCodigoPais, doc.getString("codigoPais"));
+            }
+
+            String dist = doc.getString("distrito");
+            if (dist == null || dist.trim().isEmpty()) dist = doc.getString("ciudad");
+            seleccionar(spCiudadDistrito, dist);
         });
     }
 
@@ -221,19 +240,30 @@ public class EditarPerfil extends AppCompatActivity {
             }
 
             Map<String, Object> datos = new HashMap<>();
+            datos.put("nombreUsuario", nombre);
             datos.put("nombre", nombre);
-            datos.put("codigoPais", String.valueOf(spCodigoPais.getSelectedItem()));
-            datos.put("telefono", etTelefonoUsuario.getText().toString().trim());
-            datos.put("ciudad", String.valueOf(spCiudadDistrito.getSelectedItem()));
+
+            String codPais = String.valueOf(spCodigoPais.getSelectedItem());
+            String numTel = etTelefonoUsuario.getText().toString().trim();
+            Map<String, Object> telefonoMap = new HashMap<>();
+            telefonoMap.put("codigoPais", codPais);
+            telefonoMap.put("numero", numTel);
+            datos.put("telefono", telefonoMap);
+            datos.put("codigoPais", codPais);
+
+            String dist = String.valueOf(spCiudadDistrito.getSelectedItem());
+            datos.put("distrito", dist);
+            datos.put("ciudad", dist);
+            datos.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
 
             db.collection("usuarios").document(user.getUid())
                     .set(datos, com.google.firebase.firestore.SetOptions.merge())
                     .addOnSuccessListener(unused -> {
-                        Toast.makeText(this, "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Perfil actualizado correctamente en Firestore", Toast.LENGTH_SHORT).show();
                         finish();
                     })
                     .addOnFailureListener(e ->
-                            Toast.makeText(this, "Nombre guardado, pero no se pudo guardar el teléfono/ciudad", Toast.LENGTH_LONG).show());
+                            Toast.makeText(this, "Nombre guardado, pero no se pudo sincronizar en Firestore: " + e.getMessage(), Toast.LENGTH_LONG).show());
         });
     }
 }

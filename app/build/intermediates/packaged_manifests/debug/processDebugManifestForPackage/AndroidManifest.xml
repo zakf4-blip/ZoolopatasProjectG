@@ -40,7 +40,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.ProyectoZoloopatas" >
+        android:theme="@style/Theme.ProyectoZoloopatas"
+        android:usesCleartextTraffic="true" >
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.ProyectoZoloopatas.fileprovider"
@@ -51,6 +52,14 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <activity
+            android:name="com.example.ProyectoZoloopatas.NiubizPaymentActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.example.ProyectoZoloopatas.SuscripcionPremium"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.ProyectoZoloopatas.PerfilUsuario"
             android:exported="false"

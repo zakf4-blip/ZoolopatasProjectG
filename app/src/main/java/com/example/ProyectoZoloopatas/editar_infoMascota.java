@@ -363,8 +363,23 @@ public class editar_infoMascota extends AppCompatActivity {
                     if (mascotaId != null && !mascotaId.startsWith("demo_")) {
                         try {
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            db.collection("mascotas").document(mascotaId).delete();
+                            // 1. Eliminar subcolección vacunas de la mascota en Firestore
+                            db.collection("usuarios").document(uid)
+                                    .collection("mascotas").document(mascotaId)
+                                    .collection("vacunas").get()
+                                    .addOnSuccessListener(vacunasSnapshots -> {
+                                        for (com.google.firebase.firestore.DocumentSnapshot vDoc : vacunasSnapshots) {
+                                            vDoc.getReference().delete();
+                                        }
+                                    });
+
+                            // 2. Eliminar mascota en usuarios/{uid}/mascotas/{id} y en raíz
                             db.collection("usuarios").document(uid).collection("mascotas").document(mascotaId).delete();
+                            db.collection("mascotas").document(mascotaId).delete();
+
+                            // 3. Decrementar contador de mascotas en usuarios/{uid}
+                            db.collection("usuarios").document(uid)
+                                    .update("estadisticas.cantidadMascotas", FieldValue.increment(-1));
                         } catch (Exception ignored) {}
                     }
 
@@ -481,7 +496,8 @@ public class editar_infoMascota extends AppCompatActivity {
         btnGuardarMascota.setEnabled(false);
         btnConfirmarTop.setEnabled(false);
 
-        String idFinal = (mascotaId != null && !mascotaId.trim().isEmpty() && !mascotaId.startsWith("demo_"))
+        boolean esNueva = (mascotaId == null || mascotaId.trim().isEmpty() || mascotaId.startsWith("demo_"));
+        String idFinal = !esNueva
                 ? mascotaId
                 : ("pet_" + System.currentTimeMillis());
 
@@ -508,38 +524,39 @@ public class editar_infoMascota extends AppCompatActivity {
             prefs.edit().putStringSet("eliminadas_" + uid, eliminadas).apply();
         }
 
-        // 2. Preparar datos para Firestore
-        Map<String, Object> data = new HashMap<>();
-        data.put("id", idFinal);
-        data.put("nombre", nombre);
-        data.put("tipo", tipoSeleccionado);
-        data.put("sexo", sexoSeleccionado);
-        data.put("castrado", switchCastrado.isChecked());
-        data.put("raza", tvRazaSeleccionada.getText().toString().trim());
-        data.put("fechaNacimiento", tvFechaNacimiento.getText().toString().trim());
-        data.put("colores", coloresSeleccionados);
-        data.put("usuarioId", uid);
-        data.put("fotoUri", fotoActualPath != null ? fotoActualPath : "");
-        data.put("fechaActualizacion", FieldValue.serverTimestamp());
+        // 2. Preparar datos completos para Firestore según BDNoSQLZoolopatas.json
+        Map<String, Object> data = m.toFirestoreMap();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 3. Sincronizar con Firebase Firestore
-        db.collection("mascotas").document(idFinal)
+        // 3. Sincronizar con Firebase Firestore: primero en usuarios/{uid}/mascotas/{id}
+        db.collection("usuarios").document(uid)
+                .collection("mascotas").document(idFinal)
                 .set(data, SetOptions.merge())
                 .addOnSuccessListener(unused -> {
+                    // Reflejar también en colección raíz de mascotas para consultas
                     try {
-                        db.collection("usuarios").document(uid)
-                                .collection("mascotas").document(idFinal)
+                        db.collection("mascotas").document(idFinal)
                                 .set(data, SetOptions.merge());
                     } catch (Exception ignored) {}
-                    Toast.makeText(this, "Mascota guardada con éxito", Toast.LENGTH_SHORT).show();
+
+                    // Si es nueva mascota, incrementar estadísticas del usuario
+                    if (esNueva) {
+                        try {
+                            db.collection("usuarios").document(uid)
+                                    .update("estadisticas.cantidadMascotas", FieldValue.increment(1));
+                        } catch (Exception ignored) {}
+                    }
+
+                    Toast.makeText(this, "Mascota guardada con éxito en Firestore", Toast.LENGTH_SHORT).show();
                     finish();
                 })
                 .addOnFailureListener(e -> {
-                    // Si las reglas en la consola de Firebase rechazan temporalmente el guardado remoto,
-                    // la mascota ya quedó asegurada localmente y se mostrará sin problemas.
-                    Toast.makeText(this, "Mascota guardada con éxito", Toast.LENGTH_SHORT).show();
+                    // Si falla la red, ya quedó asegurada localmente y se intentará guardar en raíz
+                    try {
+                        db.collection("mascotas").document(idFinal).set(data, SetOptions.merge());
+                    } catch (Exception ignored) {}
+                    Toast.makeText(this, "Mascota guardada localmente", Toast.LENGTH_SHORT).show();
                     finish();
                 });
     }

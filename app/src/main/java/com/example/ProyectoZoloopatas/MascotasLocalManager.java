@@ -12,6 +12,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Gestor local de almacenamiento persistente de mascotas individualizado por usuario (UID).
+ * Garantiza que cada cuenta mantenga su propia lista independiente sin compartir datos entre usuarios.
+ */
 public class MascotasLocalManager {
 
     private static final String PREF_NAME = "zoloopatas_mascotas_store";
@@ -19,7 +23,7 @@ public class MascotasLocalManager {
     private static final String KEY_DELETED_PREFIX = "eliminadas_";
 
     public static Set<String> getEliminadas(Context context, String uid) {
-        if (context == null) return new HashSet<>();
+        if (context == null || uid == null || uid.trim().isEmpty()) return new HashSet<>();
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return new HashSet<>(prefs.getStringSet(KEY_DELETED_PREFIX + uid, new HashSet<>()));
     }
@@ -37,42 +41,52 @@ public class MascotasLocalManager {
 
     public static synchronized List<Mascota> getMascotas(Context context, String uid) {
         List<Mascota> resultado = new ArrayList<>();
-        if (context == null) return resultado;
+        if (context == null || uid == null || uid.trim().isEmpty()) return resultado;
 
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         Set<String> eliminadas = getEliminadas(context, uid);
         String jsonStr = prefs.getString(KEY_LIST_PREFIX + uid, null);
 
         if (jsonStr == null) {
-            // Primera vez: sembrar Rocky y Luna si no han sido eliminados
-            if (!eliminadas.contains("demo_rocky") && !eliminadas.contains("nombre_Rocky") && !eliminadas.contains("rocky")) {
-                resultado.add(new Mascota("demo_rocky", "Rocky", "Perro", "Macho", true, "Golden Retriever", "18/09/2023", Arrays.asList("Dorado", "Blanco")));
-            }
-            if (!eliminadas.contains("demo_luna") && !eliminadas.contains("nombre_Luna") && !eliminadas.contains("luna")) {
-                resultado.add(new Mascota("demo_luna", "Luna", "Gato", "Hembra", false, "Siamés", "15/05/2025", Arrays.asList("Café", "Blanco")));
-            }
+            // Toda cuenta inicia con lista vacía sin mascotas por defecto
             guardarListaDirecta(prefs, uid, resultado);
             return resultado;
         }
 
+        boolean requiriLimpiezaDemo = false;
         try {
             JSONArray arr = new JSONArray(jsonStr);
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
                 Mascota m = Mascota.fromJson(obj);
                 if (m != null && !isEliminada(m, eliminadas)) {
-                    resultado.add(m);
+                    // Omitir completamente cualquier mascota de prueba/demo por defecto
+                    if (m.getId() != null && (m.getId().startsWith("demo_") || m.getId().equals("demo_rocky") || m.getId().equals("demo_luna"))) {
+                        requiriLimpiezaDemo = true;
+                        continue;
+                    }
+                    if (m.getUsuarioId() == null || m.getUsuarioId().isEmpty()) {
+                        m.setUsuarioId(uid);
+                    }
+                    if (uid.equals(m.getUsuarioId())) {
+                        resultado.add(m);
+                    }
                 }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
+        // Si se encontraron mascotas demo antiguas, reescribir la lista limpia
+        if (requiriLimpiezaDemo) {
+            guardarListaDirecta(prefs, uid, resultado);
+        }
+
         return resultado;
     }
 
     public static synchronized Mascota getMascotaById(Context context, String uid, String id) {
-        if (context == null || id == null || id.trim().isEmpty()) return null;
+        if (context == null || id == null || id.trim().isEmpty() || uid == null) return null;
         List<Mascota> lista = getMascotas(context, uid);
         for (Mascota m : lista) {
             if (id.equals(m.getId())) return m;
@@ -81,7 +95,7 @@ public class MascotasLocalManager {
     }
 
     public static synchronized void saveOrUpdateMascota(Context context, String uid, Mascota mascota) {
-        if (context == null || mascota == null) return;
+        if (context == null || mascota == null || uid == null || uid.trim().isEmpty()) return;
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
         if (mascota.getId() == null || mascota.getId().trim().isEmpty()) {
@@ -95,10 +109,7 @@ public class MascotasLocalManager {
         for (int i = 0; i < listaActual.size(); i++) {
             Mascota existente = listaActual.get(i);
             boolean mismoId = existente.getId() != null && existente.getId().equals(mascota.getId());
-            boolean mismoNombre = existente.getNombre() != null && mascota.getNombre() != null &&
-                    existente.getNombre().trim().equalsIgnoreCase(mascota.getNombre().trim());
-
-            if (mismoId || mismoNombre) {
+            if (mismoId) {
                 listaActual.set(i, mascota);
                 actualizado = true;
                 break;
@@ -109,44 +120,32 @@ public class MascotasLocalManager {
             listaActual.add(mascota);
         }
 
-        // Si la mascota estaba en la lista de eliminadas, desmarcarla
-        Set<String> eliminadas = getEliminadas(context, uid);
-        boolean huboCambiosEliminadas = false;
-        if (mascota.getId() != null && eliminadas.remove(mascota.getId())) {
-            huboCambiosEliminadas = true;
-        }
-        if (mascota.getNombre() != null) {
-            huboCambiosEliminadas |= eliminadas.remove("nombre_" + mascota.getNombre().trim());
-            huboCambiosEliminadas |= eliminadas.remove(mascota.getNombre().trim().toLowerCase());
-        }
-        if (huboCambiosEliminadas) {
-            prefs.edit().putStringSet(KEY_DELETED_PREFIX + uid, eliminadas).apply();
-        }
-
         guardarListaDirecta(prefs, uid, listaActual);
     }
 
-    public static synchronized void deleteMascota(Context context, String uid, String petId, String petNombre) {
-        if (context == null) return;
+    public static synchronized void deleteMascota(Context context, String uid, String id) {
+        deleteMascota(context, uid, id, null);
+    }
+
+    public static synchronized void deleteMascota(Context context, String uid, String id, String nombre) {
+        if (context == null || uid == null) return;
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        // 1. Agregar a eliminadas
         Set<String> eliminadas = getEliminadas(context, uid);
-        if (petId != null && !petId.trim().isEmpty()) {
-            eliminadas.add(petId);
+        if (id != null && !id.trim().isEmpty()) {
+            eliminadas.add(id);
         }
-        if (petNombre != null && !petNombre.trim().isEmpty()) {
-            eliminadas.add("nombre_" + petNombre.trim());
-            eliminadas.add(petNombre.trim().toLowerCase());
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            eliminadas.add("nombre_" + nombre.trim());
+            eliminadas.add(nombre.trim().toLowerCase());
         }
         prefs.edit().putStringSet(KEY_DELETED_PREFIX + uid, eliminadas).apply();
 
-        // 2. Remover de lista local
         List<Mascota> listaActual = getMascotas(context, uid);
         List<Mascota> nuevaLista = new ArrayList<>();
         for (Mascota m : listaActual) {
-            boolean coincideId = petId != null && petId.equals(m.getId());
-            boolean coincideNombre = petNombre != null && petNombre.equalsIgnoreCase(m.getNombre());
+            boolean coincideId = (id != null && id.equals(m.getId()));
+            boolean coincideNombre = (nombre != null && m.getNombre() != null && nombre.trim().equalsIgnoreCase(m.getNombre().trim()));
             if (!coincideId && !coincideNombre) {
                 nuevaLista.add(m);
             }
@@ -155,30 +154,30 @@ public class MascotasLocalManager {
         guardarListaDirecta(prefs, uid, nuevaLista);
     }
 
-    public static synchronized void mergeFromFirestore(Context context, String uid, List<Mascota> firestoreList) {
-        if (context == null || firestoreList == null) return;
+    public static synchronized void setMascotasFromFirestore(Context context, String uid, List<Mascota> firestoreList) {
+        if (context == null || uid == null || uid.trim().isEmpty()) return;
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         Set<String> eliminadas = getEliminadas(context, uid);
 
-        List<Mascota> locales = getMascotas(context, uid);
-        for (Mascota remota : firestoreList) {
-            if (isEliminada(remota, eliminadas)) continue;
-            boolean existe = false;
-            for (int i = 0; i < locales.size(); i++) {
-                Mascota local = locales.get(i);
-                if ((remota.getId() != null && remota.getId().equals(local.getId())) ||
-                        (remota.getNombre() != null && remota.getNombre().equalsIgnoreCase(local.getNombre()))) {
-                    locales.set(i, remota);
-                    existe = true;
-                    break;
+        List<Mascota> listaFinal = new ArrayList<>();
+        if (firestoreList != null) {
+            for (Mascota remota : firestoreList) {
+                if (remota != null && !isEliminada(remota, eliminadas)) {
+                    // Omitir mascotas demo por defecto
+                    if (remota.getId() != null && (remota.getId().startsWith("demo_") || remota.getId().equals("demo_rocky") || remota.getId().equals("demo_luna"))) {
+                        continue;
+                    }
+                    remota.setUsuarioId(uid);
+                    listaFinal.add(remota);
                 }
-            }
-            if (!existe) {
-                locales.add(remota);
             }
         }
 
-        guardarListaDirecta(prefs, uid, locales);
+        guardarListaDirecta(prefs, uid, listaFinal);
+    }
+
+    public static synchronized void mergeFromFirestore(Context context, String uid, List<Mascota> firestoreList) {
+        setMascotasFromFirestore(context, uid, firestoreList);
     }
 
     private static void guardarListaDirecta(SharedPreferences prefs, String uid, List<Mascota> lista) {

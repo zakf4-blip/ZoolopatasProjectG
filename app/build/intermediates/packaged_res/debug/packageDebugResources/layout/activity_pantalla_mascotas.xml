@@ -153,12 +153,14 @@
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <ImageView
+                        android:id="@+id/ivBadgePlan"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:src="@drawable/ic_badge_check"
                         android:contentDescription="Plan Gratuito" />
 
                     <TextView
+                        android:id="@+id/tvBadgePlan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -213,7 +215,8 @@
                         android:id="@+id/tvCapacidadPacientes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2 de 3 registradas"
+                        android:text="0 de 3 registradas"
+                        tools:text="0 de 3 registradas"
                         android:textColor="#2D3748"
                         android:textSize="13sp"
                         android:textStyle="bold"
@@ -235,7 +238,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_progress_bar_segment_filled" />
+                        android:background="@drawable/bg_progress_bar_segment_empty" />
 
                     <View
                         android:layout_width="5dp"
@@ -247,7 +250,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_progress_bar_segment_filled" />
+                        android:background="@drawable/bg_progress_bar_segment_empty" />
 
                     <View
                         android:layout_width="5dp"
@@ -269,7 +272,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:lineSpacingMultiplier="1.15"
-                    android:text="Te queda 1 espacio libre para vincular historial clínico o telemetría."
+                    android:text="Tienes 3 espacios libres para registrar a tus compañeros."
+                    tools:text="Tienes 3 espacios libres para registrar a tus compañeros."
                     android:textColor="@color/gray_subtitle"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -306,11 +310,13 @@
 
                     <!-- Título -->
                     <TextView
+                        android:id="@+id/tvTituloCupoDisponible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:gravity="center"
-                        android:text="1 cupo disponible en plan gratuito"
+                        android:text="3 cupos disponibles en plan gratuito"
+                        tools:text="3 cupos disponibles en plan gratuito"
                         android:textColor="#1F2428"
                         android:textSize="15sp"
                         android:textStyle="bold" />

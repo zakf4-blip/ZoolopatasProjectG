@@ -1,5 +1,7 @@
 package com.example.ProyectoZoloopatas;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import org.json.JSONArray;
@@ -7,7 +9,9 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @IgnoreExtraProperties
 public class Mascota implements Serializable {
@@ -23,10 +27,17 @@ public class Mascota implements Serializable {
     private Object fechaRegistro;
     private Object fechaActualizacion;
     private String fotoUri;
+    private double pesoKg = 0.0;
+    private List<String> alergias;
+    private List<String> afeccionesCronicas;
+    private List<String> medicamentosActivos;
 
     public Mascota() {
         // Constructor vacío necesario para Firestore deserialization
         this.colores = new ArrayList<>();
+        this.alergias = new ArrayList<>();
+        this.afeccionesCronicas = new ArrayList<>();
+        this.medicamentosActivos = new ArrayList<>();
     }
 
     public Mascota(String id, String nombre, String tipo, String sexo, boolean castrado, String raza, String fechaNacimiento, List<String> colores) {
@@ -137,6 +148,41 @@ public class Mascota implements Serializable {
         this.fotoUri = fotoUri;
     }
 
+    public double getPesoKg() {
+        return pesoKg;
+    }
+
+    public void setPesoKg(double pesoKg) {
+        this.pesoKg = pesoKg;
+    }
+
+    public List<String> getAlergias() {
+        if (alergias == null) alergias = new ArrayList<>();
+        return alergias;
+    }
+
+    public void setAlergias(List<String> alergias) {
+        this.alergias = alergias;
+    }
+
+    public List<String> getAfeccionesCronicas() {
+        if (afeccionesCronicas == null) afeccionesCronicas = new ArrayList<>();
+        return afeccionesCronicas;
+    }
+
+    public void setAfeccionesCronicas(List<String> afeccionesCronicas) {
+        this.afeccionesCronicas = afeccionesCronicas;
+    }
+
+    public List<String> getMedicamentosActivos() {
+        if (medicamentosActivos == null) medicamentosActivos = new ArrayList<>();
+        return medicamentosActivos;
+    }
+
+    public void setMedicamentosActivos(List<String> medicamentosActivos) {
+        this.medicamentosActivos = medicamentosActivos;
+    }
+
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         try {
@@ -181,6 +227,108 @@ public class Mascota implements Serializable {
             }
         }
         m.setColores(cols);
+        return m;
+    }
+
+    public Map<String, Object> toFirestoreMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id != null ? id : "");
+        map.put("idPropietario", usuarioId != null ? usuarioId : "");
+        map.put("usuarioId", usuarioId != null ? usuarioId : ""); // compatibilidad
+        map.put("nombreMascota", getNombre());
+        map.put("nombre", getNombre()); // compatibilidad
+        map.put("especie", getTipo());
+        map.put("tipo", getTipo()); // compatibilidad
+        map.put("sexo", getSexo());
+        map.put("raza", getRaza());
+        map.put("estaEsterilizado", castrado);
+        map.put("castrado", castrado); // compatibilidad
+        map.put("fechaNacimiento", getFechaNacimiento());
+        map.put("colores", getColores());
+        map.put("pesoKg", pesoKg);
+        map.put("fotoUri", fotoUri != null ? fotoUri : "");
+        map.put("urlFoto", fotoUri != null ? fotoUri : "");
+
+        Map<String, Object> resumen = new HashMap<>();
+        resumen.put("alergias", getAlergias());
+        resumen.put("afeccionesCronicas", getAfeccionesCronicas());
+        resumen.put("medicamentosActivos", getMedicamentosActivos());
+        map.put("resumenEmergencia", resumen);
+
+        map.put("fechaCreacionMascota", FieldValue.serverTimestamp());
+        map.put("fechaActualizacionMascota", FieldValue.serverTimestamp());
+        return map;
+    }
+
+    public static Mascota fromFirestoreDoc(DocumentSnapshot doc) {
+        if (doc == null || !doc.exists()) return null;
+        Mascota m = new Mascota();
+        m.setId(doc.getId());
+
+        String nom = doc.getString("nombreMascota");
+        if (nom == null || nom.trim().isEmpty()) {
+            nom = doc.getString("nombre");
+        }
+        m.setNombre(nom != null ? nom : "Mascota");
+
+        String esp = doc.getString("especie");
+        if (esp == null || esp.trim().isEmpty()) {
+            esp = doc.getString("tipo");
+        }
+        m.setTipo(esp != null ? esp : "Perro");
+
+        String sex = doc.getString("sexo");
+        m.setSexo(sex != null ? sex : "Macho");
+
+        Boolean est = doc.getBoolean("estaEsterilizado");
+        if (est == null) {
+            est = doc.getBoolean("castrado");
+        }
+        m.setCastrado(est != null && est);
+
+        m.setRaza(doc.getString("raza"));
+
+        Object fnObj = doc.get("fechaNacimiento");
+        if (fnObj instanceof com.google.firebase.Timestamp) {
+            java.util.Date date = ((com.google.firebase.Timestamp) fnObj).toDate();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+            m.setFechaNacimiento(sdf.format(date));
+        } else if (fnObj instanceof String) {
+            m.setFechaNacimiento((String) fnObj);
+        }
+
+        Object colObj = doc.get("colores");
+        if (colObj instanceof List) {
+            m.setColores((List<String>) colObj);
+        }
+
+        Double peso = doc.getDouble("pesoKg");
+        if (peso != null) {
+            m.setPesoKg(peso);
+        }
+
+        String foto = doc.getString("fotoUri");
+        if (foto == null || foto.trim().isEmpty()) {
+            foto = doc.getString("urlFoto");
+        }
+        m.setFotoUri(foto != null ? foto : "");
+
+        String uid = doc.getString("idPropietario");
+        if (uid == null || uid.trim().isEmpty()) {
+            uid = doc.getString("usuarioId");
+        }
+        m.setUsuarioId(uid != null ? uid : "");
+
+        Map<String, Object> resumen = (Map<String, Object>) doc.get("resumenEmergencia");
+        if (resumen != null) {
+            Object al = resumen.get("alergias");
+            if (al instanceof List) m.setAlergias((List<String>) al);
+            Object af = resumen.get("afeccionesCronicas");
+            if (af instanceof List) m.setAfeccionesCronicas((List<String>) af);
+            Object med = resumen.get("medicamentosActivos");
+            if (med instanceof List) m.setMedicamentosActivos((List<String>) med);
+        }
+
         return m;
     }
 }
