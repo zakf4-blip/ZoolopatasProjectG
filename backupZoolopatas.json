@@ -1,0 +1,228 @@
+{
+  "users": {
+    "id_usuario_001": {
+      "nameUser": "Valeria Benítez",
+      "phone": {
+        "countryCode": "+51",
+        "number": "981445220"
+      },
+      "district": "Miraflores",
+      "photoUrl": "https://<proyecto>.supabase.co/storage/v1/object/public/avatars/uid123/profile.jpg",
+      "photoPath": "avatars/uid123/profile.jpg",
+      "accountStatus": "active",
+      "accountdeletionScheduledAt": null,
+      "notificationPrefs": {
+        "push": true,
+        "vaccines": true,
+        "reminders": true
+      },
+      "subscription": {
+        "tier": "free",
+        "billingPeriod": null,
+        "status": "none",
+        "startedAt": null,
+        "expiresAt": null
+      },
+      "stats": {
+        "petCount": 2,
+        "pendingReminders": 3
+      },
+      "accountCreatedAt": {
+        "_seconds": 1792422121,
+        "_nanoseconds": 0
+      },
+      "accountUpdatedAt": {
+        "_seconds": 1792509622,
+        "_nanoseconds": 0
+      },
+      "subCollection": {
+        "users/id_usuario_001/NlsssPaymenthistory": {
+          "id_NlsssPaymenthistory_001": {
+            "planId": "premium_monthly",
+            "amount": 19.9,
+            "currency": "PEN",
+            "status": "pago realizado exitosamente",
+            "createdAt": {
+              "_seconds": 1790514672,
+              "_nanoseconds": 0
+            }
+          }
+        },
+        "users/id_usuario_001/Nlsssdevices": {
+          "id_Nlsssdevices_001": {
+            "fcmToken": "cM8fnwie87487bv7gq9m78n342b0",
+            "platform": "android",
+            "lastSeenAt": {
+              "_seconds": 1791649392,
+              "_nanoseconds": 0
+            }
+          }
+        },
+        "users/id_usuario_001/NlsssfavoriteArticles": {
+          "id_NlsssfavoriteArticles_001": {
+            "title": "Shampoo  Magistral Royal Verde",
+            "topic": "higiene",
+            "savedAt": {
+              "_seconds": 1790957483,
+              "_nanoseconds": 0
+            }
+          }
+        },
+        "users/id_usuario_001/NlsssfavoriteClinics": {
+          "id_NlsssfavoriteClinics_001": {
+            "name": "Zoolopatas de los Olivos",
+            "district": "Los Olivos",
+            "savedAt": {
+              "_seconds": 1791599592,
+              "_nanoseconds": 0
+            }
+          }
+        },
+        "users/id_usuario_001/notifications": {
+          "id_notificacion_001": {
+            "title": "Vacuna próxima",
+            "body": "La vacuna de Rocky vence mañana, tienes que ir temprano, luego de almorzar",
+            "category": "recordatorio",
+            "petId": "id_mascota_001",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1792290792,
+              "_nanoseconds": 0
+            }
+          }
+        },
+        "users/id_usuario_001/pets": {
+          "id_mascota_001": {
+            "ownerId": "id_usuario_001",
+            "petName": "Rocky",
+            "species": "dog",
+            "breed": "Golden Retriever",
+            "sex": "male",
+            "isNeutered": true,
+            "birthDate": {
+              "_seconds": 1733984482,
+              "_nanoseconds": 0
+            },
+            "colors": [
+              "Dorado",
+              "Blanco"
+            ],
+            "NlsssWeightKg": 28.4,
+            "petCreatedAt": {
+              "_seconds": 1792538482,
+              "_nanoseconds": 0
+            },
+            "petUpdateAt": {
+              "_seconds": 1792545131,
+              "_nanoseconds": 0
+            },
+            "NlsssEmergencySummary": {
+              "allergies": [
+                "Picadura de pulga (dermatitis)",
+                "Alergia a la almendra(Alergia alimentaria)"
+              ],
+              "chronicConditions": [
+                ""
+              ],
+              "activeMedications": [
+                "Amoxicilina 250 mg"
+              ]
+            },
+            "subCollection": {
+              "users/id_usuario_001/pets/id_mascota_001/checkups": {
+                "id_revisiones_001": {
+                  "dateTime": {
+                    "_seconds": 1792116671,
+                    "_nanoseconds": 0
+                  },
+                  "reason": "malestar",
+                  "diagnosis": "Comió algo de la basura",
+                  "notes": "debe tomar agua abundante, y hacerce un chekeo el día de mañana para ver si mejora rocky."
+                }
+              },
+              "users/id_usuario_001/pets/id_mascota_001/conditions": {
+                "id_condicion_001": {
+                  "date": {
+                    "_seconds": 1786237941,
+                    "_nanoseconds": 0
+                  },
+                  "name": "Dermatitis",
+                  "symptoms": "piel enrojecida",
+                  "diagnosis": "Dermatitis severa",
+                  "notes": "la condición en la piel de mi rocky debe tratarse con un medicamente X. Es causada por una alergia a la lejia",
+                  "status": "activa",
+                  "isAllergy": true
+                }
+              },
+              "users/id_usuario_001/pets/id_mascota_001/dewormings": {
+                "id_desparasitacion_001": {
+                  "applicationDate": {
+                    "_seconds": 1794018131,
+                    "_nanoseconds": 0
+                  },
+                  "typeDeworming": "interna",
+                  "brand": "Fipronex",
+                  "notes": "Dijo el doctor que lo aplique cada luego del baño"
+                }
+              },
+              "users/id_usuario_001/pets/id_mascota_001/medications": {
+                "id_medicacion_001": {
+                  "startDateTime": {
+                    "_seconds": 1790863741,
+                    "_nanoseconds": 0
+                  },
+                  "name": "Amoxicilina",
+                  "doseValue": 250,
+                  "doseUnit": "mg",
+                  "reasonForUse": "Infección respiratoria",
+                  "notes": "Este medicamento se le debe dar a rocky por una infección respiratoria reciente",
+                  "status": "activo"
+                }
+              },
+              "users/id_usuario_001/pets/id_mascota_001/vaccines": {
+                "id_vacuna_001": {
+                  "applicationDate": {
+                    "_seconds": 1792239682,
+                    "_nanoseconds": 0
+                  },
+                  "reason": "Antirrábica Anual",
+                  "brand": "Rabisin Labs vet.",
+                  "lotNumber": "4529",
+                  "notes": "La dosis fue de 1ml, ya que el veterinario me comento que era una dosis adecuada.",
+                  "expirationDate": {
+                    "_seconds": 1823908341,
+                    "_nanoseconds": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "users/id_usuario_001/reminders": {
+          "id_recordatorio_001": {
+            "title": "Refuerzo antirrábico",
+            "petId": "id_mascota_001",
+            "petName": "Rocky",
+            "petPhotoUrl": "https://<proyecto>.supabase.co/.../rocky.jpg",
+            "dateTime": {
+              "_seconds": 1793448731,
+              "_nanoseconds": 0
+            },
+            "notificationType": "push",
+            "note": "Llevar cartilla",
+            "status": "pending",
+            "createdAt": {
+              "_seconds": 1792239142,
+              "_nanoseconds": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "veterinaryClinics": {
+    "id_clinica_01": {
+      "name": "Palmarla"
+    }
+  }
+}

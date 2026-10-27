@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sub_screen_bg"
+    tools:context=".NiubizPaymentActivity">
+
+    <!-- ── CABECERA OFICIAL NIUBIZ CON BOTÓN VOLVER ── -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerNiubiz"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#222928"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnVolverNiubiz"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_btn_back_circle"
+            android:contentDescription="Volver"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/btnVolverNiubiz"
+            app:layout_constraintEnd_toStartOf="@id/ivLockIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/tvTituloHeaderNiubiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pasarela Oficial Niubiz"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSubtituloHeaderNiubiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transacción 100% Segura • Niubiz Perú"
+                android:textColor="#2DD4BF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivLockIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_lock_teal"
+            android:contentDescription="Seguro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ── BARRA DE PROGRESO DE CARGA ── -->
+    <ProgressBar
+        android:id="@+id/progressBarNiubiz"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressTint="#2DD4BF"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/headerNiubiz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ── WEBVIEW OFICIAL NIUBIZ ── -->
+    <WebView
+        android:id="@+id/webViewNiubiz"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/progressBarNiubiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ── VISTA DE CARGA INICIAL (GENERANDO SESIÓN NIUBIZ) ── -->
+    <LinearLayout
+        android:id="@+id/layoutCargandoNiubiz"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/progressBarNiubiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminateTint="#2DD4BF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Conectando con Niubiz..."
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvEstadoCargaNiubiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Generando sesión de pago segura para tu suscripción"
+            android:textAlignment="center"
+            android:textColor="#B2C2C1"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- ── VISTA DE ERROR DE CONEXIÓN CON NIUBIZ ── -->
+    <LinearLayout
+        android:id="@+id/layoutErrorNiubiz"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/progressBarNiubiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_lock_teal"
+            android:alpha="0.7"
+            android:contentDescription="Error" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No se pudo cargar la pasarela Niubiz"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDetalleErrorNiubiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Verifica tu conexión a internet o intenta nuevamente."
+            android:textAlignment="center"
+            android:textColor="#B2C2C1"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReintentarNiubiz"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:text="Reintentar Conexión"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:backgroundTint="#2DD4BF"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

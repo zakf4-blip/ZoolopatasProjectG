@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- item_receta_card.xml                                        -->
+<!-- Tarjeta individual de receta para usar en un RecyclerView   -->
+<!-- Cada tarjeta: imagen mascota + imagen platillo + info       -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="18dp"
+    android:layout_marginEnd="18dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:background="@drawable/bg_card_white"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <!-- Imagen referencial de la mascota (perro o gato) -->
+    <ImageView
+        android:id="@+id/imgMascotaItem"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Imagen de la mascota"
+        android:background="@drawable/bg_image_rounded" />
+
+    <!-- Imagen referencial del platillo / receta -->
+    <ImageView
+        android:id="@+id/imgPlatilloItem"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Imagen del platillo"
+        android:background="@drawable/bg_image_rounded" />
+
+    <!-- Información de la receta -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNombreRecetaItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1F2428"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvTipoRecetaItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="#007A6E"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/icFlechaItem"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="#007A6E"
+            android:contentDescription="Ver receta" />
+    </LinearLayout>
+
+</LinearLayout>
