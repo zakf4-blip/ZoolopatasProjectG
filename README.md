@@ -28,11 +28,6 @@ Zoolopatas es una aplicación móvil nativa para Android enfocada en el bienesta
 3. Sincroniza Gradle (`Sync Now`).
 4. Ejecuta la aplicación en un emulador o dispositivo físico con Android 7.0 (API 24) o superior.
 
-> **Nota:** El proyecto requiere un archivo `google-services.json` propio (no incluido en el repositorio por seguridad) para conectarse a la base de datos de Firebase.
-
-## 👨‍💻 Autor
-*   **zakf4-blip** - *Desarrollo y diseño*
-
 ## 📸 Capturas de Pantalla
 
 | Pantalla de Inicio | Información de Mascota |
@@ -42,3 +37,5 @@ Zoolopatas es una aplicación móvil nativa para Android enfocada en el bienesta
 | Mis Mascotas | Verificación de Cuenta |
 |:---:|:---:|
 | <img src="emulator_screenshot_mascotas.png" width="250"/> | <img src="verifiedUser.png" width="250"/> |
+
+> **Nota:** El proyecto requiere un archivo `google-services.json` propio (no incluido en el repositorio por seguridad) para conectarse a la base de datos de Firebase.
