@@ -232,21 +232,15 @@ public class Mascota implements Serializable {
 
     public Map<String, Object> toFirestoreMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("id", id != null ? id : "");
         map.put("idPropietario", usuarioId != null ? usuarioId : "");
-        map.put("usuarioId", usuarioId != null ? usuarioId : ""); // compatibilidad
         map.put("nombreMascota", getNombre());
-        map.put("nombre", getNombre()); // compatibilidad
         map.put("especie", getTipo());
-        map.put("tipo", getTipo()); // compatibilidad
         map.put("sexo", getSexo());
         map.put("raza", getRaza());
         map.put("estaEsterilizado", castrado);
-        map.put("castrado", castrado); // compatibilidad
         map.put("fechaNacimiento", getFechaNacimiento());
         map.put("colores", getColores());
         map.put("pesoKg", pesoKg);
-        map.put("fotoUri", fotoUri != null ? fotoUri : "");
         map.put("urlFoto", fotoUri != null ? fotoUri : "");
 
         Map<String, Object> resumen = new HashMap<>();
@@ -266,24 +260,15 @@ public class Mascota implements Serializable {
         m.setId(doc.getId());
 
         String nom = doc.getString("nombreMascota");
-        if (nom == null || nom.trim().isEmpty()) {
-            nom = doc.getString("nombre");
-        }
         m.setNombre(nom != null ? nom : "Mascota");
 
         String esp = doc.getString("especie");
-        if (esp == null || esp.trim().isEmpty()) {
-            esp = doc.getString("tipo");
-        }
         m.setTipo(esp != null ? esp : "Perro");
 
         String sex = doc.getString("sexo");
         m.setSexo(sex != null ? sex : "Macho");
 
         Boolean est = doc.getBoolean("estaEsterilizado");
-        if (est == null) {
-            est = doc.getBoolean("castrado");
-        }
         m.setCastrado(est != null && est);
 
         m.setRaza(doc.getString("raza"));
@@ -307,16 +292,10 @@ public class Mascota implements Serializable {
             m.setPesoKg(peso);
         }
 
-        String foto = doc.getString("fotoUri");
-        if (foto == null || foto.trim().isEmpty()) {
-            foto = doc.getString("urlFoto");
-        }
+        String foto = doc.getString("urlFoto");
         m.setFotoUri(foto != null ? foto : "");
 
         String uid = doc.getString("idPropietario");
-        if (uid == null || uid.trim().isEmpty()) {
-            uid = doc.getString("usuarioId");
-        }
         m.setUsuarioId(uid != null ? uid : "");
 
         Map<String, Object> resumen = (Map<String, Object>) doc.get("resumenEmergencia");

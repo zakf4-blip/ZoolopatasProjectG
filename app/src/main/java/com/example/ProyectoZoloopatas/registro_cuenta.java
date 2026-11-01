@@ -153,11 +153,11 @@ public class registro_cuenta extends AppCompatActivity {
                             // Datos básicos
                             java.util.Map<String, Object> UsuarioMap = new java.util.HashMap<>();
                             UsuarioMap.put("nombreUsuario", nombre);
-                            UsuarioMap.put("nombre", nombre);
                             UsuarioMap.put("distrito", "");
                             UsuarioMap.put("correo", email);
-                            UsuarioMap.put("Correo", email);
                             UsuarioMap.put("estadoCuenta", "active");
+                            UsuarioMap.put("urlFoto", "");     //ESTE CAMPO FUE AGREGADO RECIENTEMENTE Y ES IMPORTANTE
+                            UsuarioMap.put("rutaFoto", "");    //ESTE CAMPO FUE AGREGADO RECIENTEMENTE Y ES IMPORTANTE
                             UsuarioMap.put("fechaCreacionCuenta", FieldValue.serverTimestamp());
                             UsuarioMap.put("fechaActualizacionCuenta", FieldValue.serverTimestamp());
                             // Objeto telefono (Map anidado vacío por ahora)

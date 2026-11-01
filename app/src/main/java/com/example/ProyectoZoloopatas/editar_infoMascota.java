@@ -192,8 +192,14 @@ public class editar_infoMascota extends AppCompatActivity {
 
         // Contador de caracteres para el nombre
         etNombreMascota.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 tvContadorNombre.setText(s.length() + "/64");
@@ -373,9 +379,8 @@ public class editar_infoMascota extends AppCompatActivity {
                                         }
                                     });
 
-                            // 2. Eliminar mascota en usuarios/{uid}/mascotas/{id} y en raíz
+                            // 2. Eliminar mascota únicamente en usuarios/{uid}/mascotas/{id}
                             db.collection("usuarios").document(uid).collection("mascotas").document(mascotaId).delete();
-                            db.collection("mascotas").document(mascotaId).delete();
 
                             // 3. Decrementar contador de mascotas en usuarios/{uid}
                             db.collection("usuarios").document(uid)
@@ -534,12 +539,6 @@ public class editar_infoMascota extends AppCompatActivity {
                 .collection("mascotas").document(idFinal)
                 .set(data, SetOptions.merge())
                 .addOnSuccessListener(unused -> {
-                    // Reflejar también en colección raíz de mascotas para consultas
-                    try {
-                        db.collection("mascotas").document(idFinal)
-                                .set(data, SetOptions.merge());
-                    } catch (Exception ignored) {}
-
                     // Si es nueva mascota, incrementar estadísticas del usuario
                     if (esNueva) {
                         try {
@@ -552,10 +551,7 @@ public class editar_infoMascota extends AppCompatActivity {
                     finish();
                 })
                 .addOnFailureListener(e -> {
-                    // Si falla la red, ya quedó asegurada localmente y se intentará guardar en raíz
-                    try {
-                        db.collection("mascotas").document(idFinal).set(data, SetOptions.merge());
-                    } catch (Exception ignored) {}
+                    // Si falla la red, la mascota ya quedó asegurada localmente
                     Toast.makeText(this, "Mascota guardada localmente", Toast.LENGTH_SHORT).show();
                     finish();
                 });

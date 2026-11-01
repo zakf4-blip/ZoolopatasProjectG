@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -220,12 +222,36 @@ public class PerfilUsuario extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("usuarios").document(user.getUid()).get()
                 .addOnSuccessListener(doc -> {
                     if (doc != null && doc.exists()) {
+                        // 1. Leer y asignar el nombre
                         String nom = doc.getString("nombreUsuario");
-                        if (nom == null || nom.trim().isEmpty()) {
-                            nom = doc.getString("nombre");
-                        }
                         if (nom != null && !nom.trim().isEmpty()) {
                             tvNombreUsuario.setText(nom);
+                        }
+
+                        // 2. Leer y asignar la foto de perfil (Central y Avatar Superior)
+                        String urlFoto = doc.getString("urlFoto");
+                        if (urlFoto != null && !urlFoto.isEmpty()) {
+
+                            // Foto central
+                            ImageView ivPerfil = findViewById(R.id.ivFotoPerfil);
+                            if (ivPerfil != null) {
+                                ivPerfil.setPadding(0, 0, 0, 0); // Quitar el padding
+                                ivPerfil.setImageTintList(null); // Quitar el tinte verde
+                                Glide.with(this)
+                                        .load(urlFoto)
+                                        .placeholder(R.drawable.ic_person) // Mientras carga
+                                        .into(ivPerfil);
+                            }
+
+                            // Avatar de la esquina superior derecha
+                            android.widget.ImageButton btnAvatar = findViewById(R.id.btnProfileAvatar);
+                            if (btnAvatar != null) {
+                                btnAvatar.setPadding(0, 0, 0, 0);
+                                Glide.with(this)
+                                        .load(urlFoto)
+                                        .placeholder(R.drawable.ic_person)
+                                        .into(btnAvatar);
+                            }
                         }
                     }
                 });
@@ -288,7 +314,6 @@ public class PerfilUsuario extends AppCompatActivity {
                         String uid = user.getUid();
                         java.util.Map<String, Object> updateMap = new java.util.HashMap<>();
                         updateMap.put("correo", nuevoCorreo);
-                        updateMap.put("Correo", nuevoCorreo);
                         updateMap.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
                         FirebaseFirestore.getInstance().collection("usuarios").document(uid)
                                 .set(updateMap, com.google.firebase.firestore.SetOptions.merge());

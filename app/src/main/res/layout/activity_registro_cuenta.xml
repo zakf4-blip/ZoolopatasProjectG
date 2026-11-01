@@ -216,24 +216,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <EditText
-            android:id="@+id/etPassword"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
             android:layout_width="0dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="24dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/bg_chip_correo"
-            android:hint="Mínimo 8 caracteres"
-            android:inputType="textPassword"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="#2B2B2B"
-            android:textColorHint="#AAAAAA"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#EFEFEF"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="#777777"
+            app:layout_constraintTop_toBottomOf="@id/labelPassword"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelPassword" />
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Mínimo 8 caracteres"
+                android:textColorHint="#AAAAAA"
+                android:background="@drawable/bg_chip_correo"
+                android:textColor="#2B2B2B"
+                android:textSize="14sp"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Error contraseña -->
         <TextView
@@ -247,13 +262,11 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            app:layout_constraintTop_toBottomOf="@id/tilPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- ══════════════════════════════════ -->
-        <!-- CAMPO: Confirmar contraseña        -->
-        <!-- ══════════════════════════════════ -->
+        <!-- CAMPO: Confirmar contraseña -->
         <TextView
             android:id="@+id/labelConfirmPassword"
             android:layout_width="0dp"
@@ -269,28 +282,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Error confirmar contraseña -->
-        <EditText
-            android:id="@+id/etConfirmPassword"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPassword"
             android:layout_width="0dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="24dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/bg_chip_correo"
-            android:hint="Repite tu contraseña"
-            android:inputType="textPassword"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="#2B2B2B"
-            android:textColorHint="#AAAAAA"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnRegistrar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#EFEFEF"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="#777777"
             app:layout_constraintTop_toBottomOf="@id/labelConfirmPassword"
-            app:layout_constraintVertical_bias="0.048" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Repite tu contraseña"
+                android:textColorHint="#AAAAAA"
+                android:background="@drawable/bg_chip_correo"
+                android:textColor="#2B2B2B"
+                android:textSize="14sp"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvErrorConfirmPassword"
@@ -303,10 +327,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/etConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
         <!-- ══ Botón Crear cuenta ══ -->
 
         <!-- ══ Link: Ya tengo cuenta ══ -->

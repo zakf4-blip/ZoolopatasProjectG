@@ -312,14 +312,6 @@ public class NiubizEmailService {
             Map<String, Object> update = new HashMap<>();
             update.put("ultimoComprobante", data);
             update.put("comprobantes." + purchaseNumber, data);
-            update.put("subscription.tier", "premium");
-            update.put("subscription.status", "active");
-            update.put("subscription.plan", planName);
-            update.put("subscription.paymentMethod", tarjetaFinal);
-            update.put("subscription.purchaseNumber", purchaseNumber);
-            update.put("subscription.authCode", authCode);
-            update.put("subscription.amount", amount);
-            update.put("subscription.updatedAt", FieldValue.serverTimestamp());
 
             db.collection("usuarios").document(uid).set(update, SetOptions.merge())
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Comprobante guardado exitosamente en Firestore para: " + uid))

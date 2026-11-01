@@ -69,6 +69,16 @@ public class PantallaMascotas extends AppCompatActivity {
 
         setupNavigation();
         actualizarBadgePlan();
+
+        // Cargar el avatar del usuario en la esquina superior
+        android.widget.ImageButton btnAvatar = findViewById(R.id.btnProfileAvatar);
+        if (btnAvatar != null) {
+            PremiumManager.cargarFotoAvatar(this, btnAvatar);
+
+            // Asegurarte de que el botón lleve al perfil
+            btnAvatar.setOnClickListener(v ->
+                    startActivity(new Intent(this, PerfilUsuario.class)));
+        }
     }
 
     @Override
@@ -183,7 +193,7 @@ public class PantallaMascotas extends AppCompatActivity {
         List<Mascota> locales = MascotasLocalManager.getMascotas(this, uid);
         mostrarMascotas(locales);
 
-        // 2. Intentar sincronizar en segundo plano con Firebase Firestore para este usuario
+        // 2. Sincronizar únicamente con la subcolección oficial usuarios/{uid}/mascotas
         if (uid == null || "usuario_default".equals(uid)) return;
 
         final String finalUid = uid;
@@ -200,54 +210,11 @@ public class PantallaMascotas extends AppCompatActivity {
                         } catch (Exception ignored) {}
                     }
 
-                    // Buscar también en colección raíz donde usuarioId == finalUid (por si se crearon ahí)
-                    db.collection("mascotas").whereEqualTo("usuarioId", finalUid).get()
-                            .addOnSuccessListener(rootSnapshots -> {
-                                for (QueryDocumentSnapshot doc : rootSnapshots) {
-                                    try {
-                                        String docId = doc.getId();
-                                        boolean existe = false;
-                                        for (Mascota r : remotas) {
-                                            if (docId.equals(r.getId())) {
-                                                existe = true;
-                                                break;
-                                            }
-                                        }
-                                        if (!existe) {
-                                            Mascota m = Mascota.fromFirestoreDoc(doc);
-                                            if (m != null) {
-                                                m.setUsuarioId(finalUid);
-                                                remotas.add(m);
-                                            }
-                                        }
-                                    } catch (Exception ignored) {}
-                                }
-
-                                MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
-                                mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
-                            })
-                            .addOnFailureListener(e -> {
-                                MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
-                                mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
-                            });
+                    MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
+                    mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
                 })
-                .addOnFailureListener(e -> {
-                    db.collection("mascotas").whereEqualTo("usuarioId", finalUid).get()
-                            .addOnSuccessListener(rootSnapshots -> {
-                                List<Mascota> remotas = new ArrayList<>();
-                                for (QueryDocumentSnapshot doc : rootSnapshots) {
-                                    try {
-                                        Mascota m = Mascota.fromFirestoreDoc(doc);
-                                        if (m != null) {
-                                            m.setUsuarioId(finalUid);
-                                            remotas.add(m);
-                                        }
-                                    } catch (Exception ignored) {}
-                                }
-                                MascotasLocalManager.setMascotasFromFirestore(PantallaMascotas.this, finalUid, remotas);
-                                mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid));
-                            });
-                });
+                .addOnFailureListener(e ->
+                        mostrarMascotas(MascotasLocalManager.getMascotas(PantallaMascotas.this, finalUid)));
     }
 
     private void mostrarMascotas(List<Mascota> mascotas) {
@@ -396,7 +363,6 @@ public class PantallaMascotas extends AppCompatActivity {
                                     });
 
                             db.collection("usuarios").document(uid).collection("mascotas").document(petId).delete();
-                            db.collection("mascotas").document(petId).delete();
 
                             // Decrementar contador en estadísticas
                             db.collection("usuarios").document(uid)

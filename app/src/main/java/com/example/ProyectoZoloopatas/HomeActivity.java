@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,9 +36,6 @@ public class HomeActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         tituloSaludo = findViewById(R.id.titulo_Saludo);
-
-        actualizarSaludo();
-        actualizarContadorMascotas();
 
         // ── Pantalla principal -> Cuidados y Bienestar ──
         findViewById(R.id.btnCuidadoBienestar).setOnClickListener(v ->
@@ -84,6 +82,9 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.btnNavNotificaciones).setOnClickListener(v ->
                 Toast.makeText(this, "Notificaciones: próximamente", Toast.LENGTH_SHORT).show());
+        actualizarSaludo();
+        actualizarContadorMascotas();
+        cargarFotoPerfilAvatar(); // <-- AGREGA ESTA LÍNEA
     }
 
     @Override
@@ -92,6 +93,7 @@ public class HomeActivity extends AppCompatActivity {
         actualizarSaludo();
         actualizarContadorMascotas();
         actualizarEstadoPlanUI();
+        cargarFotoPerfilAvatar(); // <-- AGREGA ESTA LÍNEA
         PremiumManager.sincronizarConFirestore(this, this::actualizarEstadoPlanUI);
     }
 
@@ -193,9 +195,6 @@ public class HomeActivity extends AppCompatActivity {
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot != null && documentSnapshot.exists()) {
                             String nombreFirestore = documentSnapshot.getString("nombreUsuario");
-                            if (nombreFirestore == null || nombreFirestore.trim().isEmpty()) {
-                                nombreFirestore = documentSnapshot.getString("nombre");
-                            }
                             if (nombreFirestore != null && !nombreFirestore.trim().isEmpty()) {
                                 tituloSaludo.setText("Hola " + nombreFirestore.trim());
                                 return;
@@ -210,5 +209,27 @@ public class HomeActivity extends AppCompatActivity {
                     });
         } catch (Exception ignored) {
         }
+    }
+
+    private void cargarFotoPerfilAvatar() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) return;
+
+        FirebaseFirestore.getInstance().collection("usuarios").document(user.getUid()).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc != null && doc.exists()) {
+                        String urlFoto = doc.getString("urlFoto");
+                        if (urlFoto != null && !urlFoto.isEmpty()) {
+                            android.widget.ImageButton btnAvatar = findViewById(R.id.btnProfileAvatar);
+                            if (btnAvatar != null) {
+                                btnAvatar.setPadding(0, 0, 0, 0);
+                                Glide.with(this)
+                                        .load(urlFoto)
+                                        .placeholder(R.drawable.ic_person)
+                                        .into(btnAvatar);
+                            }
+                        }
+                    }
+                });
     }
 }

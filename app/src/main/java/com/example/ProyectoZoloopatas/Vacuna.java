@@ -1,7 +1,6 @@
 package com.example.ProyectoZoloopatas;
 
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 
 import org.json.JSONObject;
 
@@ -146,19 +145,12 @@ public class Vacuna implements Serializable {
 
     public Map<String, Object> toFirestoreMap() {
         Map<String, Object> m = new HashMap<>();
-        m.put("id", id != null ? id : "");
-        m.put("mascotaId", mascotaId != null ? mascotaId : "");
-        m.put("usuarioId", usuarioId != null ? usuarioId : "");
-        m.put("tipoRegistro", getTipoRegistro());
-        m.put("tipoVacuna", getTipoVacuna());
-        m.put("motivo", getTipoVacuna()); // Campo oficial según BDNoSQLZoolopatas.json
+        m.put("fechaAplicacion", getFechaAplicacion());
+        m.put("motivo", getTipoVacuna());
         m.put("marca", getMarca());
         m.put("numeroLote", getNumeroLote());
-        m.put("fechaAplicacion", getFechaAplicacion());
+        m.put("notas", getComentarios());
         m.put("fechaVencimiento", getFechaVencimiento());
-        m.put("comentarios", getComentarios());
-        m.put("notas", getComentarios()); // Campo oficial según BDNoSQLZoolopatas.json
-        m.put("fechaRegistro", FieldValue.serverTimestamp());
         return m;
     }
 
@@ -166,23 +158,10 @@ public class Vacuna implements Serializable {
         if (doc == null || !doc.exists()) return null;
         Vacuna v = new Vacuna();
         v.setId(doc.getId());
-        v.setMascotaId(doc.getString("mascotaId"));
-        v.setUsuarioId(doc.getString("usuarioId"));
-
-        String tipo = doc.getString("motivo");
-        if (tipo == null || tipo.trim().isEmpty()) {
-            tipo = doc.getString("tipoVacuna");
-        }
-        v.setTipoVacuna(tipo != null ? tipo : "Vacunación");
-
-        v.setTipoRegistro(doc.getString("tipoRegistro"));
         v.setMarca(doc.getString("marca"));
         v.setNumeroLote(doc.getString("numeroLote"));
 
         String notas = doc.getString("notas");
-        if (notas == null) {
-            notas = doc.getString("comentarios");
-        }
         v.setComentarios(notas != null ? notas : "");
 
         Object fa = doc.get("fechaAplicacion");

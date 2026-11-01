@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-53:/values-es/values-es.xml",
+            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-es/values-es.xml",
             "map": [
                 {
                     "source": "/home/zaku/.gradle/caches/9.6.0/transforms/dfea6d64dcd5847a966f327a7038b592/transformed/play-services-basement-18.9.0/res/values-es/values.xml",

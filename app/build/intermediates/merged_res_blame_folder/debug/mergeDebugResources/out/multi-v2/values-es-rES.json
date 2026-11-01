@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-53:/values-es-rES/values-es-rES.xml",
+            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-es-rES/values-es-rES.xml",
             "map": [
                 {
-                    "source": "/home/zaku/Documentos/AntigravityHouse/ZoolopatasWork/ProyectoZoloopatas/app/src/main/res/values-es-rES/strings.xml",
+                    "source": "/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/src/main/res/values-es-rES/strings.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

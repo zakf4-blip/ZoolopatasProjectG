@@ -81,6 +81,33 @@ public class iniciosesion extends AppCompatActivity {
                                             initMap.put("estadoCuenta", "active");
                                             initMap.put("fechaCreacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
                                             initMap.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
+
+                                            java.util.Map<String, Object> telefonoMap = new java.util.HashMap<>();
+                                            telefonoMap.put("codigoPais", "");
+                                            telefonoMap.put("numero", "");
+                                            initMap.put("telefono", telefonoMap);
+
+                                            java.util.Map<String, Object> preferenciasMap = new java.util.HashMap<>();
+                                            preferenciasMap.put("notificacionesPush", true);
+                                            preferenciasMap.put("vacunas", true);
+                                            preferenciasMap.put("recordatorios", true);
+                                            initMap.put("preferenciasNotificacion", preferenciasMap);
+
+                                            java.util.Map<String, Object> suscripcionMap = new java.util.HashMap<>();
+                                            suscripcionMap.put("nivel", "free");
+                                            suscripcionMap.put("plan", "Plan Gratuito");
+                                            suscripcionMap.put("esPremium", false);
+                                            suscripcionMap.put("periodoFacturacion", null);
+                                            suscripcionMap.put("estado", "none");
+                                            suscripcionMap.put("fechaInicio", null);
+                                            suscripcionMap.put("fechaExpiracion", null);
+                                            initMap.put("suscripcion", suscripcionMap);
+
+                                            java.util.Map<String, Object> estadisticasMap = new java.util.HashMap<>();
+                                            estadisticasMap.put("cantidadMascotas", 0);
+                                            estadisticasMap.put("recordatoriosPendientes", 0);
+                                            initMap.put("estadisticas", estadisticasMap);
+
                                             db.collection("usuarios").document(user.getUid()).set(initMap, com.google.firebase.firestore.SetOptions.merge());
                                         }
                                     });

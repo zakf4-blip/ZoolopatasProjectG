@@ -86,8 +86,9 @@
                     android:layout_height="38dp"
                     android:background="@drawable/bg_profile_circle"
                     android:contentDescription="Perfil"
-                    android:padding="8dp"
-                    android:scaleType="centerInside"
+                    android:clipToOutline="true"
+                    android:padding="0dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_person"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -170,10 +171,9 @@
                         android:layout_height="104dp"
                         android:background="@drawable/bg_avatar_ring"
                         android:clipToOutline="true"
-                        android:padding="26dp"
+                        android:padding="0dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_person"
-                        app:tint="#007A6E"
                         android:contentDescription="Foto de perfil" />
 
                     <ImageButton

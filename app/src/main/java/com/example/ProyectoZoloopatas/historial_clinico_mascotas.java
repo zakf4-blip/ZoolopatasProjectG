@@ -94,7 +94,7 @@ public class historial_clinico_mascotas extends AppCompatActivity {
         }
 
         findViewById(R.id.btnVolver).setOnClickListener(v -> finish());
-        findViewById(R.id.btnPerfil).setOnClickListener(v ->
+        findViewById(R.id.btnProfileAvatar).setOnClickListener(v ->
                 startActivity(new Intent(this, PerfilUsuario.class)));
 
         findViewById(R.id.fabAgregarRegistro).setOnClickListener(v -> {
@@ -116,6 +116,16 @@ public class historial_clinico_mascotas extends AppCompatActivity {
             }
             startActivity(new Intent(this, editar_infoMascota.class));
         });
+
+        // Cargar el avatar del usuario en la esquina superior
+        android.widget.ImageButton btnAvatar = findViewById(R.id.btnProfileAvatar);
+        if (btnAvatar != null) {
+            PremiumManager.cargarFotoAvatar(this, btnAvatar);
+
+            // Asegurarte de que el botón lleve al perfil
+            btnAvatar.setOnClickListener(v ->
+                    startActivity(new Intent(this, PerfilUsuario.class)));
+        }
     }
 
     @Override

@@ -1,8 +1,8 @@
-#Sat Oct 24 21:34:36 GMT-05:00 2026
-base.0=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
-base.1=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
-base.2=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/7/classes.dex
-base.3=/media/zaku/Disco_Local/Volumen_HDSACADO/Trabajos_UNI/ciclo8/DesarrolloAppMoviles/Proyecto/v5/ProyectoZoloopatas/app/build/intermediates/global_synthetics_dex/debugAndroidTest/generateDebugAndroidTestGlobalSynthetics/classes.dex
+#Sat Oct 31 23:37:34 GMT-05:00 2026
+base.0=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
+base.1=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
+base.2=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/7/classes.dex
+base.3=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/global_synthetics_dex/debugAndroidTest/generateDebugAndroidTestGlobalSynthetics/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=7/classes.dex

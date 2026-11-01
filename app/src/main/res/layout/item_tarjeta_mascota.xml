@@ -28,7 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_dog_icon_completo"
+                android:background="#BBBBBB"
+                android:src="@drawable/img_dog_and_cat"
                 android:contentDescription="Avatar Mascota" />
         </androidx.cardview.widget.CardView>
 

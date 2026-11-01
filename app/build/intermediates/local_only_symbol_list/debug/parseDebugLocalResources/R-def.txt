@@ -194,6 +194,7 @@ drawable ic_warning_circle
 drawable ic_warning_triangle
 drawable img_cat_icon_completo
 drawable img_cat_icon_perfil
+drawable img_dog_and_cat
 drawable img_dog_icon_completo
 drawable img_dog_icon_perfil
 drawable img_eat_cat
@@ -269,7 +270,6 @@ id btnNavNotificaciones
 id btnNavPerfil
 id btnOlvidePassword
 id btnOpciones
-id btnPerfil
 id btnPlanAnual
 id btnPlanMensual
 id btnPrefieroAnual
@@ -342,8 +342,6 @@ id chipCorreoUsuario
 id chipHistorial
 id chipUrgencias
 id chkRecordar
-id containerCorreo
-id containerPassword
 id etComentarios
 id etConfirmPassword
 id etCorreo
@@ -455,6 +453,10 @@ id tabRevision
 id tabVacunas
 id textView
 id textView2
+id tilConfirmPassword
+id tilCorreoLogin
+id tilPassword
+id tilPasswordLogin
 id titulo_Saludo
 id toolbarReceta
 id toolbarVacunacion

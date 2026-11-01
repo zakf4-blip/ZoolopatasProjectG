@@ -192,6 +192,7 @@ int drawable ic_warning_circle 0x0
 int drawable ic_warning_triangle 0x0
 int drawable img_cat_icon_completo 0x0
 int drawable img_cat_icon_perfil 0x0
+int drawable img_dog_and_cat 0x0
 int drawable img_dog_icon_completo 0x0
 int drawable img_dog_icon_perfil 0x0
 int drawable img_eat_cat 0x0
@@ -267,7 +268,6 @@ int id btnNavNotificaciones 0x0
 int id btnNavPerfil 0x0
 int id btnOlvidePassword 0x0
 int id btnOpciones 0x0
-int id btnPerfil 0x0
 int id btnPlanAnual 0x0
 int id btnPlanMensual 0x0
 int id btnPrefieroAnual 0x0
@@ -340,8 +340,6 @@ int id chipCorreoUsuario 0x0
 int id chipHistorial 0x0
 int id chipUrgencias 0x0
 int id chkRecordar 0x0
-int id containerCorreo 0x0
-int id containerPassword 0x0
 int id etComentarios 0x0
 int id etConfirmPassword 0x0
 int id etCorreo 0x0
@@ -453,6 +451,10 @@ int id tabRevision 0x0
 int id tabVacunas 0x0
 int id textView 0x0
 int id textView2 0x0
+int id tilConfirmPassword 0x0
+int id tilCorreoLogin 0x0
+int id tilPassword 0x0
+int id tilPasswordLogin 0x0
 int id titulo_Saludo 0x0
 int id toolbarReceta 0x0
 int id toolbarVacunacion 0x0

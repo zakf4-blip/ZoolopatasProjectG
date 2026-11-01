@@ -15,10 +15,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="40dp">
 
-        <!-- ══════════════════════════════════════ -->
-        <!-- LOGO con fondo blanco redondeado        -->
-        <!-- ══════════════════════════════════════ -->
-
         <ImageButton
             android:id="@+id/btnVolverAtras"
             android:layout_width="58dp"
@@ -60,7 +56,6 @@
                     android:src="@drawable/img_logo" />
             </FrameLayout>
         </FrameLayout>
-
 
         <TextView
             android:id="@+id/tvNombreVetConf2"
@@ -110,9 +105,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- ══════════════════════════════════════ -->
-        <!-- TARJETA DE ERROR (oculta por defecto)   -->
-        <!-- ══════════════════════════════════════ -->
         <LinearLayout
             android:id="@+id/cardError"
             android:layout_width="0dp"
@@ -132,7 +124,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Icono error -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,7 +131,6 @@
                 android:textSize="18sp"
                 android:layout_marginEnd="10dp" />
 
-            <!-- Textos de error -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -165,7 +155,6 @@
                     android:layout_marginTop="3dp" />
             </LinearLayout>
 
-            <!-- Botón cerrar error -->
             <Button
                 android:id="@+id/btnCerrarError"
                 android:layout_width="wrap_content"
@@ -195,48 +184,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Campo correo con icono ✉ -->
-        <LinearLayout
-            android:id="@+id/containerCorreo"
+        <!-- CAMPO CORREO: Actualizado con TextInputLayout y ic_mail -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCorreoLogin"
             android:layout_width="0dp"
-            android:layout_height="52dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_edit_card_gris"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            app:hintEnabled="false"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#EFEFEF"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:startIconDrawable="@drawable/ic_mail"
+            app:startIconTint="#777777"
             app:layout_constraintTop_toBottomOf="@id/labelCorreoLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✉️"
-                android:textSize="16sp"
-                android:textColor="#AAAAAA"
-                android:layout_marginEnd="10dp" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCorreoLogin"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:hint="usuario@ejemplo.com"
                 android:textColorHint="#AAAAAA"
                 android:textColor="#2B2B2B"
+                android:background="@drawable/bg_edit_card_gris"
                 android:textSize="14sp"
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- ══════════════════════════════════════ -->
-        <!-- CAMPO: Contraseña con ojo              -->
-        <!-- ══════════════════════════════════════ -->
         <TextView
             android:id="@+id/labelPasswordLogin"
             android:layout_width="0dp"
@@ -248,53 +231,48 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toBottomOf="@id/containerCorreo"
+            app:layout_constraintTop_toBottomOf="@id/tilCorreoLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Campo contraseña con 🔒 y 👁 -->
-        <LinearLayout
-            android:id="@+id/containerPassword"
+        <!-- CAMPO CONTRASEÑA: Con TextInputLayout y el ojo de visibilidad -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPasswordLogin"
             android:layout_width="0dp"
-            android:layout_height="52dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginStart="24dp"
-            android:background="@drawable/bg_edit_card_gris"
             android:layout_marginEnd="24dp"
+            app:hintEnabled="false"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#EFEFEF"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="#777777"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:startIconTint="#777777"
             app:layout_constraintTop_toBottomOf="@id/labelPasswordLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔒"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPasswordLogin"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:hint="••••••••"
                 android:textColorHint="#AAAAAA"
+                android:background="@drawable/bg_edit_card_gris"
                 android:textColor="#2B2B2B"
                 android:textSize="14sp"
                 android:inputType="textPassword"
                 android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Ojo para mostrar/ocultar contraseña -->
-        </LinearLayout>
-
-        <!-- ══════════════════════════════════════ -->
-        <!-- FILA: Recordar sesión + Olvidé contraseña -->
-        <!-- ══════════════════════════════════════ -->
         <LinearLayout
             android:id="@+id/rowRecordar"
             android:layout_width="0dp"
@@ -304,11 +282,10 @@
             android:layout_marginTop="14dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toBottomOf="@id/containerPassword"
+            app:layout_constraintTop_toBottomOf="@id/tilPasswordLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- CheckBox recordar sesión -->
             <CheckBox
                 android:id="@+id/chkRecordar"
                 android:layout_width="wrap_content"
@@ -368,7 +345,6 @@
                 android:text="¿Aún no tienes cuenta?  "
                 android:textColor="#777777"
                 android:textSize="13sp" />
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegistrarseGratis"

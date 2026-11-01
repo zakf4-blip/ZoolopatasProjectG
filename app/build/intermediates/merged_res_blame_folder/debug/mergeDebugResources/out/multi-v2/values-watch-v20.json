@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-53:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
                     "source": "/home/zaku/.gradle/caches/9.6.0/transforms/a2f27d081a05cea88cb74d9b8b00eda0/transformed/play-services-auth-20.7.0/res/values-watch-v20/values.xml",

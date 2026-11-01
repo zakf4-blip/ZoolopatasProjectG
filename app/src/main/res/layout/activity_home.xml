@@ -49,8 +49,8 @@
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <FrameLayout
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:background="@drawable/bg_dashboard_logo"
                         android:padding="4dp">
 
@@ -108,12 +108,15 @@
                         android:id="@+id/btnProfileAvatar"
                         android:layout_width="38dp"
                         android:layout_height="38dp"
-                        android:layout_marginStart="10dp"
                         android:background="@drawable/bg_profile_circle"
+                        android:contentDescription="Perfil"
+                        android:clipToOutline="true"
+                        android:padding="0dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/ic_person"
-                        android:scaleType="centerInside"
-                        android:padding="8dp"
-                        android:contentDescription="Perfil" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

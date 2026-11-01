@@ -60,14 +60,17 @@
         <!-- Avatar perfil -->
         <ImageButton
             android:id="@+id/btnProfileAvatar"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:background="@drawable/bg_profile_circle"
             android:contentDescription="Perfil"
+            android:clipToOutline="true"
             android:padding="8dp"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_person"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </LinearLayout>
 
     <!-- ══════════════════════════════════════════════════ -->

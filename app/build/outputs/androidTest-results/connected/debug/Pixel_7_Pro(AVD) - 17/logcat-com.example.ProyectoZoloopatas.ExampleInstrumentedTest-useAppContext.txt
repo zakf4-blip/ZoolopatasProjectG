@@ -1,2 +1,2 @@
-10-24 21:34:45.162  5585  5725 I TestRunner: started: useAppContext(com.example.ProyectoZoloopatas.ExampleInstrumentedTest)
-10-24 21:34:45.165  5585  5725 I TestRunner: finished: useAppContext(com.example.ProyectoZoloopatas.ExampleInstrumentedTest)
+10-31 23:37:38.923  7002  7038 I TestRunner: started: useAppContext(com.example.ProyectoZoloopatas.ExampleInstrumentedTest)
+10-31 23:37:38.925  7002  7038 I TestRunner: finished: useAppContext(com.example.ProyectoZoloopatas.ExampleInstrumentedTest)

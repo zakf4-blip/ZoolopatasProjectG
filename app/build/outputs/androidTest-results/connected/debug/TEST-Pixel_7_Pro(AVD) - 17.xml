@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<testsuites tests="1" failures="0" errors="0" skipped="0" time="0.000" timestamp="2026-10-25T02:34:45" hostname="localhost">
-  <testsuite name="com.example.ProyectoZoloopatas.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="0.001" timestamp="2026-10-25T02:34:45" hostname="localhost">
+<testsuites tests="1" failures="0" errors="0" skipped="0" time="0.000" timestamp="2026-11-01T04:37:39" hostname="localhost">
+  <testsuite name="com.example.ProyectoZoloopatas.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="0.000" timestamp="2026-11-01T04:37:39" hostname="localhost">
     <properties>
       <property name="device" value="emulator-5554" />
     </properties>
-    <testcase name="useAppContext" classname="com.example.ProyectoZoloopatas.ExampleInstrumentedTest" time="0.001" />
+    <testcase name="useAppContext" classname="com.example.ProyectoZoloopatas.ExampleInstrumentedTest" time="0.000" />
   </testsuite>
 </testsuites>

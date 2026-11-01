@@ -138,6 +138,16 @@ public class SuscripcionPremium extends AppCompatActivity {
                 actualizarVistaPremium();
             }
         });
+
+        // Cargar el avatar del usuario en la esquina superior
+        android.widget.ImageButton btnAvatar = findViewById(R.id.btnProfileAvatar);
+        if (btnAvatar != null) {
+            PremiumManager.cargarFotoAvatar(this, btnAvatar);
+
+            // Asegurarte de que el botón lleve al perfil
+            btnAvatar.setOnClickListener(v ->
+                    startActivity(new Intent(this, PerfilUsuario.class)));
+        }
     }
 
     @Override

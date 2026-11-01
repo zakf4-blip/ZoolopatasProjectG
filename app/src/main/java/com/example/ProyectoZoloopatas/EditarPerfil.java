@@ -26,21 +26,23 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Pantalla de Edición de perfil.
  * Se abre desde PerfilUsuario ("Editar perfil").
- * Guarda: nombre (FirebaseAuth) y teléfono / ciudad (Firestore: usuarios/{uid}).
+ * Guarda: nombre (FirebaseAuth) y teléfono / distrito (Firestore: usuarios/{uid}).
  */
 public class EditarPerfil extends AppCompatActivity {
 
     private static final int MAX_NOMBRE = 50;
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-
+    private File archivoFotoParaSubir = null;
     private EditText etNombreUsuario, etTelefonoUsuario;
     private Spinner spCodigoPais, spCiudadDistrito;
     private TextView tvContadorNombreUsuario, tvNombreFoto;
@@ -49,12 +51,20 @@ public class EditarPerfil extends AppCompatActivity {
     // Cámara (vista previa en miniatura, no necesita permisos) y galería
     private final ActivityResultLauncher<Void> tomarFotoLauncher =
             registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), bitmap -> {
-                if (bitmap != null) mostrarFoto(bitmap);
+                if (bitmap != null) {
+                    mostrarFoto(bitmap);
+                    // Guardamos el bitmap temporalmente en un archivo
+                    archivoFotoParaSubir = guardarBitmapEnArchivo(bitmap);
+                }
             });
 
     private final ActivityResultLauncher<String> galeriaLauncher =
             registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
-                if (uri != null) mostrarFoto(uri);
+                if (uri != null) {
+                    mostrarFoto(uri);
+                    // Copiamos el archivo de la galería a un archivo temporal
+                    archivoFotoParaSubir = copiarUriAFile(uri);
+                }
             });
 
     @Override
@@ -104,6 +114,16 @@ public class EditarPerfil extends AppCompatActivity {
                 Toast.makeText(this, "Notificaciones: próximamente", Toast.LENGTH_SHORT).show());
         findViewById(R.id.btnNavPerfil).setOnClickListener(v -> finish()); // vuelve a PerfilUsuario
         findViewById(R.id.btnProfileAvatar).setOnClickListener(v -> finish());
+
+        // Cargar el avatar del usuario en la esquina superior
+        android.widget.ImageButton btnAvatar = findViewById(R.id.btnProfileAvatar);
+        if (btnAvatar != null) {
+            PremiumManager.cargarFotoAvatar(this, btnAvatar);
+
+            // Asegurarte de que el botón lleve al perfil
+            btnAvatar.setOnClickListener(v ->
+                    startActivity(new Intent(this, PerfilUsuario.class)));
+        }
     }
 
     private void configurarSpinners() {
@@ -147,6 +167,13 @@ public class EditarPerfil extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refrescar la foto cada vez que vuelvas a esta pantalla
+        cargarDatos();
+    }
+
     private void cargarDatos() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) return;
@@ -161,7 +188,6 @@ public class EditarPerfil extends AppCompatActivity {
             if (doc == null || !doc.exists()) return;
 
             String nom = doc.getString("nombreUsuario");
-            if (nom == null || nom.trim().isEmpty()) nom = doc.getString("nombre");
             if (nom != null && !nom.trim().isEmpty()) {
                 etNombreUsuario.setText(nom);
                 tvNombreFoto.setText(nom);
@@ -174,14 +200,22 @@ public class EditarPerfil extends AppCompatActivity {
                 Object cod = telMap.get("codigoPais");
                 if (num != null) etTelefonoUsuario.setText(String.valueOf(num));
                 if (cod != null) seleccionar(spCodigoPais, String.valueOf(cod));
-            } else if (telObj instanceof String) {
-                etTelefonoUsuario.setText((String) telObj);
-                seleccionar(spCodigoPais, doc.getString("codigoPais"));
             }
 
             String dist = doc.getString("distrito");
-            if (dist == null || dist.trim().isEmpty()) dist = doc.getString("ciudad");
             seleccionar(spCiudadDistrito, dist);
+
+            String urlFoto = doc.getString("urlFoto");
+            if (urlFoto != null && !urlFoto.isEmpty()) {
+                if (ivFotoEditar != null) {
+                    ivFotoEditar.setPadding(0, 0, 0, 0); // Quitamos el padding
+                    ivFotoEditar.setImageTintList(null); // Quitamos el color verde
+                    com.bumptech.glide.Glide.with(EditarPerfil.this)
+                            .load(urlFoto)
+                            .placeholder(R.drawable.ic_person)
+                            .into(ivFotoEditar);
+                }
+            }
         });
     }
 
@@ -208,6 +242,43 @@ public class EditarPerfil extends AppCompatActivity {
         ivFotoEditar.setImageBitmap(bitmap);
     }
 
+    private void actualizarDatosEnFirebaseYAuth(FirebaseUser user, String nombre, String telefono, String nuevaFotoUrl) {
+        UserProfileChangeRequest cambios = new UserProfileChangeRequest.Builder()
+                .setDisplayName(nombre)
+                .build();
+
+        user.updateProfile(cambios).addOnCompleteListener(task -> {
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("nombreUsuario", nombre);
+
+            String codPais = String.valueOf(spCodigoPais.getSelectedItem());
+            Map<String, Object> telefonoMap = new HashMap<>();
+            telefonoMap.put("codigoPais", codPais);
+            telefonoMap.put("numero", telefono);
+            datos.put("telefono", telefonoMap);
+
+            String dist = String.valueOf(spCiudadDistrito.getSelectedItem());
+            datos.put("distrito", dist);
+            datos.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
+
+            if (nuevaFotoUrl != null) {
+                datos.put("urlFoto", nuevaFotoUrl);
+                datos.put("rutaFoto", "avatars/" + nuevaFotoUrl.substring(nuevaFotoUrl.lastIndexOf("/") + 1));
+            }
+
+            db.collection("usuarios").document(user.getUid())
+                    .set(datos, com.google.firebase.firestore.SetOptions.merge())
+                    .addOnSuccessListener(unused -> {
+                        Toast.makeText(this, "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show();
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Error al guardar en Firestore: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        findViewById(R.id.btnGuardarTop).setEnabled(true);
+                        findViewById(R.id.btnGuardarCambios).setEnabled(true);
+                    });
+        });
+    }
     private void guardarCambios() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -229,41 +300,59 @@ public class EditarPerfil extends AppCompatActivity {
             return;
         }
 
-        UserProfileChangeRequest cambios = new UserProfileChangeRequest.Builder()
-                .setDisplayName(nombre)
-                .build();
+        // Deshabilitar botón para evitar doble clic
+        findViewById(R.id.btnGuardarTop).setEnabled(false);
+        findViewById(R.id.btnGuardarCambios).setEnabled(false);
 
-        user.updateProfile(cambios).addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Toast.makeText(this, "No se pudo actualizar el nombre", Toast.LENGTH_SHORT).show();
-                return;
+        // Si hay una foto nueva seleccionada, primero la subimos a Supabase
+        if (archivoFotoParaSubir != null) {
+            SupabaseStorageHelper.subirFoto(archivoFotoParaSubir, user.getUid(), new SupabaseStorageHelper.UploadCallback() {
+                @Override
+                public void onSuccess(String publicUrl) {
+                    // Si la foto sube bien, guardamos el resto de datos
+                    actualizarDatosEnFirebaseYAuth(user, nombre, telefono, publicUrl);
+                }
+
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(EditarPerfil.this, "Error al subir foto: " + error, Toast.LENGTH_LONG).show();
+                    findViewById(R.id.btnGuardarTop).setEnabled(true);
+                    findViewById(R.id.btnGuardarCambios).setEnabled(true);
+                }
+            });
+        } else {
+            // Si no hay foto nueva, guardamos solo los datos de texto
+            actualizarDatosEnFirebaseYAuth(user, nombre, telefono, null);
+        }
+    }
+
+    private File guardarBitmapEnArchivo(Bitmap bitmap) {
+        try {
+            File file = new File(getCacheDir(), "temp_perfil.jpg");
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+            fos.close();
+            return file;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private File copiarUriAFile(Uri uri) {
+        try {
+            File file = new File(getCacheDir(), "temp_perfil.jpg");
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            FileOutputStream outputStream = new FileOutputStream(file);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
             }
-
-            Map<String, Object> datos = new HashMap<>();
-            datos.put("nombreUsuario", nombre);
-            datos.put("nombre", nombre);
-
-            String codPais = String.valueOf(spCodigoPais.getSelectedItem());
-            String numTel = etTelefonoUsuario.getText().toString().trim();
-            Map<String, Object> telefonoMap = new HashMap<>();
-            telefonoMap.put("codigoPais", codPais);
-            telefonoMap.put("numero", numTel);
-            datos.put("telefono", telefonoMap);
-            datos.put("codigoPais", codPais);
-
-            String dist = String.valueOf(spCiudadDistrito.getSelectedItem());
-            datos.put("distrito", dist);
-            datos.put("ciudad", dist);
-            datos.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
-
-            db.collection("usuarios").document(user.getUid())
-                    .set(datos, com.google.firebase.firestore.SetOptions.merge())
-                    .addOnSuccessListener(unused -> {
-                        Toast.makeText(this, "Perfil actualizado correctamente en Firestore", Toast.LENGTH_SHORT).show();
-                        finish();
-                    })
-                    .addOnFailureListener(e ->
-                            Toast.makeText(this, "Nombre guardado, pero no se pudo sincronizar en Firestore: " + e.getMessage(), Toast.LENGTH_LONG).show());
-        });
+            outputStream.close();
+            inputStream.close();
+            return file;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

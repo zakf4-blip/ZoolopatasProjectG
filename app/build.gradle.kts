@@ -44,4 +44,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore:27.0.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")   // Para Supabase
+    implementation("com.github.bumptech.glide:glide:4.16.0")   // Para Supabase
 }

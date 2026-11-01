@@ -156,26 +156,19 @@ public class PremiumManager {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            Map<String, Object> data = new HashMap<>();
-            data.put("esPremium", true);
-            data.put("plan", plan);
-            data.put("montoPagado", amount);
-            data.put("moneda", "PEN");
-            data.put("metodoPago", "Niubiz");
-            data.put("purchaseNumber", purchaseNumber);
-            data.put("fechaSuscripcion", FieldValue.serverTimestamp());
-            data.put("fechaFinMillis", fechaFin);
-            data.put("duracionDias", duracionDias);
-
             // Objeto suscripcion estructurado según BDNoSQLZoolopatas.json
             Map<String, Object> suscripcion = new HashMap<>();
             suscripcion.put("nivel", "premium");
             suscripcion.put("plan", plan);
+            suscripcion.put("esPremium", true);
             suscripcion.put("periodoFacturacion", (plan != null && plan.toLowerCase().contains("anual")) ? "anual" : "mensual");
             suscripcion.put("estado", "active");
             suscripcion.put("fechaInicio", FieldValue.serverTimestamp());
             suscripcion.put("fechaExpiracion", new com.google.firebase.Timestamp(new java.util.Date(fechaFin)));
+
+            Map<String, Object> data = new HashMap<>();
             data.put("suscripcion", suscripcion);
+            data.put("fechaActualizacionCuenta", FieldValue.serverTimestamp());
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -189,7 +182,6 @@ public class PremiumManager {
                         pago.put("importe", amount);
                         pago.put("moneda", "PEN");
                         pago.put("estado", "pago realizado exitosamente");
-                        pago.put("purchaseNumber", purchaseNumber);
                         pago.put("fechaCreacion", FieldValue.serverTimestamp());
 
                         db.collection("usuarios").document(uid)
@@ -227,60 +219,58 @@ public class PremiumManager {
                 .get()
                 .addOnSuccessListener(doc -> {
                     SharedPreferences sp = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                    if (doc != null && doc.exists()) {
-                        Boolean esPremium = doc.getBoolean("esPremium");
-                        String plan = doc.getString("plan");
 
-                        // Verificar si existe suscripcion anidada según BDNoSQLZoolopatas.json
+                    boolean isPrem = false;
+                    String plan = "Plan Gratuito";
+                    long fechaFin = 0L;
+                    long ahora = System.currentTimeMillis();
+
+                    if (doc != null && doc.exists()) {
+                        // Única fuente oficial del plan: objeto "suscripcion"
                         Object subObj = doc.get("suscripcion");
                         if (subObj instanceof Map) {
                             Map<?, ?> subMap = (Map<?, ?>) subObj;
-                            String nivel = String.valueOf(subMap.get("nivel"));
-                            String estado = String.valueOf(subMap.get("estado"));
-                            if ("premium".equalsIgnoreCase(nivel) && "active".equalsIgnoreCase(estado)) {
-                                esPremium = true;
-                            }
+                            String nivel = subMap.get("nivel") != null ? String.valueOf(subMap.get("nivel")) : "";
+                            String estado = subMap.get("estado") != null ? String.valueOf(subMap.get("estado")) : "";
+
+                            isPrem = "premium".equalsIgnoreCase(nivel) && "active".equalsIgnoreCase(estado);
+
                             if (subMap.get("plan") != null) {
                                 plan = String.valueOf(subMap.get("plan"));
                             }
+
+                            Object expObj = subMap.get("fechaExpiracion");
+                            if (expObj instanceof com.google.firebase.Timestamp) {
+                                fechaFin = ((com.google.firebase.Timestamp) expObj).toDate().getTime();
+                            }
+
+                            // Si no hay fecha de expiración, calcularla a partir de fechaInicio
+                            if (isPrem && fechaFin <= 0) {
+                                long inicio = ahora;
+                                Object iniObj = subMap.get("fechaInicio");
+                                if (iniObj instanceof com.google.firebase.Timestamp) {
+                                    inicio = ((com.google.firebase.Timestamp) iniObj).toDate().getTime();
+                                }
+                                int dur = plan.toLowerCase().contains("anual") ? 365 : 30;
+                                fechaFin = inicio + (dur * 24L * 60L * 60L * 1000L);
+                            }
                         }
-
-                        boolean isPrem = Boolean.TRUE.equals(esPremium);
-                        long ahora = System.currentTimeMillis();
-
-                        Long fechaFinObj = doc.getLong("fechaFinMillis");
-                        long fechaFin;
-                        if (fechaFinObj != null && fechaFinObj > 0) {
-                            fechaFin = fechaFinObj;
-                        } else {
-                            com.google.firebase.Timestamp ts = doc.getTimestamp("fechaSuscripcion");
-                            long inicio = (ts != null) ? ts.toDate().getTime() : ahora;
-                            int dur = (plan != null && plan.toLowerCase().contains("anual")) ? 365 : 30;
-                            fechaFin = inicio + (dur * 24L * 60L * 60L * 1000L);
-                        }
-
-                        // Verificar expiración automática
-                        if (isPrem && fechaFin <= ahora) {
-                            isPrem = false;
-                            plan = "Plan Gratuito";
-                        }
-
-                        sp.edit()
-                                .putBoolean(KEY_PREFIX_ES_PREMIUM + uid, isPrem)
-                                .putString(KEY_PREFIX_PLAN + uid, (isPrem && plan != null) ? plan : "Plan Gratuito")
-                                .putLong(KEY_PREFIX_FECHA_FIN + uid, fechaFin)
-                                .remove("es_premium")
-                                .remove("plan_premium")
-                                .apply();
-                    } else {
-                        // Usuario sin registro de premium en la nube: cuenta gratuita
-                        sp.edit()
-                                .putBoolean(KEY_PREFIX_ES_PREMIUM + uid, false)
-                                .putString(KEY_PREFIX_PLAN + uid, "Plan Gratuito")
-                                .remove("es_premium")
-                                .remove("plan_premium")
-                                .apply();
                     }
+
+                    // Verificar expiración automática
+                    if (isPrem && fechaFin <= ahora) {
+                        isPrem = false;
+                        plan = "Plan Gratuito";
+                    }
+
+                    sp.edit()
+                            .putBoolean(KEY_PREFIX_ES_PREMIUM + uid, isPrem)
+                            .putString(KEY_PREFIX_PLAN + uid, isPrem ? plan : "Plan Gratuito")
+                            .putLong(KEY_PREFIX_FECHA_FIN + uid, isPrem ? fechaFin : 0L)
+                            .remove("es_premium")
+                            .remove("plan_premium")
+                            .apply();
+
                     if (onSynced != null) {
                         onSynced.run();
                     }
@@ -299,5 +289,29 @@ public class PremiumManager {
                 .remove("es_premium")
                 .remove("plan_premium")
                 .apply();
+    }
+
+    public static void cargarFotoAvatar(android.content.Context context, android.widget.ImageButton btnAvatar) {
+        if (btnAvatar == null || context == null) return;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
+        FirebaseFirestore.getInstance().collection("usuarios").document(user.getUid()).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc != null && doc.exists()) {
+                        String urlFoto = doc.getString("urlFoto");
+                        if (urlFoto != null && !urlFoto.isEmpty()) {
+                            // Quitar padding para que la foto llene el círculo
+                            btnAvatar.setPadding(0, 0, 0, 0);
+
+                            // Usar Glide para cargar la imagen desde Supabase
+                            com.bumptech.glide.Glide.with(context)
+                                    .load(urlFoto)
+                                    .placeholder(R.drawable.ic_person)
+                                    .into(btnAvatar);
+                        }
+                    }
+                });
     }
 }
