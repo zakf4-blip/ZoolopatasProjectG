@@ -33,7 +33,12 @@ Zoolopatas es una aplicación móvil nativa para Android enfocada en el bienesta
 ## 👨‍💻 Autor
 *   **zakf4-blip** - *Desarrollo y diseño*
 
-### 📸 Capturas de pantalla
-| Inicio | Mis Mascotas |
-|---|---|
-| ![Home](screenshots/emulator_screenshot_home.png) | ![Mascotas](screenshots/emulator_screenshot_mascotas.png) |
+## 📸 Capturas de Pantalla
+
+| Pantalla de Inicio | Información de Mascota |
+|:---:|:---:|
+| <img src="emulator_screenshot_home.png" width="250"/> | <img src="emulator_screenshot_info.png" width="250"/> |
+
+| Mis Mascotas | Verificación de Cuenta |
+|:---:|:---:|
+| <img src="emulator_screenshot_mascotas.png" width="250"/> | <img src="verifiedUser.png" width="250"/> |
