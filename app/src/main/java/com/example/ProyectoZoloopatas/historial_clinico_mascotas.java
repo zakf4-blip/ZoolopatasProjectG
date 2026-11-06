@@ -199,6 +199,17 @@ public class historial_clinico_mascotas extends AppCompatActivity {
 
             boolean esGato = m.getTipo().equalsIgnoreCase("Gato") || m.getTipo().equalsIgnoreCase("Felino");
 
+            int recursoPredeterminado;
+            if ("Rocky".equalsIgnoreCase(nombre)) {
+                recursoPredeterminado = R.drawable.img_pet_rocky;
+            } else if ("Luna".equalsIgnoreCase(nombre)) {
+                recursoPredeterminado = R.drawable.img_pet_luna;
+            } else if (esGato) {
+                recursoPredeterminado = R.drawable.img_cat_icon_completo;
+            } else {
+                recursoPredeterminado = R.drawable.img_dog_icon_completo;
+            }
+
             boolean fotoCargada = false;
             String fotoUri = m.getFotoUri();
             if (fotoUri != null && !fotoUri.trim().isEmpty()) {
@@ -209,14 +220,15 @@ public class historial_clinico_mascotas extends AppCompatActivity {
                 }
             }
             if (!fotoCargada) {
-                if ("Rocky".equalsIgnoreCase(nombre)) {
-                    ivAvatar.setImageResource(R.drawable.img_pet_rocky);
-                } else if ("Luna".equalsIgnoreCase(nombre)) {
-                    ivAvatar.setImageResource(R.drawable.img_pet_luna);
-                } else if (esGato) {
-                    ivAvatar.setImageResource(R.drawable.img_cat_icon_completo);
+                String fotoUrl = m.getFotoUrl();
+                if (fotoUrl != null && !fotoUrl.trim().isEmpty()) {
+                    com.bumptech.glide.Glide.with(this)
+                            .load(fotoUrl)
+                            .placeholder(recursoPredeterminado)
+                            .error(recursoPredeterminado)
+                            .into(ivAvatar);
                 } else {
-                    ivAvatar.setImageResource(R.drawable.img_dog_icon_completo);
+                    ivAvatar.setImageResource(recursoPredeterminado);
                 }
             }
 

@@ -64,6 +64,8 @@ public class editar_infoMascota extends AppCompatActivity {
     public static final String EXTRA_FECHA = "EXTRA_FECHA";
     public static final String EXTRA_COLORES = "EXTRA_COLORES";
     public static final String EXTRA_FOTO_URI = "EXTRA_FOTO_URI";
+    public static final String EXTRA_FOTO_URL = "EXTRA_FOTO_URL";
+    public static final String EXTRA_FOTO_PATH = "EXTRA_FOTO_PATH";
 
     private String mascotaId = null;
 
@@ -81,7 +83,10 @@ public class editar_infoMascota extends AppCompatActivity {
     private View layoutSinFoto;
     private ImageButton btnCameraBadge;
     private MaterialButton btnTomarFoto, btnElegirGaleria;
-    private String fotoActualPath = null;
+    private String fotoActualPath = null;          // Copia local (para subir/mostrar)
+    private String fotoActualUrl = null;           // URL pública de Supabase
+    private String fotoActualStoragePath = null;   // Ruta interna en el bucket
+    private boolean fotoEsNueva = false;           // true si se tomó/elegió en esta sesión
     private Uri tempCameraUri = null;
 
     private ActivityResultLauncher<String> galeriaLauncher;
@@ -340,17 +345,37 @@ public class editar_infoMascota extends AppCompatActivity {
             }
         }
 
+        fotoActualUrl = getIntent().getStringExtra(EXTRA_FOTO_URL);
+        fotoActualStoragePath = getIntent().getStringExtra(EXTRA_FOTO_PATH);
+
         String fotoExtra = getIntent().getStringExtra(EXTRA_FOTO_URI);
         if (fotoExtra != null && !fotoExtra.trim().isEmpty()) {
             fotoActualPath = fotoExtra;
-        } else if (mascotaId != null) {
+        }
+
+        // Completamos los datos desde el gestor local, útil cuando la pantalla se
+        // reabre o cuando la foto remota ya no está en la caché del dispositivo.
+        if (mascotaId != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = (user != null) ? user.getUid() : "usuario_default";
             Mascota mLocal = MascotasLocalManager.getMascotaById(this, uid, mascotaId);
-            if (mLocal != null && mLocal.getFotoUri() != null && !mLocal.getFotoUri().trim().isEmpty()) {
-                fotoActualPath = mLocal.getFotoUri();
+            if (mLocal != null) {
+                if ((fotoActualPath == null || fotoActualPath.trim().isEmpty())
+                        && mLocal.getFotoUri() != null && !mLocal.getFotoUri().trim().isEmpty()) {
+                    fotoActualPath = mLocal.getFotoUri();
+                }
+                if ((fotoActualUrl == null || fotoActualUrl.trim().isEmpty())
+                        && mLocal.getFotoUrl() != null && !mLocal.getFotoUrl().trim().isEmpty()) {
+                    fotoActualUrl = mLocal.getFotoUrl();
+                }
+                if ((fotoActualStoragePath == null || fotoActualStoragePath.trim().isEmpty())
+                        && mLocal.getFotoPath() != null && !mLocal.getFotoPath().trim().isEmpty()) {
+                    fotoActualStoragePath = mLocal.getFotoPath();
+                }
             }
         }
+
+        fotoEsNueva = false;
         mostrarFotoPreview(fotoActualPath);
     }
 
@@ -365,6 +390,14 @@ public class editar_infoMascota extends AppCompatActivity {
                     String uid = (user != null) ? user.getUid() : "usuario_default";
 
                     MascotasLocalManager.deleteMascota(this, uid, mascotaId, nombre);
+
+                    // Eliminar la foto de la mascota del bucket y la copia local.
+                    String rutaStorage = fotoActualStoragePath;
+                    if (rutaStorage == null || rutaStorage.trim().isEmpty()) {
+                        rutaStorage = SupabaseStorageHelper.extraerRuta(fotoActualUrl);
+                    }
+                    SupabaseStorageHelper.eliminarFoto(rutaStorage, null);
+                    borrarArchivoLocal(fotoActualPath);
 
                     if (mascotaId != null && !mascotaId.startsWith("demo_")) {
                         try {
@@ -489,7 +522,11 @@ public class editar_infoMascota extends AppCompatActivity {
 
     private void guardarMascotaEnFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = (user != null) ? user.getUid() : "usuario_default";
+        if (user == null) {
+            Toast.makeText(this, "Tu sesión expiró, vuelve a iniciar sesión", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String uid = user.getUid();
 
         String nombre = etNombreMascota.getText().toString().trim();
         if (nombre.isEmpty()) {
@@ -506,6 +543,40 @@ public class editar_infoMascota extends AppCompatActivity {
                 ? mascotaId
                 : ("pet_" + System.currentTimeMillis());
 
+        File archivoLocal = (fotoActualPath != null && !fotoActualPath.trim().isEmpty())
+                ? new File(fotoActualPath)
+                : null;
+
+        // Se sube cuando el usuario eligió una foto nueva o cuando la mascota solo
+        // tenía una foto local antigua y todavía no existe una URL en Supabase.
+        boolean necesitaSubir = archivoLocal != null && archivoLocal.exists()
+                && (fotoEsNueva || fotoActualUrl == null || fotoActualUrl.trim().isEmpty());
+
+        if (necesitaSubir) {
+            SupabaseStorageHelper.subirFotoMascota(archivoLocal, uid, idFinal,
+                    new SupabaseStorageHelper.UploadWithPathCallback() {
+                        @Override
+                        public void onSuccess(String publicUrl, String storagePath) {
+                            persistirMascota(uid, idFinal, esNueva, publicUrl, storagePath);
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            Toast.makeText(editar_infoMascota.this,
+                                    "Error al subir la foto: " + error, Toast.LENGTH_LONG).show();
+                            btnGuardarMascota.setEnabled(true);
+                            btnConfirmarTop.setEnabled(true);
+                        }
+                    });
+        } else {
+            persistirMascota(uid, idFinal, esNueva, null, null);
+        }
+    }
+
+    private void persistirMascota(String uid, String idFinal, boolean esNueva,
+                                  String nuevaFotoUrl, String nuevaFotoPath) {
+        String nombre = etNombreMascota.getText().toString().trim();
+
         Mascota m = new Mascota();
         m.setId(idFinal);
         m.setNombre(nombre);
@@ -517,6 +588,8 @@ public class editar_infoMascota extends AppCompatActivity {
         m.setColores(new ArrayList<>(coloresSeleccionados));
         m.setUsuarioId(uid);
         m.setFotoUri(fotoActualPath != null ? fotoActualPath : "");
+        m.setFotoUrl(nuevaFotoUrl != null ? nuevaFotoUrl : fotoActualUrl);
+        m.setFotoPath(nuevaFotoPath != null ? nuevaFotoPath : fotoActualStoragePath);
 
         // 1. Guardar de forma local y persistente (Garantiza éxito inmediato e ininterrumpido)
         MascotasLocalManager.saveOrUpdateMascota(this, uid, m);
@@ -531,10 +604,9 @@ public class editar_infoMascota extends AppCompatActivity {
 
         // 2. Preparar datos completos para Firestore según BDNoSQLZoolopatas.json
         Map<String, Object> data = m.toFirestoreMap();
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 3. Sincronizar con Firebase Firestore: primero en usuarios/{uid}/mascotas/{id}
+        // 3. Sincronizar con Firebase Firestore: usuarios/{uid}/mascotas/{id}
         db.collection("usuarios").document(uid)
                 .collection("mascotas").document(idFinal)
                 .set(data, SetOptions.merge())
@@ -547,14 +619,48 @@ public class editar_infoMascota extends AppCompatActivity {
                         } catch (Exception ignored) {}
                     }
 
+                    // Si se reemplazó la foto, eliminamos la anterior de Supabase.
+                    String rutaAnterior = fotoActualStoragePath;
+                    if (rutaAnterior == null || rutaAnterior.trim().isEmpty()) {
+                        rutaAnterior = SupabaseStorageHelper.extraerRuta(fotoActualUrl);
+                    }
+                    if (nuevaFotoPath != null && rutaAnterior != null
+                            && !rutaAnterior.trim().isEmpty()
+                            && !nuevaFotoPath.equals(rutaAnterior)) {
+                        SupabaseStorageHelper.eliminarFoto(rutaAnterior, null);
+                    }
+
                     Toast.makeText(this, "Mascota guardada con éxito en Firestore", Toast.LENGTH_SHORT).show();
                     finish();
                 })
                 .addOnFailureListener(e -> {
+                    // Si se había subido una foto nueva, la borramos para no dejar un
+                    // archivo huérfano y restauramos la referencia remota anterior.
+                    if (nuevaFotoPath != null) {
+                        SupabaseStorageHelper.eliminarFoto(nuevaFotoPath, null);
+                        m.setFotoUrl(fotoActualUrl != null ? fotoActualUrl : "");
+                        m.setFotoPath(fotoActualStoragePath != null ? fotoActualStoragePath : "");
+                        MascotasLocalManager.saveOrUpdateMascota(this, uid, m);
+                    }
                     // Si falla la red, la mascota ya quedó asegurada localmente
                     Toast.makeText(this, "Mascota guardada localmente", Toast.LENGTH_SHORT).show();
                     finish();
                 });
+    }
+
+    private void borrarArchivoLocal(String rutaLocal) {
+        if (rutaLocal == null || rutaLocal.trim().isEmpty()
+                || rutaLocal.startsWith("http://") || rutaLocal.startsWith("https://")) {
+            return;
+        }
+        try {
+            File archivo = new File(rutaLocal);
+            String raizApp = getFilesDir().getAbsolutePath();
+            if (archivo.exists() && archivo.getAbsolutePath().startsWith(raizApp)) {
+                archivo.delete();
+            }
+        } catch (Exception ignored) {
+        }
     }
 
     private void verificarPermisoYAbrirCamara() {
@@ -571,6 +677,7 @@ public class editar_infoMascota extends AppCompatActivity {
             if (!dir.exists()) dir.mkdirs();
             File archivoFoto = new File(dir, "foto_pet_" + System.currentTimeMillis() + ".jpg");
             fotoActualPath = archivoFoto.getAbsolutePath();
+            fotoEsNueva = true;
 
             tempCameraUri = FileProvider.getUriForFile(
                     this,
@@ -601,6 +708,7 @@ public class editar_infoMascota extends AppCompatActivity {
             }
 
             fotoActualPath = archivoDestino.getAbsolutePath();
+            fotoEsNueva = true;
             mostrarFotoPreview(fotoActualPath);
             Toast.makeText(this, "Foto seleccionada de galería", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
@@ -609,24 +717,40 @@ public class editar_infoMascota extends AppCompatActivity {
     }
 
     private void mostrarFotoPreview(String path) {
-        if (path == null || path.trim().isEmpty()) {
-            if (ivFotoMascotaPreview != null) ivFotoMascotaPreview.setVisibility(View.GONE);
-            if (layoutSinFoto != null) layoutSinFoto.setVisibility(View.VISIBLE);
+        if (path != null && !path.trim().isEmpty()
+                && (path.startsWith("http://") || path.startsWith("https://"))) {
+            fotoActualUrl = path;
+            path = null;
+        }
+
+        if (path != null && !path.trim().isEmpty()) {
+            File f = new File(path);
+            if (f.exists()) {
+                Bitmap bmp = decodeSampledBitmapFromFile(f.getAbsolutePath(), 400, 400);
+                if (bmp != null) {
+                    if (ivFotoMascotaPreview != null) {
+                        com.bumptech.glide.Glide.with(this).clear(ivFotoMascotaPreview);
+                        ivFotoMascotaPreview.setImageBitmap(bmp);
+                        ivFotoMascotaPreview.setVisibility(View.VISIBLE);
+                    }
+                    if (layoutSinFoto != null) layoutSinFoto.setVisibility(View.GONE);
+                    return;
+                }
+            }
+        }
+
+        // Si no hay archivo local, intentamos mostrar la copia remota de Supabase.
+        if (fotoActualUrl != null && !fotoActualUrl.trim().isEmpty()) {
+            if (ivFotoMascotaPreview != null) {
+                ivFotoMascotaPreview.setVisibility(View.VISIBLE);
+                com.bumptech.glide.Glide.with(this)
+                        .load(fotoActualUrl)
+                        .into(ivFotoMascotaPreview);
+            }
+            if (layoutSinFoto != null) layoutSinFoto.setVisibility(View.GONE);
             return;
         }
 
-        File f = new File(path);
-        if (f.exists()) {
-            Bitmap bmp = decodeSampledBitmapFromFile(f.getAbsolutePath(), 400, 400);
-            if (bmp != null) {
-                if (ivFotoMascotaPreview != null) {
-                    ivFotoMascotaPreview.setImageBitmap(bmp);
-                    ivFotoMascotaPreview.setVisibility(View.VISIBLE);
-                }
-                if (layoutSinFoto != null) layoutSinFoto.setVisibility(View.GONE);
-                return;
-            }
-        }
         if (ivFotoMascotaPreview != null) ivFotoMascotaPreview.setVisibility(View.GONE);
         if (layoutSinFoto != null) layoutSinFoto.setVisibility(View.VISIBLE);
     }

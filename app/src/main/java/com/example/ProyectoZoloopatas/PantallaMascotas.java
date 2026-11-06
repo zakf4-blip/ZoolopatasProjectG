@@ -243,7 +243,18 @@ public class PantallaMascotas extends AppCompatActivity {
             tvRaza.setText(m.getRaza() != null ? m.getRaza() : "Mestizo");
             tvDetalle.setText(calcularDetalle(m));
 
-            // Asignación de avatar
+            // Asignación de avatar: primero caché local y, si no existe, Supabase.
+            int recursoPredeterminado;
+            if ("Rocky".equalsIgnoreCase(nombre)) {
+                recursoPredeterminado = R.drawable.img_pet_rocky;
+            } else if ("Luna".equalsIgnoreCase(nombre)) {
+                recursoPredeterminado = R.drawable.img_pet_luna;
+            } else if (esGato) {
+                recursoPredeterminado = R.drawable.img_cat_icon_completo;
+            } else {
+                recursoPredeterminado = R.drawable.img_dog_icon_completo;
+            }
+
             boolean fotoCargada = false;
             String fotoUri = m.getFotoUri();
             if (fotoUri != null && !fotoUri.trim().isEmpty()) {
@@ -254,14 +265,15 @@ public class PantallaMascotas extends AppCompatActivity {
                 }
             }
             if (!fotoCargada) {
-                if ("Rocky".equalsIgnoreCase(nombre)) {
-                    ivAvatar.setImageResource(R.drawable.img_pet_rocky);
-                } else if ("Luna".equalsIgnoreCase(nombre)) {
-                    ivAvatar.setImageResource(R.drawable.img_pet_luna);
-                } else if (esGato) {
-                    ivAvatar.setImageResource(R.drawable.img_cat_icon_completo);
+                String fotoUrl = m.getFotoUrl();
+                if (fotoUrl != null && !fotoUrl.trim().isEmpty()) {
+                    com.bumptech.glide.Glide.with(this)
+                            .load(fotoUrl)
+                            .placeholder(recursoPredeterminado)
+                            .error(recursoPredeterminado)
+                            .into(ivAvatar);
                 } else {
-                    ivAvatar.setImageResource(R.drawable.img_dog_icon_completo);
+                    ivAvatar.setImageResource(recursoPredeterminado);
                 }
             }
 
@@ -280,6 +292,12 @@ public class PantallaMascotas extends AppCompatActivity {
                 }
                 if (m.getFotoUri() != null) {
                     intent.putExtra(editar_infoMascota.EXTRA_FOTO_URI, m.getFotoUri());
+                }
+                if (m.getFotoUrl() != null) {
+                    intent.putExtra(editar_infoMascota.EXTRA_FOTO_URL, m.getFotoUrl());
+                }
+                if (m.getFotoPath() != null) {
+                    intent.putExtra(editar_infoMascota.EXTRA_FOTO_PATH, m.getFotoPath());
                 }
                 startActivity(intent);
             });
@@ -316,6 +334,12 @@ public class PantallaMascotas extends AppCompatActivity {
                     if (m.getFotoUri() != null) {
                         intent.putExtra(editar_infoMascota.EXTRA_FOTO_URI, m.getFotoUri());
                     }
+                    if (m.getFotoUrl() != null) {
+                        intent.putExtra(editar_infoMascota.EXTRA_FOTO_URL, m.getFotoUrl());
+                    }
+                    if (m.getFotoPath() != null) {
+                        intent.putExtra(editar_infoMascota.EXTRA_FOTO_PATH, m.getFotoPath());
+                    }
                     startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(PantallaMascotas.this, "Error al abrir edición: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -341,15 +365,23 @@ public class PantallaMascotas extends AppCompatActivity {
                     String petId = m.getId();
                     String petNombre = m.getNombre();
 
-                    // 1. Eliminar del almacenamiento local persistente
+                    // 1. Eliminar la foto de la mascota de Supabase Storage y su copia local
+                    String rutaStorage = m.getFotoPath();
+                    if (rutaStorage == null || rutaStorage.trim().isEmpty()) {
+                        rutaStorage = SupabaseStorageHelper.extraerRuta(m.getFotoUrl());
+                    }
+                    SupabaseStorageHelper.eliminarFoto(rutaStorage, null);
+                    borrarArchivoLocal(m.getFotoUri());
+
+                    // 2. Eliminar del almacenamiento local persistente
                     MascotasLocalManager.deleteMascota(this, uid, petId, petNombre);
 
-                    // 2. Refrescar la pantalla de inmediato
+                    // 3. Refrescar la pantalla de inmediato
                     List<Mascota> actualizadas = MascotasLocalManager.getMascotas(this, uid);
                     mostrarMascotas(actualizadas);
                     Toast.makeText(this, "\"" + petNombre + "\" ha sido eliminada.", Toast.LENGTH_SHORT).show();
 
-                    // 3. Eliminar de Firebase Firestore en segundo plano si está disponible
+                    // 4. Eliminar de Firebase Firestore en segundo plano si está disponible
                     if (petId != null && !petId.startsWith("demo_")) {
                         try {
                             // Limpiar subcolección de vacunas
@@ -371,6 +403,21 @@ public class PantallaMascotas extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    private void borrarArchivoLocal(String rutaLocal) {
+        if (rutaLocal == null || rutaLocal.trim().isEmpty()
+                || rutaLocal.startsWith("http://") || rutaLocal.startsWith("https://")) {
+            return;
+        }
+        try {
+            java.io.File archivo = new java.io.File(rutaLocal);
+            String raizApp = getFilesDir().getAbsolutePath();
+            if (archivo.exists() && archivo.getAbsolutePath().startsWith(raizApp)) {
+                archivo.delete();
+            }
+        } catch (Exception ignored) {
+        }
     }
 
     private void actualizarCapacidad(int count) {

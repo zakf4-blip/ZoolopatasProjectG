@@ -98,6 +98,12 @@ public class InformacionMascota extends AppCompatActivity {
                     if (mascotaActual.getFotoUri() != null) {
                         intent.putExtra(editar_infoMascota.EXTRA_FOTO_URI, mascotaActual.getFotoUri());
                     }
+                    if (mascotaActual.getFotoUrl() != null) {
+                        intent.putExtra(editar_infoMascota.EXTRA_FOTO_URL, mascotaActual.getFotoUrl());
+                    }
+                    if (mascotaActual.getFotoPath() != null) {
+                        intent.putExtra(editar_infoMascota.EXTRA_FOTO_PATH, mascotaActual.getFotoPath());
+                    }
                 } else if (getIntent().getExtras() != null) {
                     intent.putExtras(getIntent().getExtras());
                 }
@@ -149,6 +155,8 @@ public class InformacionMascota extends AppCompatActivity {
             ArrayList<String> cols = getIntent().getStringArrayListExtra(editar_infoMascota.EXTRA_COLORES);
             if (cols != null) encontrada.setColores(cols);
             encontrada.setFotoUri(getIntent().getStringExtra(editar_infoMascota.EXTRA_FOTO_URI));
+            encontrada.setFotoUrl(getIntent().getStringExtra(editar_infoMascota.EXTRA_FOTO_URL));
+            encontrada.setFotoPath(getIntent().getStringExtra(editar_infoMascota.EXTRA_FOTO_PATH));
         }
 
         if (encontrada == null) return;
@@ -172,6 +180,11 @@ public class InformacionMascota extends AppCompatActivity {
                             Mascota mRemota = Mascota.fromFirestoreDoc(doc);
                             if (mRemota != null) {
                                 mRemota.setUsuarioId(uid);
+                                // Conservamos la copia local de la foto si existe en este dispositivo.
+                                if ((mRemota.getFotoUri() == null || mRemota.getFotoUri().trim().isEmpty())
+                                        && mascotaActual != null) {
+                                    mRemota.setFotoUri(mascotaActual.getFotoUri());
+                                }
                                 mascotaActual = mRemota;
                                 MascotasLocalManager.saveOrUpdateMascota(InformacionMascota.this, uid, mRemota);
                                 actualizarVistasConMascota();
@@ -239,25 +252,38 @@ public class InformacionMascota extends AppCompatActivity {
 
         // ── 8. Foto / Avatar ──
         if (foto_Mascota != null) {
+            String nombre = mascotaActual.getNombre() != null ? mascotaActual.getNombre() : "";
+            int recursoPredeterminado;
+            if ("Rocky".equalsIgnoreCase(nombre)) {
+                recursoPredeterminado = R.drawable.img_pet_rocky_clinic;
+            } else if ("Luna".equalsIgnoreCase(nombre)) {
+                recursoPredeterminado = R.drawable.img_pet_luna;
+            } else if (esGato) {
+                recursoPredeterminado = R.drawable.img_cat_icon_completo;
+            } else {
+                recursoPredeterminado = R.drawable.img_dog_icon_completo;
+            }
+
             String fotoUri = mascotaActual.getFotoUri();
             boolean fotoCargada = false;
             if (fotoUri != null && !fotoUri.trim().isEmpty()) {
                 Bitmap bmp = editar_infoMascota.decodeSampledBitmapFromFile(fotoUri, 600, 600);
                 if (bmp != null) {
+                    com.bumptech.glide.Glide.with(this).clear(foto_Mascota);
                     foto_Mascota.setImageBitmap(bmp);
                     fotoCargada = true;
                 }
             }
             if (!fotoCargada) {
-                String nombre = mascotaActual.getNombre() != null ? mascotaActual.getNombre() : "";
-                if ("Rocky".equalsIgnoreCase(nombre)) {
-                    foto_Mascota.setImageResource(R.drawable.img_pet_rocky_clinic);
-                } else if ("Luna".equalsIgnoreCase(nombre)) {
-                    foto_Mascota.setImageResource(R.drawable.img_pet_luna);
-                } else if (esGato) {
-                    foto_Mascota.setImageResource(R.drawable.img_cat_icon_completo);
+                String fotoUrl = mascotaActual.getFotoUrl();
+                if (fotoUrl != null && !fotoUrl.trim().isEmpty()) {
+                    com.bumptech.glide.Glide.with(this)
+                            .load(fotoUrl)
+                            .placeholder(recursoPredeterminado)
+                            .error(recursoPredeterminado)
+                            .into(foto_Mascota);
                 } else {
-                    foto_Mascota.setImageResource(R.drawable.img_dog_icon_completo);
+                    foto_Mascota.setImageResource(recursoPredeterminado);
                 }
             }
         }

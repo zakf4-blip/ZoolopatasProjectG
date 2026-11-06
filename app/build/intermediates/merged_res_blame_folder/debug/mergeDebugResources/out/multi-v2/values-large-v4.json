@@ -4,7 +4,7 @@
             "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/a5e2916872b90ef9c3daa8d77b95b05a/transformed/appcompat-1.8.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/fa755cd6d26914f2a868cef5037526be/transformed/appcompat-1.8.0/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/f08f55dc637f3f91d061c7ca40bfcc63/transformed/material-1.14.0/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

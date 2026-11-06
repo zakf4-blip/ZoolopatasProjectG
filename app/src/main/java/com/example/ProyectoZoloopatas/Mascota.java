@@ -26,7 +26,9 @@ public class Mascota implements Serializable {
     private String usuarioId;
     private Object fechaRegistro;
     private Object fechaActualizacion;
-    private String fotoUri;
+    private String fotoUri;   // Copia local (caché) de la imagen, usada para mostrarla sin red
+    private String fotoUrl;   // URL pública de Supabase Storage (Firestore: urlFoto)
+    private String fotoPath;  // Ruta interna en el bucket (Firestore: rutaFoto)
     private double pesoKg = 0.0;
     private List<String> alergias;
     private List<String> afeccionesCronicas;
@@ -148,6 +150,22 @@ public class Mascota implements Serializable {
         this.fotoUri = fotoUri;
     }
 
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public String getFotoPath() {
+        return fotoPath;
+    }
+
+    public void setFotoPath(String fotoPath) {
+        this.fotoPath = fotoPath;
+    }
+
     public double getPesoKg() {
         return pesoKg;
     }
@@ -195,6 +213,8 @@ public class Mascota implements Serializable {
             json.put("fechaNacimiento", fechaNacimiento != null ? fechaNacimiento : "");
             json.put("usuarioId", usuarioId != null ? usuarioId : "");
             json.put("fotoUri", fotoUri != null ? fotoUri : "");
+            json.put("fotoUrl", fotoUrl != null ? fotoUrl : "");
+            json.put("fotoPath", fotoPath != null ? fotoPath : "");
             JSONArray colArr = new JSONArray();
             if (colores != null) {
                 for (String c : colores) colArr.put(c);
@@ -219,6 +239,14 @@ public class Mascota implements Serializable {
         if (!foto.isEmpty()) {
             m.setFotoUri(foto);
         }
+        String fotoUrl = json.optString("fotoUrl", "");
+        if (!fotoUrl.isEmpty()) {
+            m.setFotoUrl(fotoUrl);
+        }
+        String fotoPath = json.optString("fotoPath", "");
+        if (!fotoPath.isEmpty()) {
+            m.setFotoPath(fotoPath);
+        }
         JSONArray colArr = json.optJSONArray("colores");
         List<String> cols = new ArrayList<>();
         if (colArr != null) {
@@ -241,7 +269,10 @@ public class Mascota implements Serializable {
         map.put("fechaNacimiento", getFechaNacimiento());
         map.put("colores", getColores());
         map.put("pesoKg", pesoKg);
-        map.put("urlFoto", fotoUri != null ? fotoUri : "");
+        // La URL remota y la ruta del bucket se guardan por separado. La ruta local
+        // (fotoUri) nunca se envía a Firestore porque solo existe en este dispositivo.
+        map.put("urlFoto", fotoUrl != null ? fotoUrl : "");
+        map.put("rutaFoto", fotoPath != null ? fotoPath : "");
 
         Map<String, Object> resumen = new HashMap<>();
         resumen.put("alergias", getAlergias());
@@ -293,7 +324,18 @@ public class Mascota implements Serializable {
         }
 
         String foto = doc.getString("urlFoto");
-        m.setFotoUri(foto != null ? foto : "");
+        if (foto != null && !foto.trim().isEmpty()) {
+            if (foto.startsWith("http://") || foto.startsWith("https://")) {
+                m.setFotoUrl(foto.trim());
+            } else {
+                // Compatibilidad con versiones anteriores que guardaban una ruta local.
+                m.setFotoUri(foto.trim());
+            }
+        }
+        String fotoPath = doc.getString("rutaFoto");
+        if (fotoPath != null && !fotoPath.trim().isEmpty()) {
+            m.setFotoPath(fotoPath.trim());
+        }
 
         String uid = doc.getString("idPropietario");
         m.setUsuarioId(uid != null ? uid : "");

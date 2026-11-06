@@ -4,7 +4,7 @@
             "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/a5e2916872b90ef9c3daa8d77b95b05a/transformed/appcompat-1.8.0/res/values-v23/values-v23.xml",
+                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/fa755cd6d26914f2a868cef5037526be/transformed/appcompat-1.8.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/e4ae85f0e9144b1a05e27b9c290a855b/transformed/material-1.14.0/res/values-v23/values-v23.xml",
+                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/f08f55dc637f3f91d061c7ca40bfcc63/transformed/material-1.14.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,26",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -34,7 +34,7 @@
                     }
                 },
                 {
-                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/f19df6b15d8c82dd52c4e33e6591f5c7/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "/home/zaku/.gradle/caches/9.6.0/transforms/3879129308d52f03f9145a6811c58cc1/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

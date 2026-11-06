@@ -159,6 +159,15 @@ public class MascotasLocalManager {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         Set<String> eliminadas = getEliminadas(context, uid);
 
+        // Conservamos la copia local (caché) de las fotos ya descargadas en este dispositivo.
+        List<Mascota> locales = getMascotas(context, uid);
+        java.util.Map<String, Mascota> localesPorId = new java.util.HashMap<>();
+        for (Mascota local : locales) {
+            if (local != null && local.getId() != null) {
+                localesPorId.put(local.getId(), local);
+            }
+        }
+
         List<Mascota> listaFinal = new ArrayList<>();
         if (firestoreList != null) {
             for (Mascota remota : firestoreList) {
@@ -166,6 +175,16 @@ public class MascotasLocalManager {
                     // Omitir mascotas demo por defecto
                     if (remota.getId() != null && (remota.getId().startsWith("demo_") || remota.getId().equals("demo_rocky") || remota.getId().equals("demo_luna"))) {
                         continue;
+                    }
+                    Mascota local = remota.getId() != null ? localesPorId.get(remota.getId()) : null;
+                    if (local != null) {
+                        if (remota.getFotoUri() == null || remota.getFotoUri().trim().isEmpty()) {
+                            remota.setFotoUri(local.getFotoUri());
+                        }
+                        if ((remota.getFotoUrl() == null || remota.getFotoUrl().trim().isEmpty())
+                                && local.getFotoUrl() != null && !local.getFotoUrl().trim().isEmpty()) {
+                            remota.setFotoUrl(local.getFotoUrl());
+                        }
                     }
                     remota.setUsuarioId(uid);
                     listaFinal.add(remota);

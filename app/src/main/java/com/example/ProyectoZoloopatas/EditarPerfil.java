@@ -43,6 +43,7 @@ public class EditarPerfil extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private File archivoFotoParaSubir = null;
+    private String rutaFotoActual = null;
     private EditText etNombreUsuario, etTelefonoUsuario;
     private Spinner spCodigoPais, spCiudadDistrito;
     private TextView tvContadorNombreUsuario, tvNombreFoto;
@@ -206,6 +207,16 @@ public class EditarPerfil extends AppCompatActivity {
             seleccionar(spCiudadDistrito, dist);
 
             String urlFoto = doc.getString("urlFoto");
+
+            // Guardamos la ruta real del objeto para poder borrar la foto anterior
+            // cuando el usuario suba una nueva. Si el documento es antiguo y solo
+            // tiene urlFoto, la deducimos desde la URL pública.
+            String rutaFotoDoc = doc.getString("rutaFoto");
+            rutaFotoActual = SupabaseStorageHelper.extraerRuta(urlFoto);
+            if (rutaFotoActual == null || rutaFotoActual.isEmpty()) {
+                rutaFotoActual = SupabaseStorageHelper.extraerRuta(rutaFotoDoc);
+            }
+
             if (urlFoto != null && !urlFoto.isEmpty()) {
                 if (ivFotoEditar != null) {
                     ivFotoEditar.setPadding(0, 0, 0, 0); // Quitamos el padding
@@ -242,7 +253,8 @@ public class EditarPerfil extends AppCompatActivity {
         ivFotoEditar.setImageBitmap(bitmap);
     }
 
-    private void actualizarDatosEnFirebaseYAuth(FirebaseUser user, String nombre, String telefono, String nuevaFotoUrl) {
+    private void actualizarDatosEnFirebaseYAuth(FirebaseUser user, String nombre, String telefono,
+                                                String nuevaFotoUrl, String nuevaFotoPath) {
         UserProfileChangeRequest cambios = new UserProfileChangeRequest.Builder()
                 .setDisplayName(nombre)
                 .build();
@@ -262,17 +274,35 @@ public class EditarPerfil extends AppCompatActivity {
             datos.put("fechaActualizacionCuenta", com.google.firebase.firestore.FieldValue.serverTimestamp());
 
             if (nuevaFotoUrl != null) {
+                String rutaNueva = nuevaFotoPath != null
+                        ? nuevaFotoPath
+                        : SupabaseStorageHelper.extraerRuta(nuevaFotoUrl);
                 datos.put("urlFoto", nuevaFotoUrl);
-                datos.put("rutaFoto", "avatars/" + nuevaFotoUrl.substring(nuevaFotoUrl.lastIndexOf("/") + 1));
+                datos.put("rutaFoto", rutaNueva != null ? rutaNueva : "");
             }
 
+            final String rutaNuevaFinal = nuevaFotoPath;
             db.collection("usuarios").document(user.getUid())
                     .set(datos, com.google.firebase.firestore.SetOptions.merge())
                     .addOnSuccessListener(unused -> {
+                        // Si se reemplazó la foto, eliminamos la anterior de Supabase
+                        // para no dejar archivos huérfanos (CRUD completo de la imagen).
+                        if (rutaNuevaFinal != null && rutaFotoActual != null
+                                && !rutaNuevaFinal.equals(rutaFotoActual)) {
+                            SupabaseStorageHelper.eliminarFoto(rutaFotoActual, null);
+                        }
+                        rutaFotoActual = rutaNuevaFinal != null ? rutaNuevaFinal : rutaFotoActual;
+                        archivoFotoParaSubir = null;
+
                         Toast.makeText(this, "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show();
                         finish();
                     })
                     .addOnFailureListener(e -> {
+                        // La foto nueva se subió pero no se pudo guardar la referencia:
+                        // la borramos para evitar un archivo huérfano en el bucket.
+                        if (rutaNuevaFinal != null) {
+                            SupabaseStorageHelper.eliminarFoto(rutaNuevaFinal, null);
+                        }
                         Toast.makeText(this, "Error al guardar en Firestore: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         findViewById(R.id.btnGuardarTop).setEnabled(true);
                         findViewById(R.id.btnGuardarCambios).setEnabled(true);
@@ -305,24 +335,25 @@ public class EditarPerfil extends AppCompatActivity {
         findViewById(R.id.btnGuardarCambios).setEnabled(false);
 
         // Si hay una foto nueva seleccionada, primero la subimos a Supabase
-        if (archivoFotoParaSubir != null) {
-            SupabaseStorageHelper.subirFoto(archivoFotoParaSubir, user.getUid(), new SupabaseStorageHelper.UploadCallback() {
-                @Override
-                public void onSuccess(String publicUrl) {
-                    // Si la foto sube bien, guardamos el resto de datos
-                    actualizarDatosEnFirebaseYAuth(user, nombre, telefono, publicUrl);
-                }
+        if (archivoFotoParaSubir != null && archivoFotoParaSubir.exists()) {
+            SupabaseStorageHelper.subirFotoPerfil(archivoFotoParaSubir, user.getUid(),
+                    new SupabaseStorageHelper.UploadWithPathCallback() {
+                        @Override
+                        public void onSuccess(String publicUrl, String storagePath) {
+                            // Si la foto sube bien, guardamos el resto de datos junto con su ruta
+                            actualizarDatosEnFirebaseYAuth(user, nombre, telefono, publicUrl, storagePath);
+                        }
 
-                @Override
-                public void onError(String error) {
-                    Toast.makeText(EditarPerfil.this, "Error al subir foto: " + error, Toast.LENGTH_LONG).show();
-                    findViewById(R.id.btnGuardarTop).setEnabled(true);
-                    findViewById(R.id.btnGuardarCambios).setEnabled(true);
-                }
-            });
+                        @Override
+                        public void onError(String error) {
+                            Toast.makeText(EditarPerfil.this, "Error al subir foto: " + error, Toast.LENGTH_LONG).show();
+                            findViewById(R.id.btnGuardarTop).setEnabled(true);
+                            findViewById(R.id.btnGuardarCambios).setEnabled(true);
+                        }
+                    });
         } else {
             // Si no hay foto nueva, guardamos solo los datos de texto
-            actualizarDatosEnFirebaseYAuth(user, nombre, telefono, null);
+            actualizarDatosEnFirebaseYAuth(user, nombre, telefono, null, null);
         }
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <string-array name="ciudades_distritos">
         <item>Lima (Miraflores / San Isidro)</item>
         <item>Lima (Surco / La Molina)</item>

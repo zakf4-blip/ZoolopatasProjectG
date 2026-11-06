@@ -397,53 +397,150 @@ public class PerfilUsuario extends AppCompatActivity {
 
         user.reauthenticate(credential).addOnCompleteListener(authTask -> {
             if (authTask.isSuccessful()) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-                // 2. Limpiar subcolecciones de Firestore antes de eliminar el usuario
-                db.collection("usuarios").document(uid).collection("mascotas").get()
-                        .addOnSuccessListener(mascotasSnapshots -> {
-                            for (com.google.firebase.firestore.DocumentSnapshot petDoc : mascotasSnapshots) {
-                                petDoc.getReference().collection("vacunas").get()
-                                        .addOnSuccessListener(vacSnapshots -> {
-                                            for (com.google.firebase.firestore.DocumentSnapshot vDoc : vacSnapshots) {
-                                                vDoc.getReference().delete();
-                                            }
-                                        });
-                                petDoc.getReference().delete();
-                            }
-
-                            // Limpiar recordatorios
-                            db.collection("usuarios").document(uid).collection("recordatorios").get()
-                                    .addOnSuccessListener(recSnapshots -> {
-                                        for (com.google.firebase.firestore.DocumentSnapshot rDoc : recSnapshots) {
-                                            rDoc.getReference().delete();
-                                        }
-                                    });
-
-                            // Eliminar documento del usuario en Firestore
-                            db.collection("usuarios").document(uid).delete().addOnCompleteListener(firestoreTask -> {
-                                // 3. Proceder a borrar de Firebase Auth
-                                user.delete().addOnCompleteListener(deleteTask -> {
-                                    PremiumManager.limpiarSesionUsuario(PerfilUsuario.this);
-                                    if (deleteTask.isSuccessful()) {
-                                        Toast.makeText(PerfilUsuario.this, "Cuenta eliminada permanentemente.", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(PerfilUsuario.this, "Datos de usuario eliminados.", Toast.LENGTH_SHORT).show();
-                                    }
-                                    irAInicioSesion();
-                                });
-                            });
-                        })
-                        .addOnFailureListener(e -> {
-                            db.collection("usuarios").document(uid).delete();
-                            user.delete();
-                            PremiumManager.limpiarSesionUsuario(PerfilUsuario.this);
-                            irAInicioSesion();
-                        });
+                // 2. Recolectar y borrar las imágenes del usuario y de sus mascotas
+                //    antes de eliminar sus documentos de Firestore.
+                eliminarFotosDeSupabaseYContinuar(user, uid);
             } else {
                 Toast.makeText(this, "Contraseña incorrecta. No se pudo verificar la identidad.", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Obtiene las rutas de todas las fotos relacionadas con la cuenta (perfil y
+     * mascotas), las elimina del bucket y, sin importar el resultado, continúa con
+     * la limpieza de Firestore y Firebase Auth. Así una caída de Storage nunca
+     * impide que el usuario pueda eliminar su cuenta.
+     */
+    private void eliminarFotosDeSupabaseYContinuar(FirebaseUser user, String uid) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        java.util.List<String> rutasFotos = new java.util.ArrayList<>();
+
+        // Fotos de mascotas guardadas localmente (incluye la ruta del bucket).
+        for (Mascota local : MascotasLocalManager.getMascotas(this, uid)) {
+            if (local == null) continue;
+            if (local.getFotoPath() != null && !local.getFotoPath().trim().isEmpty()) {
+                rutasFotos.add(local.getFotoPath());
+            }
+            if (local.getFotoUrl() != null && !local.getFotoUrl().trim().isEmpty()) {
+                rutasFotos.add(local.getFotoUrl());
+            }
+            borrarArchivoLocal(local.getFotoUri());
+        }
+
+        // Primero leemos el documento del usuario para conocer su foto de perfil.
+        db.collection("usuarios").document(uid).get()
+                .addOnCompleteListener(userDocTask -> {
+                    if (userDocTask.isSuccessful()) {
+                        com.google.firebase.firestore.DocumentSnapshot userDoc = userDocTask.getResult();
+                        if (userDoc != null && userDoc.exists()) {
+                            agregarRutasDeFoto(rutasFotos,
+                                    userDoc.getString("urlFoto"),
+                                    userDoc.getString("rutaFoto"));
+                        }
+                    }
+
+                    // Después leemos las mascotas desde Firestore (fuente oficial).
+                    db.collection("usuarios").document(uid).collection("mascotas").get()
+                            .addOnCompleteListener(petsTask -> {
+                                if (petsTask.isSuccessful() && petsTask.getResult() != null) {
+                                    for (com.google.firebase.firestore.DocumentSnapshot petDoc : petsTask.getResult()) {
+                                        agregarRutasDeFoto(rutasFotos,
+                                                petDoc.getString("urlFoto"),
+                                                petDoc.getString("rutaFoto"));
+                                    }
+                                }
+
+                                SupabaseStorageHelper.eliminarFotos(rutasFotos,
+                                        new SupabaseStorageHelper.DeleteCallback() {
+                                            @Override
+                                            public void onSuccess() {
+                                                limpiarFirestoreYEliminarCuenta(user, uid);
+                                            }
+
+                                            @Override
+                                            public void onError(String error) {
+                                                // Se registra el problema, pero la cuenta se elimina igual.
+                                                android.util.Log.e("PerfilUsuario",
+                                                        "No se pudieron borrar todas las fotos: " + error);
+                                                limpiarFirestoreYEliminarCuenta(user, uid);
+                                            }
+                                        });
+                            });
+                });
+    }
+
+    private void agregarRutasDeFoto(java.util.List<String> destino, String urlFoto, String rutaFoto) {
+        if (rutaFoto != null && !rutaFoto.trim().isEmpty()) {
+            destino.add(rutaFoto);
+        }
+        if (urlFoto != null && !urlFoto.trim().isEmpty()) {
+            String rutaDesdeUrl = SupabaseStorageHelper.extraerRuta(urlFoto);
+            if (rutaDesdeUrl != null && !rutaDesdeUrl.trim().isEmpty()) {
+                destino.add(rutaDesdeUrl);
+            }
+        }
+    }
+
+    private void borrarArchivoLocal(String rutaLocal) {
+        if (rutaLocal == null || rutaLocal.trim().isEmpty()
+                || rutaLocal.startsWith("http://") || rutaLocal.startsWith("https://")) {
+            return;
+        }
+        try {
+            java.io.File archivo = new java.io.File(rutaLocal);
+            String raizApp = getFilesDir().getAbsolutePath();
+            if (archivo.exists() && archivo.getAbsolutePath().startsWith(raizApp)) {
+                archivo.delete();
+            }
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void limpiarFirestoreYEliminarCuenta(FirebaseUser user, String uid) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // 3. Limpiar subcolecciones de Firestore antes de eliminar el usuario
+        db.collection("usuarios").document(uid).collection("mascotas").get()
+                .addOnSuccessListener(mascotasSnapshots -> {
+                    for (com.google.firebase.firestore.DocumentSnapshot petDoc : mascotasSnapshots) {
+                        petDoc.getReference().collection("vacunas").get()
+                                .addOnSuccessListener(vacSnapshots -> {
+                                    for (com.google.firebase.firestore.DocumentSnapshot vDoc : vacSnapshots) {
+                                        vDoc.getReference().delete();
+                                    }
+                                });
+                        petDoc.getReference().delete();
+                    }
+
+                    // Limpiar recordatorios
+                    db.collection("usuarios").document(uid).collection("recordatorios").get()
+                            .addOnSuccessListener(recSnapshots -> {
+                                for (com.google.firebase.firestore.DocumentSnapshot rDoc : recSnapshots) {
+                                    rDoc.getReference().delete();
+                                }
+                            });
+
+                    // Eliminar documento del usuario en Firestore
+                    db.collection("usuarios").document(uid).delete().addOnCompleteListener(firestoreTask -> {
+                        // 4. Proceder a borrar de Firebase Auth
+                        user.delete().addOnCompleteListener(deleteTask -> {
+                            PremiumManager.limpiarSesionUsuario(PerfilUsuario.this);
+                            if (deleteTask.isSuccessful()) {
+                                Toast.makeText(PerfilUsuario.this, "Cuenta eliminada permanentemente.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(PerfilUsuario.this, "Datos de usuario eliminados.", Toast.LENGTH_SHORT).show();
+                            }
+                            irAInicioSesion();
+                        });
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    db.collection("usuarios").document(uid).delete();
+                    user.delete();
+                    PremiumManager.limpiarSesionUsuario(PerfilUsuario.this);
+                    irAInicioSesion();
+                });
     }
 
     private void irAInicioSesion() {
