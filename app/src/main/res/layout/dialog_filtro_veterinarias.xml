@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Indicador de arrastre superior -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#CBD5E1"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrar Directorio Veterinario"
+        android:textColor="#111827"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Encuentra centros médicos según tus necesidades"
+        android:textColor="#6B7280"
+        android:textSize="12sp" />
+
+    <!-- Separador -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#E5E7EB" />
+
+    <!-- Sección: Tipo de Centro Clínico -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Clínica"
+        android:textColor="#1F2937"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rgTipoClinica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp">
+
+        <RadioButton
+            android:id="@+id/rbTipoTodas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Todas las clínicas"
+            android:textColor="#374151"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/rbTipoEspecializada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clínica Especializada (UCI, Cirugía, Ecografía)"
+            android:textColor="#374151"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/rbTipoExterna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clínica Externa (Consultas externas, Vacunas, Rayos X)"
+            android:textColor="#374151"
+            android:textSize="13sp" />
+    </RadioGroup>
+
+    <!-- Separador -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#E5E7EB" />
+
+    <!-- Sección: Distrito -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distrito"
+        android:textColor="#1F2937"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinnerDistrito"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_search_bar"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp" />
+
+    <!-- Separador -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#E5E7EB" />
+
+    <!-- Filtro solo abiertas -->
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchSoloAbiertas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Solo clínicas abiertas ahora"
+        android:textColor="#1F2937"
+        android:textSize="13.5sp" />
+
+    <!-- Botones de Acción -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnRestablecerFiltros"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="Restablecer"
+            android:textColor="#4B5563"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAplicarFiltros"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#007A6E"
+            android:text="Aplicar Filtros"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</LinearLayout>

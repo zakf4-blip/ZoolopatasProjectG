@@ -80,6 +80,12 @@ public class HomeActivity extends AppCompatActivity {
             findViewById(R.id.cardPremium).setOnClickListener(abrirSuscripcion);
         }
 
+        // ── Pantalla principal -> Centros Clínicos / Localización Veterinaria ──
+        if (findViewById(R.id.btnCentrosClinicos) != null) {
+            findViewById(R.id.btnCentrosClinicos).setOnClickListener(v ->
+                    startActivity(new Intent(this, activity_localizacionVeterinaria.class)));
+        }
+
         findViewById(R.id.btnNavNotificaciones).setOnClickListener(v ->
                 Toast.makeText(this, "Notificaciones: próximamente", Toast.LENGTH_SHORT).show());
         actualizarSaludo();

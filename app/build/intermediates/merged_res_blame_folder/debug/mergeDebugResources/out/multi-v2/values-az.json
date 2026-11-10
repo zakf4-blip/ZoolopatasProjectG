@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-az/values-az.xml",
+            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-55:/values-az/values-az.xml",
             "map": [
                 {
                     "source": "/home/zaku/.gradle/caches/9.6.0/transforms/fa755cd6d26914f2a868cef5037526be/transformed/appcompat-1.8.0/res/values-az/values-az.xml",

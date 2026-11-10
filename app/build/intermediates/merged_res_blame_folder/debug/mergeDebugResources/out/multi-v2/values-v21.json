@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-54:/values-v21/values-v21.xml",
+            "outputFile": "com.example.ProyectoZoloopatas.app-mergeDebugResources-55:/values-v21/values-v21.xml",
             "map": [
                 {
                     "source": "/home/zaku/.gradle/caches/9.6.0/transforms/58642516f08caa909766560b71cb8b37/transformed/credentials-play-services-auth-1.2.0-rc01/res/values-v21/values-v21.xml",

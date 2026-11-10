@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
+    tools:context=".activity_localizacionVeterinaria">
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BARRA SUPERIOR FIJA                                -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/dashboard_bg"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón Volver -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#1F2937"
+            android:contentDescription="Volver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Logo + Nombre de la App -->
+        <LinearLayout
+            android:id="@+id/layoutLogoApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <FrameLayout
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_dashboard_logo"
+                android:padding="6dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_paw"
+                    app:tint="#007A6E"
+                    android:contentDescription="Patita Zoolopatas" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Zoolopatas"
+                android:textColor="#007A6E"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Botón Perfil Avatar Circular -->
+        <FrameLayout
+            android:id="@+id/btnProfileAvatar"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_circle_action_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person"
+                app:tint="#007A6E"
+                android:contentDescription="Perfil de usuario" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- CONTENIDO CON SCROLL                               -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <!-- ── SECCIÓN TÍTULO + BADGE VERIFICADAS ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/layoutBadgeVerificadas"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RED ASISTENCIAL LIMA"
+                        android:textColor="#007A6E"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.05" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Directorio\nVeterinario"
+                        android:textColor="#111827"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+
+                <!-- Badge 24 Clínicas Verificadas -->
+                <LinearLayout
+                    android:id="@+id/layoutBadgeVerificadas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_verified_badge"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="6dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_verified_teal"
+                        android:contentDescription="Verificada" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="24 Clínicas\nVerificadas"
+                        android:textColor="#374151"
+                        android:textSize="10.5sp"
+                        android:textStyle="bold"
+                        android:lineSpacingExtra="1dp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── BARRA DE BÚSQUEDA Y FILTRO ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Caja de Búsqueda -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_search_bar"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="8dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_search"
+                        app:tint="#007A6E"
+                        android:contentDescription="Buscar" />
+
+                    <EditText
+                        android:id="@+id/etBuscar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="Buscar por nombre o especialidad..."
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:textColor="#1F2937"
+                        android:textColorHint="#9CA3AF"
+                        android:textSize="13sp" />
+
+                    <ImageView
+                        android:id="@+id/btnClearSearch"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_clear_gray"
+                        android:visibility="gone"
+                        android:contentDescription="Limpiar texto" />
+                </LinearLayout>
+
+                <!-- Botón Filtro Avanzado -->
+                <FrameLayout
+                    android:id="@+id/btnFilter"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/bg_filter_btn">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_tune"
+                        android:contentDescription="Filtros" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- ── FILTRO 1: TIPO DE CLÍNICA (Especializada vs Externa) ── -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layoutTypeChips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Chip: Todas -->
+                    <TextView
+                        android:id="@+id/chipTipoTodas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_chip_selected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="Todas las clínicas"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <!-- Chip: Clínica Especializada -->
+                    <TextView
+                        android:id="@+id/chipTipoEspecializada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="Clínica Especializada"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+
+                    <!-- Chip: Clínica Externa -->
+                    <TextView
+                        android:id="@+id/chipTipoExterna"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="Clínica Externa"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ── FILTRO 2: DISTRITOS DE LIMA ── -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layoutDistrictChips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Chip: Todos los distritos -->
+                    <LinearLayout
+                        android:id="@+id/chipDistritoTodos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_chip_selected"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="14dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconPinTodos"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_location_pin"
+                            app:tint="@android:color/white"
+                            android:contentDescription="Pin" />
+
+                        <TextView
+                            android:id="@+id/tvChipDistritoTodos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="Todos los distritos"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Chip: Miraflores -->
+                    <TextView
+                        android:id="@+id/chipDistritoMiraflores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="Miraflores"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+
+                    <!-- Chip: San Isidro -->
+                    <TextView
+                        android:id="@+id/chipDistritoSanIsidro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="San Isidro"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+
+                    <!-- Chip: Surco -->
+                    <TextView
+                        android:id="@+id/chipDistritoSurco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="Surco"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+
+                    <!-- Chip: San Miguel -->
+                    <TextView
+                        android:id="@+id/chipDistritoSanMiguel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="San Miguel"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+
+                    <!-- Chip: Los Olivos -->
+                    <TextView
+                        android:id="@+id/chipDistritoLosOlivos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:text="Los Olivos"
+                        android:textColor="#374151"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ── ENCABEZADO DE RESULTADOS + TOGGLE LISTA/MAPA ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:id="@+id/tvContadorClinicas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 centros médicos cercanos"
+                    android:textColor="#4B5563"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Selector Segmentado: Lista / Mapa -->
+                <LinearLayout
+                    android:id="@+id/layoutSegmentedToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_segmented_container"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <!-- Pestaña Lista -->
+                    <LinearLayout
+                        android:id="@+id/btnModoLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_btn_segmented_selected"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="12dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconLista"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_list_view"
+                            app:tint="@android:color/white"
+                            android:contentDescription="Lista" />
+
+                        <TextView
+                            android:id="@+id/tvLabelLista"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Lista"
+                            android:textColor="@android:color/white"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Pestaña Mapa -->
+                    <LinearLayout
+                        android:id="@+id/btnModoMapa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="12dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconMapa"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_map_view"
+                            app:tint="#6B7280"
+                            android:contentDescription="Mapa" />
+
+                        <TextView
+                            android:id="@+id/tvLabelMapa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Mapa"
+                            android:textColor="#6B7280"
+                            android:textSize="11.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── CONTENEDOR DEL MAPA (GOOGLE MAPS) ── -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMapContainer"
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="2dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <com.example.ProyectoZoloopatas.TouchableFrameLayout
+                    android:id="@+id/touchableMapContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- Google Map Fragment -->
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/mapFragment"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <!-- Botón Flotante "Buscar en esta zona" -->
+                    <LinearLayout
+                        android:id="@+id/btnBuscarEstaZona"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center_horizontal"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_btn_buscar_zona"
+                        android:clickable="true"
+                        android:elevation="6dp"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="14dp"
+                        android:paddingTop="7dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="7dp"
+                        android:visibility="gone">
+
+                        <ProgressBar
+                            android:id="@+id/pbBuscarZona"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:indeterminate="true"
+                            android:indeterminateTint="#007A6E"
+                            android:visibility="gone"
+                            android:layout_marginEnd="6dp" />
+
+                        <ImageView
+                            android:id="@+id/ivIconBuscarZona"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_search"
+                            app:tint="#007A6E"
+                            android:contentDescription="Buscar" />
+
+                        <TextView
+                            android:id="@+id/tvBuscarZonaLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="Buscar en esta zona"
+                            android:textColor="#007A6E"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Badge Flotante GPS Activo (Miraflores) -->
+                    <LinearLayout
+                        android:id="@+id/layoutGpsActivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/bg_gps_badge"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="5dp"
+                        android:elevation="4dp">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_gps_fixed"
+                            app:tint="#007A6E"
+                            android:contentDescription="GPS" />
+
+                        <TextView
+                            android:id="@+id/tvGpsActivoBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="GPS Activo (Miraflores)"
+                            android:textColor="#1F2937"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.example.ProyectoZoloopatas.TouchableFrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ── LISTA DE TARJETAS DE VETERINARIAS ── -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvVeterinarias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_veterinaria_card" />
+
+            <!-- Estado Vacío (Si no hay resultados del filtro) -->
+            <LinearLayout
+                android:id="@+id/layoutEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_paw"
+                    app:tint="#CBD5E1"
+                    android:contentDescription="Sin resultados" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="No se encontraron veterinarias"
+                    android:textColor="#374151"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Prueba cambiando los filtros o el texto de búsqueda"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <!-- ── BANNER INFERIOR DE DUDAS / TRIAGE VETERINARIO ── -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTriage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="1dp"
+                app:strokeColor="#FEEBC8"
+                app:strokeWidth="1dp"
+                app:cardBackgroundColor="#F8F3EC">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <!-- Ícono Ámbar -->
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_icon_amber">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_headset_triage"
+                            android:contentDescription="Triage" />
+                    </FrameLayout>
+
+                    <!-- Textos -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¿Dudas con tu mascota?"
+                            android:textColor="#1F2937"
+                            android:textSize="13.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Triage veterinario telefónico inmediato"
+                            android:textColor="#6B7280"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Botón Contactar -->
+                    <Button
+                        android:id="@+id/btnContactarTriage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_btn_contactar"
+                        android:text="Contactar"
+                        android:textColor="#1F2937"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- BARRA DE NAVEGACIÓN INFERIOR (BOTONES)             -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón Pestaña 1: Inicio -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavInicio"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Inicio"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_home"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <!-- Botón Pestaña 2: Notificaciones -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavNotificaciones"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Notificaciones"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_bell"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+
+        <!-- Botón Pestaña 3: Perfil -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavPerfil"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Perfil"
+            android:textColor="@color/dashboard_nav_unselected"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_nav_person"
+            app:iconGravity="textTop"
+            app:iconTint="@color/dashboard_nav_unselected"
+            app:iconSize="24dp"
+            app:iconPadding="3dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

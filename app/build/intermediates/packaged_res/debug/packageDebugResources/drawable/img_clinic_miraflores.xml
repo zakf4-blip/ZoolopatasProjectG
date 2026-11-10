@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <path
+        android:pathData="M0,0h120v120h-120z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:angle="45"
+                android:endColor="#C7D2FE"
+                android:startColor="#4338CA"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+    <!-- Modern Night/24h Vet Center -->
+    <path
+        android:fillColor="#1E1B4B"
+        android:pathData="M18,36h84v74h-84z" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M24,46h32v38h-32z" />
+    <path
+        android:fillColor="#818CF8"
+        android:pathData="M62,46h34v38h-34z" />
+    <path
+        android:fillColor="#22D3EE"
+        android:pathData="M18,28h84v10h-84z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,90h24v20h-24z" />
+</vector>

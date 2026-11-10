@@ -1,4 +1,4 @@
-#Sat Oct 31 23:37:34 GMT-05:00 2026
+#Fri Nov 06 14:01:06 GMT-05:00 2026
 base.0=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
 base.1=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
 base.2=/home/zaku/Documentos/AOpenCodeWork/ZoolopatasWork/ProyectoZoloopatas/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/7/classes.dex

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!-- Pill con nombre y horario/precio -->
+    <LinearLayout
+        android:id="@+id/markerPillContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gps_badge"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="3dp">
+
+        <TextView
+            android:id="@+id/tvMarkerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="San Martín • Abierto"
+            android:textColor="#0F172A"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Ícono Circular con la Patita de Mascota -->
+    <FrameLayout
+        android:id="@+id/markerCirclePaw"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg_circle_action_btn"
+        android:backgroundTint="#007A6E"
+        android:elevation="6dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_paw_white"
+            android:contentDescription="Patita veterinaria" />
+    </FrameLayout>
+
+    <!-- Puntero inferior del pin -->
+    <View
+        android:layout_width="6dp"
+        android:layout_height="4dp"
+        android:background="#00574F" />
+
+</LinearLayout>

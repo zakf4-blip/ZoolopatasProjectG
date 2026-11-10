@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/markerCirclePawMini"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@drawable/bg_circle_action_btn"
+        android:backgroundTint="#007A6E"
+        android:elevation="6dp">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_paw_white"
+            android:contentDescription="Patita veterinaria" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="5dp"
+        android:background="#00574F" />
+</LinearLayout>

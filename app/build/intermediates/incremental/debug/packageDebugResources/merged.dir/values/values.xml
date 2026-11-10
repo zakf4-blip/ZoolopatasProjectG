@@ -77,5 +77,8 @@
         
         
     </style>
+    <style name="ShapeAppearance.RoundedClinicImage" parent="">
+        <item name="cornerSize">14dp</item>
+    </style>
     <style name="Theme.ProyectoZoloopatas" parent="Base.Theme.ProyectoZoloopatas"/>
 </resources>
