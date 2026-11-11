@@ -40,8 +40,8 @@ import okhttp3.Response;
  * el archivo con seguridad, sin tener que reconstruirla a partir de la URL.
  */
 public class SupabaseStorageHelper {
-    private static final String SUPABASE_URL = "https://jurrdzyvhpgozjwhdyzr.supabase.co";
-    private static final String SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1cnJkenl2aHBnb3pqd2hkeXpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNDQxMTgsImV4cCI6MjEwODcyMDExOH0.jisb5E_g9qMtz0EU_dq-OJ7aQr-Uqro2ktWua6f23Lc";
+    private static final String SUPABASE_URL = "https://jur.supabase.co";
+    private static final String SUPABASE_KEY = "eyJhbG";
     private static final String BUCKET_NAME = "usuarios-perfiles-avatars";
 
     private static final MediaType TIPO_JPEG = MediaType.parse("image/jpeg");
